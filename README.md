@@ -6,12 +6,11 @@ Você deverá criar um aplicativo, que será um clone do aplicativo do Netflix.
 
 São obrigatórias:
  * Página de cadastro.
- * Página de login, deve ser possivel autenticar-se utilizando a digital (Fingerprint/TouchId), para permitir que o cliente acesso seu app com mais facilidade.
- * Home onde serão exibidas diversas listas horizontais de filmes, que você poderá organizar como quiser. 
-    Exemplo: Exibir listas de acordo com genêro, exibir listas de acordo com popularidade, etc, consulte as opções de query disponiveis na API e use a criatividade. :)
+ * Página de login, deve ser possivel autenticar-se utilizando a digital (Fingerprint/TouchId), para permitir que o cliente acesse seu app com mais facilidade.
+ * Home, onde serão exibidas diversas listas horizontais de filmes, que você poderá organizar como quiser. 
+    Exemplo: Exibir listas de acordo com genêro, exibir listas de acordo com popularidade, etc. Consulte as opções de query disponíveis na API e use a criatividade. :)
  * No topo das listas deve haver uma lista de "Favoritos", onde os filmes favoritados pelo cliente devem ser exibidos, estes não podem estar presentes nas outras listas.
- * Página de informações sobre o filme, como sinopse, ano de lançamento e etc, esta deverá ser exibida quando o cliente clicar em um filme.
- * A página de informações sobre o filme, deve contem um botão para que o cliente posa favoritar o filme, este deve ser a marcação utilizada para exibir o filme na lista de favorecidos da Home.
+ * Página de informações sobre o filme, como sinopse, ano de lançamento e etc, esta deverá ser exibida quando o cliente clicar em um filme. Deve conter um botão para que o cliente possa favoritar o filme, esta deve ser a marcação utilizada para exibir o filme na lista de favoritos da Home.
  
  **Importante: Cada lista de filmes de ser um componente isolado.**
 
@@ -33,7 +32,7 @@ Você será avaliado pela usabilidade, por respeitar o design e pela arquitetura
 * Para a autenticação: [Fingerprint](https://ionicframework.com/docs/native/fingerprint-aio/)/[Touch ID](https://ionicframework.com/docs/native/touch-id/).
 * Para listagem de filmes: [MovieDB](https://developers.themoviedb.org/3/getting-started/introduction)
 * Exemplo de [lista horizontal e componente](https://www.imageupload.co.uk/images/2018/10/09/F28459C8-3212-472D-86D4-1616734C84AE.png)
-* Para armazenar os filmes favoritado: [Cloud Firestore](https://firebase.google.com/docs/firestore/?hl=pt-br)
+* Para armazenar os filmes favoritados: [Cloud Firestore](https://firebase.google.com/docs/firestore/?hl=pt-br)
 
 ### Paleta de cores
 
