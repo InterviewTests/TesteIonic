@@ -12,7 +12,7 @@ São obrigatórias:
  * No topo das listas deve haver uma lista de "Favoritos", onde os filmes favoritados pelo cliente devem ser exibidos.
  * Página de informações sobre o filme, como sinopse, ano de lançamento e etc, esta deverá ser exibida quando o cliente clicar em um filme. Deve conter um botão para que o cliente possa favoritar o filme, esta deve ser a marcação utilizada para exibir o filme na lista de favoritos da Home.
  
- **Importante: Cada lista de filmes de ser um componente isolado.**
+ **Importante: Cada lista de filmes deve ser um componente isolado.**
 
 ### # Avaliação
 
