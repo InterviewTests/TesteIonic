@@ -21,9 +21,10 @@
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
     "@ionic-native/core": "5.0.0-beta.21",
-    "@ionic-native/splash-screen": "5.0.0-beta.21",
+    "@ionic-native/splash-screen": "^5.0.0-beta.22",
     "@ionic-native/status-bar": "5.0.0-beta.21",
     "@ionic/angular": "4.0.0-beta.17",
+    "cordova-plugin-splashscreen": "5.0.2",
     "core-js": "^2.5.4",
     "rxjs": "~6.3.3",
     "zone.js": "~0.8.26"
@@ -54,5 +55,10 @@
     "tslint": "~5.11.0",
     "typescript": "~3.1.6"
   },
-  "description": "A video or movie streaming app clone. This is a test provided by a friend to test my hybrid developing skills."
+  "description": "A video or movie streaming app clone. This is a test provided by a friend to test my hybrid developing skills.",
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-splashscreen": {}
+    }
+  }
 }
