@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+
 
 @Component({
   selector: 'app-auth',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthPage implements OnInit {
 
-  constructor() { }
+  constructor(private splashScreen: SplashScreen) { }
 
   ngOnInit() {
+    this.splashScreen.show();
+
+    // setTimeout(() => this.splashScreen.hide(), 4000);
+
   }
 
 }
