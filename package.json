@@ -1,8 +1,8 @@
 {
   "name": "Notflix",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "author": "Paulo Vale",
+  "homepage": "https://github.com/PauloGasparSv/Notflix/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -54,5 +54,5 @@
     "tslint": "~5.11.0",
     "typescript": "~3.1.6"
   },
-  "description": "An Ionic project"
+  "description": "A video or movie streaming app clone. This is a test provided by a friend to test my hybrid developing skills."
 }
