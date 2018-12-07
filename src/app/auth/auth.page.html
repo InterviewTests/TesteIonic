@@ -1,10 +1,21 @@
 <ion-content fullscreen color="light">
   <div class="auth-content">
-    <img src="assets/images/logo.png" alt="">
-    <div>This is still the auth page</div>
+    <div class="logo" text-center margin-bottom>
+      <img src="assets/images/logo.png" alt="">
+      <p no-margin>Originality and Sarcasm</p>
+    </div>
+
+
     <router-outlet> </router-outlet>
-    <ion-anchor href="/auth" routerDirection="back">Root</ion-anchor>
+    
+    <ion-button>
+      Login
+      <ion-ripple-effect></ion-ripple-effect>
+      <ion-icon slot="end" name="log-in"></ion-icon>
+    </ion-button>
+
+    <!-- <ion-anchor href="/auth" routerDirection="back">Root</ion-anchor>
     <ion-anchor href="/auth/login" routerDirection="forward">Login</ion-anchor>
-    <ion-anchor href="auth/register" routerDirection="root">Register</ion-anchor>
+    <ion-anchor href="auth/register" routerDirection="root">Register</ion-anchor> -->
   </div>
 </ion-content>
