@@ -1,4 +1,10 @@
-<ion-content>
-  This is still the auth page
-  <router-outlet> </router-outlet>
+<ion-content fullscreen color="light">
+  <div class="auth-content">
+    <img src="assets/images/logo.png" alt="">
+    <div>This is still the auth page</div>
+    <router-outlet> </router-outlet>
+    <ion-anchor href="/auth" routerDirection="back">Root</ion-anchor>
+    <ion-anchor href="/auth/login" routerDirection="forward">Login</ion-anchor>
+    <ion-anchor href="auth/register" routerDirection="root">Register</ion-anchor>
+  </div>
 </ion-content>
