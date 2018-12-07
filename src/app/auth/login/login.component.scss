@@ -1,0 +1,10 @@
+ion-item{
+    --background: transparent;
+    &:focus{
+        --background: red;    
+    }
+}
+
+ion-list{   
+    background: transparent;
+}
