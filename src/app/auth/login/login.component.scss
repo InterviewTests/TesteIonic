@@ -11,7 +11,7 @@
 
 ion-list{   
     background: transparent;
-    
+    margin-bottom: 32px;
     ion-item{
         --background: transparent;
         --padding-start: 4px;
@@ -19,7 +19,13 @@ ion-list{
         margin-bottom: 16px;
         ion-label{
             margin-bottom: 0;   
-            font-size: 24px;    
+            font-size: 24px; 
+            ion-icon{
+                transition: 0.5s;
+            }
+            ion-icon.active{
+                font-size: 28px;
+            }
         }
         ion-input{
             --padding-bottom: 4px;  

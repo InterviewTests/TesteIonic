@@ -1,7 +1,7 @@
 <ion-list>
   <ion-item lines="none">
     <ion-label>
-      <ion-icon color="light" name="person"></ion-icon>
+      <ion-icon color="light" name="person" [class.active]="emailSelected"></ion-icon>
     </ion-label>
     <ion-input 
       clearInput 
@@ -14,13 +14,14 @@
       minlength="4"
       name="email"
       required
+      (ionFocus)="selectEmail()"
       #loginEmail>
     
     </ion-input>
   </ion-item>
   <ion-item lines="none">
     <ion-label>
-      <ion-icon color="light" name="lock"></ion-icon>
+      <ion-icon color="light" name="lock" [class.active]="passwordSelected"></ion-icon>
     </ion-label>
     <ion-input 
       clearInput 
@@ -32,6 +33,7 @@
       maxlength="100"
       minlength="3"
       name="password"
+      (ionFocus)="selectPassword()"
       required
       #loginPassword></ion-input>
   </ion-item>
