@@ -1,3 +1,81 @@
-<p>
-  And now the registration.
-</p>
+<ion-list>  
+  <ion-item lines="none">
+      <ion-label>
+        <ion-icon color="light" name="person"></ion-icon>
+      </ion-label>
+      <ion-input 
+        clearInput 
+        type="text" 
+        autofocus 
+        autocomplete="on" 
+        placeholder="Name"
+        color="light"
+        maxlength="100"
+        minlength="4"
+        name="name"
+        required
+        #signupName>
+      </ion-input>
+    </ion-item>
+  <ion-item lines="none">
+    <ion-label>
+      <ion-icon color="light" name="at"></ion-icon>
+    </ion-label>
+    <ion-input 
+      clearInput 
+      type="email" 
+      autofocus 
+      autocomplete="on" 
+      placeholder="Email"
+      color="light"
+      maxlength="100"
+      minlength="4"
+      name="email"
+      required
+      #signupEmail>
+    </ion-input>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-label>
+      <ion-icon color="light" name="lock"></ion-icon>
+    </ion-label>
+    <ion-input 
+      clearInput 
+      type="password" 
+      autofocus 
+      autocomplete="on" 
+      placeholder="Password"
+      color="light"
+      maxlength="100"
+      minlength="3"
+      name="password"
+      required
+      #signupPassword></ion-input>
+  </ion-item>
+  <ion-item lines="none">
+      <ion-label>
+        <ion-icon color="light" name="lock"></ion-icon>
+      </ion-label>
+      <ion-input 
+        clearInput 
+        type="password" 
+        autofocus 
+        autocomplete="on" 
+        placeholder="Confirm Password"
+        color="light"
+        maxlength="100"
+        minlength="3"
+        name="confirm-password"
+        required
+        #signupConfirmPassword></ion-input>
+    </ion-item>
+</ion-list>
+
+<ion-button expand="full">
+  Create Account
+  <ion-ripple-effect></ion-ripple-effect>
+</ion-button>
+
+<ion-button fill="clear" href="auth/login" color="light" expand="block">
+    Back
+</ion-button>
