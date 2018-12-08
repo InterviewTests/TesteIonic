@@ -86,4 +86,5 @@
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
     <engine name="android" spec="7.1.4" />
     <engine name="ios" spec="4.5.5" />
+    <plugin name="cordova-plugin-device-orientation" spec="2.0.1" />
 </widget>
