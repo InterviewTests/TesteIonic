@@ -1,5 +1,48 @@
 <ion-list>
   <ion-item lines="none">
-    test
+    <ion-label>
+      <ion-icon color="light" name="person"></ion-icon>
+    </ion-label>
+    <ion-input 
+      clearInput 
+      type="email" 
+      autofocus 
+      autocomplete="on" 
+      placeholder="Email"
+      color="light"
+      maxlength="100"
+      minlength="4"
+      name="email"
+      required
+      #loginEmail>
+    
+    </ion-input>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-label>
+      <ion-icon color="light" name="lock"></ion-icon>
+    </ion-label>
+    <ion-input 
+      clearInput 
+      type="password" 
+      autofocus 
+      autocomplete="on" 
+      placeholder="Password"
+      color="light"
+      maxlength="100"
+      minlength="3"
+      name="password"
+      required
+      #loginPassword></ion-input>
   </ion-item>
 </ion-list>
+
+<ion-button expand="full">
+  Login
+  <ion-ripple-effect></ion-ripple-effect>
+  <ion-icon slot="end" name="log-in"></ion-icon>
+</ion-button>
+<ion-button fill="clear"  expand="block">
+    Signup
+    <ion-ripple-effect></ion-ripple-effect>
+  </ion-button>

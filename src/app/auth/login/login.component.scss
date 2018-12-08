@@ -1,7 +1,35 @@
-ion-item{
-    --background: transparent;
+
+:host{
+    width: 100%;
+    width: 100%;
+    max-width: 230px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 ion-list{   
     background: transparent;
+    
+    ion-item{
+        --background: transparent;
+        --padding-start: 4px;
+        border-bottom: 1px solid #b1b1aa;   
+        margin-bottom: 16px;
+        ion-label{
+            margin-bottom: 0;   
+            font-size: 24px;    
+        }
+        ion-input{
+            --padding-bottom: 4px;  
+            --padding-start: 8px;
+        }
+    }
+
+}
+
+ion-button{
+    width: 100%;
+    --width: 100%;
 }

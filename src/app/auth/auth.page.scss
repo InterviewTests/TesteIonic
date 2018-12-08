@@ -13,3 +13,12 @@
         font-size: 13px;
     }
 }
+
+app-login{
+    width: 100%;
+    max-width: 230px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
