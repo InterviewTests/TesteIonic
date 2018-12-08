@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { Platform } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
@@ -10,12 +10,14 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 export class AppComponent {
   constructor(
     private platform: Platform,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private screenOrientation: ScreenOrientation
   ) {
     this.initializeApp();
   }
 
   initializeApp() {
+    // this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     this.platform.ready().then(() => this.statusBar.styleDefault());
   }
 }
