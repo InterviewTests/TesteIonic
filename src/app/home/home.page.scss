@@ -7,12 +7,12 @@
 
 ion-header{
     background: var(--ion-color-dark-shade);
-
     display: flex;
     justify-content: center;
     align-items: center;
 
     .logo{
+        padding-top: 12px;
         img{
             width: 160px;
         }
