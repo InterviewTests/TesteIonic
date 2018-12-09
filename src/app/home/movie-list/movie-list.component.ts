@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class MovieListComponent implements OnInit {
 
-	@Input('movies') public movies:[];
+	@Input('movies') public movies:{title: string, list: [{original_title: string, poster_path: string}]};
 
   constructor() { }
 

@@ -26,9 +26,9 @@ export class MoviesService {
         })  
         .catch(error => reject(error));
       } else {
-        this.http.get(this.apiUrl + url  + this.apiKey, {}, {})
-        .then(data => resolve(data.data))
-        .catch(error => reject(error));
+        this.http.get(this.apiUrl + url  + this.apiKey, {}, {'Content-Type':'application/json'})
+        .then(data => resolve(JSON.parse(data.data)))
+        .catch(error => reject(error.error));
       }
     });
     
