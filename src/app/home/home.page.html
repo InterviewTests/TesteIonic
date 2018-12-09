@@ -7,6 +7,15 @@
 <ion-content>
     <div class="content">
         <ion-list>
+            <div *ngIf="movieLists.length === 0">
+                <div *ngFor="let i of [1,2,3,4,5,6,7]" style="margin-bottom: 20px">
+                    <ion-skeleton-text width="90%"></ion-skeleton-text>
+                    <ion-skeleton-text width="80%"></ion-skeleton-text>
+                    <ion-skeleton-text width="50%"></ion-skeleton-text>
+                    <ion-skeleton-text width="60%"></ion-skeleton-text>
+                    <ion-skeleton-text width="70%"></ion-skeleton-text>
+                </div>
+            </div>
             <app-movie-list *ngFor="let movies of movieLists" [movies]="movies"></app-movie-list>
         </ion-list>
     </div>
