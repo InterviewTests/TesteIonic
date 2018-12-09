@@ -21,27 +21,30 @@ export class HomePage implements OnInit{
     this.moviesService.getPopular()
     .then(response => this.movieLists.push({list: response.results, title:'Most Popular'}))
     .catch(e => {});
+    this.moviesService.getBest()
+    .then(response => this.movieLists.push({list: response.results, title:'Most Acclaimed'}))
+    .catch(e => {});
     this.moviesService.getNewest()
     .then(response => this.movieLists.push({list: response.results, title:'Newest in Brazil'}))
-    .catch(e => {});
-    this.moviesService.getDrama()
-    .then(response => this.movieLists.push({list: response.results, title:'Best Drama'}))
     .catch(e => {});
     
   }
 
   loadMoreMovies(event) {
-    this.moviesService.getDrama()
-    .then(response => {
-
+    const genre = this.moviesService.randomGenre();
+    console.log(genre);
+    if(!genre){
+      event.target.disabled = true;
       event.target.complete();
-      this.movieLists.push({list: response.results, title:'Best Drama'});
-      if(this.movieLists.length > 8){
-        event.target.disabled = true;
-      }
+      return;
+    }
+
+    this.moviesService.getGenre(genre.id)
+    .then(response => {
+      event.target.complete();
+      this.movieLists.push({list: response.results, title: genre.name});
     })
     .catch(e => {
-      event.target.disabled = true;
       event.target.complete();
     });
   }
