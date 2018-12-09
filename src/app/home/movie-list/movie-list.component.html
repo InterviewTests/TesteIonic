@@ -1,8 +1,9 @@
 <div class="container">
-  <h3>Movies</h3>
+  <h3>{{movies.title}}</h3>
   <ion-list>
-    <ion-item lines="none" *ngFor="let movie of movies">
-      <ion-label color="light">{{movie.name}}</ion-label>
+    <ion-item lines="none" *ngFor="let movie of movies.list">
+      <ion-label color="light">{{movie.original_title}}</ion-label>
+      <img [src]="'http://image.tmdb.org/t/p/w200/'+ movie.poster_path" alt="">
     </ion-item>
   </ion-list>
 </div>

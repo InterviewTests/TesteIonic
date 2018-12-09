@@ -9,12 +9,18 @@ import { MoviesService } from '../api/movies.service';
 export class HomePage implements OnInit{
 
   movieLists: any[];
-
+  
   constructor(private moviesService:MoviesService){}
   
   ngOnInit() {
     this.movieLists = [];
-    this.movieLists.push(this.moviesService.getMovies(''));
+
+    this.moviesService.getPopular()
+    .then(response => {
+      this.movieLists.push({list: response.results, title:'Most Popular'});
+    })
+    .catch(e => {
+    } );
   }
 
 }
