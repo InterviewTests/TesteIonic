@@ -16,14 +16,22 @@ ion-list{
         --padding-start: 4px;
         border-bottom: 1px solid #b1b1aa;   
         margin-bottom: 16px;
+
         ion-label{
             margin-bottom: 0;   
-            font-size: 24px;    
+            font-size: 22px; 
+            ion-icon{
+                transition: 0.3s;
+                &.active{
+                    font-size: 28px;
+                }
+            }
         }
         ion-input{
             --padding-bottom: 4px;  
             --padding-start: 8px;
         }
+        
     }
 
 }

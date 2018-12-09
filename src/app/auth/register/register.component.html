@@ -1,72 +1,69 @@
 <ion-list>  
   <ion-item lines="none">
       <ion-label>
-        <ion-icon color="light" name="person"></ion-icon>
+        <ion-icon color="light" name="person" [class.active]="selected[0]"></ion-icon>
       </ion-label>
       <ion-input 
         clearInput 
         type="text" 
-        autofocus 
-        autocomplete="on" 
+        autofocus
         placeholder="Name"
         color="light"
         maxlength="100"
         minlength="4"
         name="name"
         required
+        (ionFocus)="select(0)"
         #signupName>
       </ion-input>
     </ion-item>
   <ion-item lines="none">
     <ion-label>
-      <ion-icon color="light" name="at"></ion-icon>
+      <ion-icon color="light" name="at" [class.active]="selected[1]"></ion-icon>
     </ion-label>
     <ion-input 
       clearInput 
       type="email" 
-      autofocus 
-      autocomplete="on" 
       placeholder="Email"
       color="light"
       maxlength="100"
       minlength="4"
       name="email"
       required
+      (ionFocus)="select(1)"
       #signupEmail>
     </ion-input>
   </ion-item>
   <ion-item lines="none">
     <ion-label>
-      <ion-icon color="light" name="lock"></ion-icon>
+      <ion-icon color="light" name="lock" [class.active]="selected[2]"></ion-icon>
     </ion-label>
     <ion-input 
       clearInput 
-      type="password" 
-      autofocus 
-      autocomplete="on" 
+      type="password"  
       placeholder="Password"
       color="light"
       maxlength="100"
       minlength="3"
       name="password"
       required
+      (ionFocus)="select(2)"
       #signupPassword></ion-input>
   </ion-item>
   <ion-item lines="none">
       <ion-label>
-        <ion-icon color="light" name="lock"></ion-icon>
+        <ion-icon color="light" name="lock" [class.active]="selected[3]"></ion-icon>
       </ion-label>
       <ion-input 
         clearInput 
         type="password" 
-        autofocus 
-        autocomplete="on" 
         placeholder="Confirm Password"
         color="light"
         maxlength="100"
         minlength="3"
         name="confirm-password"
         required
+        (ionFocus)="select(3)"
         #signupConfirmPassword></ion-input>
     </ion-item>
 </ion-list>

@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
+  selected: boolean[];
+
   constructor() { }
 
   ngOnInit() {
+    this.selected = [];
+  }
+
+  select(index){
+    for(let i = 0; i < this.selected.length; i++){
+      this.selected[i] = false;
+    }
+    this.selected[index] = true;
   }
 
 }
