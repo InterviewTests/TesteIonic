@@ -1,0 +1,21 @@
+.container{
+    max-width: 100vw;
+    padding: 0 8px;
+    color: var(--ion-color-light);
+    ion-list{
+        display: flex;
+        justify-content: flex-start;
+        align-content: center;
+        flex-direction: row;
+        overflow-x: scroll;
+        margin-bottom: 0;
+    
+        ion-item{
+            width: 140px;
+            height: 200px;
+            background: white;
+            margin: 8px;
+            min-width: 140px;
+        }
+    }
+}
