@@ -44,7 +44,5 @@ export class HomePage implements OnInit{
       event.target.disabled = true;
       event.target.complete();
     });
-
-
-
+  }
 }

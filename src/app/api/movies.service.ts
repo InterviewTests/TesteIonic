@@ -10,22 +10,26 @@ export class MoviesService {
 
   private apiKey:string = '&api_key=590b7b1e1f7d2b0aa954982f95ee16bf';
   private apiUrl = 'https://api.themoviedb.org/3/';
+  private mode = 'android'
 
   
   get(url){
     return new Promise<{results: [{original_title: string, poster_path:string}]}>((resolve, reject) => {
-      // this.http.get(this.apiUrl + url  + this.apiKey, {}, {})
-      // .then(data => resolve(data.data))
-      // .catch(error => reject(error));
 
-      fetch(this.apiUrl + url  + this.apiKey)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(response.statusText)
-        }
-        resolve(response.json());
-      })  
-      .catch(error => reject(error));
+      if(this.mode === 'browser'){
+        fetch(this.apiUrl + url  + this.apiKey)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(response.statusText)
+          }
+          resolve(response.json());
+        })  
+        .catch(error => reject(error));
+      } else {
+        this.http.get(this.apiUrl + url  + this.apiKey, {}, {})
+        .then(data => resolve(data.data))
+        .catch(error => reject(error));
+      }
     });
     
   }
