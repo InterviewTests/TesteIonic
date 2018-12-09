@@ -13,11 +13,9 @@
         color="light"
         maxlength="100"
         minlength="4"
-        name="loginEmail"
         formControlName="loginEmail"
         required
-        (ionFocus)="select(0)"
-        #loginEmail>
+        (ionFocus)="select(0)">
       </ion-input>
     </ion-item>
     <ion-item lines="none" [class.active]="selected[1]">
@@ -33,10 +31,8 @@
         minlength="3"
         formControlName="loginPassword"
         required="true"
-        name="loginPassword"
         required
-        (ionFocus)="select(1)"
-        #loginPassword></ion-input>
+        (ionFocus)="select(1)"></ion-input>
     </ion-item>
   </ion-list>
   <ion-button [disabled]="loginForm.status === 'INVALID'" expand="full" type="submit">

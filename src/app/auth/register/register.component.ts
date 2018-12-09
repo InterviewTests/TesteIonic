@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {  FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  signupForm = this.fb.group({
+    signupName: ['', Validators.required],
+    signupEmail: ['', Validators.required],
+    signupPassword: ['' , Validators.required],
+    signupConfirmPassword: ['' , Validators.required]
+  });
 
   selected: boolean[];
   
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     this.selected = [];
@@ -20,5 +27,9 @@ export class RegisterComponent implements OnInit {
       this.selected[i] = false;
     }
     this.selected[index] = true;
+  }
+
+  onSubmit(){
+
   }
 }
