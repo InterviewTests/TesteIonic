@@ -9,8 +9,6 @@
 }
 
 ion-list{   
-    background: transparent;
-
     max-height: 42vh;
     overflow-y: scroll;
     margin-bottom: 24px;
@@ -30,7 +28,6 @@ ion-list{
         }
     }
     ion-item{
-        --background: transparent;
         --padding-start: 4px;
         border-bottom: 1px solid #b1b1aa;   
         margin-bottom: 16px;

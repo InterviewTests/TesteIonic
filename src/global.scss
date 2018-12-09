@@ -10,19 +10,10 @@
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
 
-.transparent{
-    background: transparent;
-    background-color: transparent;
-    .item-native{
-        background: transparent;
-        background-color: transparent;
-    }
-}
-.transparent-i{
+
+ion-list{   
     background: transparent !important;
-    background-color: transparent !important;
-    .item-native{
-        background: transparent !important;
-        background-color: transparent !important;
+    ion-item{
+        --background: transparent !important;
     }
 }
