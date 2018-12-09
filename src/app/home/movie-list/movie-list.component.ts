@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-movie-list',
@@ -6,12 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./movie-list.component.scss']
 })
 export class MovieListComponent implements OnInit {
-  movies: any[]
+
+	@Input('movies') public movies:[];
 
   constructor() { }
 
   ngOnInit() {
-    this.movies = [{name: 'A movie'}, {name: 'A movie'}, {name: 'A movie'}, {name: 'A movie'}, {name: 'A movie'}, {name: 'A movie'}, {name: 'A movie'}, {name: 'A movie'}];
+
   }
 
 }

@@ -7,11 +7,7 @@
 <ion-content>
     <div class="content">
         <ion-list>
-            <app-movie-list></app-movie-list>
-            <app-movie-list></app-movie-list>
-            <app-movie-list></app-movie-list>
-            <app-movie-list></app-movie-list>
-            <app-movie-list></app-movie-list>
+            <app-movie-list *ngFor="let movies of movieLists" [movies]="movies"></app-movie-list>
         </ion-list>
     </div>
 </ion-content>
