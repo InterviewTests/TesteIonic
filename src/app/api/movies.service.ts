@@ -44,4 +44,11 @@ export class MoviesService {
       .catch(error => reject(error))
     });
   }
+  getNewest(){
+    return new Promise<{results: [{original_title: string, poster_path:string}]}>((resolve, reject) => {
+      this.get('discover/movie?sort_by=release_date.desc&region=br')
+      .then(response => resolve(response))
+      .catch(error => reject(error))
+    });
+  }
 }

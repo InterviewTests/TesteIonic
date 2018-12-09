@@ -1,7 +1,7 @@
 <div class="container">
   <h3>{{movies.title}}</h3>
   <ion-list>
-    <ion-item lines="none" *ngFor="let movie of movies.list">
+    <ion-item lines="none" *ngFor="let movie of movies.list" [style.display]="movie.original_title && movie.poster_path ? 'block' : 'none'">
       <ion-label color="light">{{movie.original_title}}</ion-label>
       <img [src]="'http://image.tmdb.org/t/p/w200/'+ movie.poster_path" alt="">
     </ion-item>

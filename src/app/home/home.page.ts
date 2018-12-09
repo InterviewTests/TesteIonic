@@ -18,9 +18,13 @@ export class HomePage implements OnInit{
     this.moviesService.getPopular()
     .then(response => this.movieLists.push({list: response.results, title:'Most Popular'}))
     .catch(e => {});
+    this.moviesService.getNewest()
+    .then(response => this.movieLists.push({list: response.results, title:'Newest in Brazil'}))
+    .catch(e => {});
     this.moviesService.getDrama()
     .then(response => this.movieLists.push({list: response.results, title:'Best Drama'}))
     .catch(e => {});
+    
   }
 
 }
