@@ -16,11 +16,11 @@ export class HomePage implements OnInit{
     this.movieLists = [];
 
     this.moviesService.getPopular()
-    .then(response => {
-      this.movieLists.push({list: response.results, title:'Most Popular'});
-    })
-    .catch(e => {
-    } );
+    .then(response => this.movieLists.push({list: response.results, title:'Most Popular'}))
+    .catch(e => {});
+    this.moviesService.getDrama()
+    .then(response => this.movieLists.push({list: response.results, title:'Best Drama'}))
+    .catch(e => {});
   }
 
 }
