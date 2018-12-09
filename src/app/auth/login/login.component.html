@@ -1,8 +1,8 @@
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <ion-list>
-    <ion-item lines="none">
+    <ion-item lines="none" [class.active]="selected[0]">
       <ion-label>
-        <ion-icon color="light" name="at" [class.active]="selected[0]"></ion-icon>
+        <ion-icon color="light" name="at"></ion-icon>
       </ion-label>
       <ion-input 
         clearInput 
@@ -20,9 +20,9 @@
         #loginEmail>
       </ion-input>
     </ion-item>
-    <ion-item lines="none">
+    <ion-item lines="none" [class.active]="selected[1]">
       <ion-label>
-        <ion-icon color="light" name="lock" [class.active]="selected[1]"></ion-icon>
+        <ion-icon color="light" name="lock" ></ion-icon>
       </ion-label>
       <ion-input 
         clearInput 
