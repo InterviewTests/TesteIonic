@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MoviesService } from '../api/movies.service';
 import { InfiniteScroll } from '@ionic/angular';
 
-@
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
