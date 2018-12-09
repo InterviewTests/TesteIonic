@@ -18,3 +18,8 @@ ion-header{
         }
     }
 }
+
+ion-infinite-scroll{
+    background: var(--ion-color-dark);
+    color: var(--ion-color-light);
+}

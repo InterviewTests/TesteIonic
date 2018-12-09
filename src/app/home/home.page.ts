@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MoviesService } from '../api/movies.service';
+import { InfiniteScroll } from '@ionic/angular';
 
+@
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit{
+  @ViewChild(InfiniteScroll) infiniteScroll: InfiniteScroll;
 
   movieLists: any[];
   
@@ -26,5 +29,22 @@ export class HomePage implements OnInit{
     .catch(e => {});
     
   }
+
+  loadMoreMovies(event) {
+    this.moviesService.getDrama()
+    .then(response => {
+
+      event.target.complete();
+      this.movieLists.push({list: response.results, title:'Best Drama'});
+      if(this.movieLists.length > 8){
+        event.target.disabled = true;
+      }
+    })
+    .catch(e => {
+      event.target.disabled = true;
+      event.target.complete();
+    });
+
+
 
 }
