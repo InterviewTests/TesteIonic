@@ -1,47 +1,51 @@
-<ion-list>
-  <ion-item lines="none">
-    <ion-label>
-      <ion-icon color="light" name="at" [class.active]="selected[0]"></ion-icon>
-    </ion-label>
-    <ion-input 
-      clearInput 
-      type="email" 
-      autofocus 
-      placeholder="Email"
-      color="light"
-      maxlength="100"
-      minlength="4"
-      name="email"
-      required
-      (ionFocus)="select(0)"
-      #loginEmail>
-    
-    </ion-input>
-  </ion-item>
-  <ion-item lines="none">
-    <ion-label>
-      <ion-icon color="light" name="lock" [class.active]="selected[1]"></ion-icon>
-    </ion-label>
-    <ion-input 
-      clearInput 
-      type="password" 
-      placeholder="Password"
-      color="light"
-      maxlength="100"
-      minlength="3"
-      name="password"
-      required
-      (ionFocus)="select(1)"
-      #loginPassword></ion-input>
-  </ion-item>
-</ion-list>
-
-<ion-button expand="full" href="home">
-  Login
-  <ion-ripple-effect></ion-ripple-effect>
-  <ion-icon slot="end" name="log-in"></ion-icon>
-</ion-button>
-<ion-button fill="clear" href="auth/register" expand="block" color="light">
-    Signup
-  <ion-ripple-effect></ion-ripple-effect>
-</ion-button>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <ion-list>
+    <ion-item lines="none">
+      <ion-label>
+        <ion-icon color="light" name="at" [class.active]="selected[0]"></ion-icon>
+      </ion-label>
+      <ion-input 
+        clearInput 
+        type="email"
+        email 
+        autofocus 
+        placeholder="Email"
+        color="light"
+        maxlength="100"
+        minlength="4"
+        name="loginEmail"
+        formControlName="loginEmail"
+        required
+        (ionFocus)="select(0)"
+        #loginEmail>
+      </ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label>
+        <ion-icon color="light" name="lock" [class.active]="selected[1]"></ion-icon>
+      </ion-label>
+      <ion-input 
+        clearInput 
+        type="password" 
+        placeholder="Password"
+        color="light"
+        maxlength="100"
+        minlength="3"
+        formControlName="loginPassword"
+        required="true"
+        name="loginPassword"
+        required
+        (ionFocus)="select(1)"
+        #loginPassword></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-button [disabled]="loginForm.status === 'INVALID'" expand="full" type="submit">
+    Login
+    <ion-ripple-effect></ion-ripple-effect>
+    <ion-icon slot="end" name="log-in"></ion-icon>
+  </ion-button>
+  <ion-button fill="clear" href="auth/register" expand="block" color="light">
+      Signup
+    <ion-ripple-effect></ion-ripple-effect>
+  </ion-button>
+</form>
