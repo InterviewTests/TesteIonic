@@ -1,6 +1,8 @@
 <div class="container">
   <h3>Movies</h3>
   <ion-list>
-    <ion-item lines="none" *ngFor="let movie of movies">{{movie.name}}</ion-item>
+    <ion-item lines="none" *ngFor="let movie of movies">
+      <ion-label color="light">{{movie.name}}</ion-label>
+    </ion-item>
   </ion-list>
 </div>
