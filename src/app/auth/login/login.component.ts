@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {  FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   
   selected: boolean[];
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private router:Router) { }
 
   ngOnInit() {
     this.selected = [];
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
     console.warn(this.loginForm.value);
+    this.router.navigate(['/home']);
   }
 
 }
