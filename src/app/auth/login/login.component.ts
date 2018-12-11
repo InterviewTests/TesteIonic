@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Router } from '@angular/router';
 import { FieldInterface } from '../../utils/form/fieldInterface'
-import {  FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +10,7 @@ import {  FormBuilder } from '@angular/forms';
 export class LoginComponent implements OnInit {
   fields:  FieldInterface[];
   
-  constructor(private router:Router, private fb: FormBuilder) { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
     this.fields = [{

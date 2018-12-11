@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {  FormBuilder, Validators } from '@angular/forms';
+import { FieldInterface } from '../../utils/form/fieldInterface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -7,30 +8,55 @@ import {  FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  signupForm = this.fb.group({
-    signupName: ['', Validators.required],
-    signupEmail: ['', Validators.required],
-    signupPassword: ['' , Validators.required],
-    signupConfirmPassword: ['' , Validators.required]
-  });
-
-  selected: boolean[];
-  
-  constructor(private fb: FormBuilder) { }
+  fields: FieldInterface[];
+  constructor(private router:Router) { }
 
   ngOnInit() {
-    this.selected = [];
+    this.fields = [{
+      icon: 'person',
+      type: 'text',
+      color: 'light',
+      formControlName: 'registerName',
+      placeholder: 'Name',
+      required: true,
+      maxlength: 100,
+      autofocus: true
+    },
+    {
+      icon: 'at',
+      type: 'email',
+      color: 'light',
+      formControlName: 'registerEmail',
+      placeholder: 'Name',
+      required: true,
+      maxlength: 100
+    },
+    {
+      icon: 'lock',
+      type: 'password',
+      color: 'light',
+      formControlName: 'registerPassword',
+      placeholder: 'Password',
+      required: true,
+      minlength: 3
+    },
+    {
+      icon: 'lock',
+      type: 'password',
+      color: 'light',
+      formControlName: 'registerConfirmPassword',
+      placeholder: 'Confirm Password',
+      required: true,
+      minlength: 3
+    }];
   }
 
-  select(index){
-    for(let i = 0; i < this.selected.length; i++){
-      this.selected[i] = false;
+  
+  submit(form){
+    if(!form || form.status === 'INVALID'){
+      
+    } else {
+      this.router.navigate(['/home']);
     }
-    this.selected[index] = true;
-  }
-
-
-  onSubmit(){
-
   }
 }
