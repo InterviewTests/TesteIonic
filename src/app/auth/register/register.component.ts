@@ -22,12 +22,6 @@ export class RegisterComponent implements OnInit {
     this.selected = [];
   }
 
-  select(index){
-    for(let i = 0; i < this.selected.length; i++){
-      this.selected[i] = false;
-    }
-    this.selected[index] = true;
-  }
 
   onSubmit(){
 

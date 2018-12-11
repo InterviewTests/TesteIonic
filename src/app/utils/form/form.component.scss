@@ -1,0 +1,42 @@
+
+ion-list{   
+    ion-item{
+        --padding-start: 4px;
+        border-bottom: 1px solid #b1b1aa;   
+        margin-bottom: 16px;
+        transition: 0.3s;
+        ion-label{
+            margin-bottom: 0;   
+            font-size: 22px; 
+            ion-icon{
+                transition: 0.3s;
+            }
+        }
+        ion-input{
+            --padding-bottom: 4px;  
+            --padding-start: 8px;
+            --padding-end: 16px;
+        }
+
+        ion-icon.error{
+            position: absolute;
+            right: 0;
+            top: 5px;
+        }
+        &.active{
+            border-bottom: 1px solid #ddddd8;   
+            ion-label ion-icon{
+                font-size: 28px;
+            }
+            ion-input{
+                font-size: 18px;
+            }
+        }
+    }
+
+}
+
+ion-button{
+    width: 100%;
+    --width: 100%;
+}

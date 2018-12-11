@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { FormComponent } from '../utils/form/form.component';
 
 import { AuthPage } from './auth.page';
 
@@ -39,6 +40,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [AuthPage, LoginComponent, RegisterComponent]
+  declarations: [AuthPage, LoginComponent, RegisterComponent, FormComponent]
 })
 export class AuthPageModule {}

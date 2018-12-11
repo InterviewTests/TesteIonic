@@ -17,7 +17,7 @@ export class AppComponent {
   }
 
   initializeApp() {
-    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+    // this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     this.platform.ready().then(() => this.statusBar.styleDefault());
   }
 }

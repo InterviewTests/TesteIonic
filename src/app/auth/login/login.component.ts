@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {  FormBuilder, Validators } from '@angular/forms';
+
 import { Router } from '@angular/router';
+import { FieldInterface } from '../../utils/form/fieldInterface'
+import {  FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -8,29 +10,40 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  loginForm = this.fb.group({
-    loginEmail: ['', Validators.required],
-    loginPassword: ['' , Validators.required]
-  });
+  fields:  FieldInterface[];
   
-  selected: boolean[];
-
-  constructor(private fb: FormBuilder, private router:Router) { }
+  constructor(private router:Router, private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.selected = [];
+    this.fields = [{
+      icon: 'at',
+      type: 'email',
+      color: 'light',
+      formControlName: 'loginEmail',
+      placeholder: 'Email',
+      required: true,
+      minlength: 4,
+      maxlength: 100,
+      autofocus: true
+    },
+    {
+      icon: 'lock',
+      type: 'password',
+      color: 'light',
+      formControlName: 'loginPassword',
+      placeholder: 'Email',
+      required: true,
+      minlength: 3,
+      maxlength: 100
+    }];
   }
 
-  select(index){
-    for(let i = 0; i < this.selected.length; i++){
-      this.selected[i] = false;
+  submit(form){
+    if(!form || form.status === 'INVALID'){
+      
+    } else {
+      this.router.navigate(['/home']);
     }
-    this.selected[index] = true;
-  }
-
-  onSubmit(){
-    console.warn(this.loginForm.value);
-    this.router.navigate(['/home']);
   }
 
 }
