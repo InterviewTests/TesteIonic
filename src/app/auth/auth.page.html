@@ -3,9 +3,16 @@
     <div class="logo" text-center margin-bottom>
       <img src="assets/images/logo.png" alt="">
     </div>
-
     <router-outlet> </router-outlet>
-    
-
   </div>
 </ion-content>
+
+<script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  
+  firebase.initializeApp(config);
+</script>
+<script>
+  console.log('hello world');
+</script>

@@ -10,7 +10,7 @@ export class MoviesService {
 
   private apiKey:string = '&api_key=590b7b1e1f7d2b0aa954982f95ee16bf';
   private apiUrl = 'https://api.themoviedb.org/3/';
-  private mode = 'browser'
+  private mode = 'android'
 
   private genres = [{
       "id": 28,
