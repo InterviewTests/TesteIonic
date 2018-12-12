@@ -2,7 +2,7 @@
   <ion-list>
     <ion-item lines="none" *ngFor="let field of fields; index as i" [class.active]="field.active">
       <ion-label v-if="field.icon">
-        <ion-icon color="light" [name]="field.icon"></ion-icon>
+        <ion-icon :color="field.active ? 'primary' : 'light'" [name]="field.icon"></ion-icon>
       </ion-label>
       <ion-input  
         [type]="field.type"
@@ -16,7 +16,7 @@
         [required]="field.required"
         (ionFocus)="activate(i)">
       </ion-input>
-      <ion-icon *ngIf="submitted && form.controls[field.formControlName].invalid" color="danger"  slot="end" name="alert" class="error" ></ion-icon>
+      <ion-icon *ngIf="submitted && form.controls[field.formControlName].invalid" color="danger" slot="end" name="alert" class="error" ></ion-icon>
     </ion-item>
   </ion-list>
   <ion-button expand="full" type="submit">

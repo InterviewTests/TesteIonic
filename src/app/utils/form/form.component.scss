@@ -24,9 +24,10 @@ ion-list{
             top: 5px;
         }
         &.active{
-            border-bottom: 1px solid #ddddd8;   
+            border-bottom: 1px solid var(--ion-color-primary);   
             ion-label ion-icon{
                 font-size: 28px;
+                --background: red;
             }
             ion-input{
                 font-size: 18px;
