@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FieldInterface } from '../../utils/form/fieldInterface';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   fields: FieldInterface[];
-  constructor(private router:Router) { }
+  constructor() { }
 
   ngOnInit() {
     this.fields = [{
@@ -52,11 +51,23 @@ export class RegisterComponent implements OnInit {
   }
 
   
-  submit(form){
+  async submit(form){
     if(!form || form.status === 'INVALID'){
-      
+      debugger;
+      // const restul = await this.fbAuth.auth.createUserWithEmailAndPassword('','')
+
     } else {
-      this.router.navigate(['/home']);
+      if(form.controls.registerPasword.value !== form.controls.registerConfirmPassword.value){
+        alert('deu ruim');
+        return;
+      }
+
+      // const request  = {
+      //   email: form.controls.registerName.value,
+      //   password: form.controls.registerPasword.value
+      // }
+
+      // this.router.navigate(['/home']);
     }
   }
 }
