@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FieldInterface } from '../../utils/form/fieldInterface';
-import { Router } from '@angular/router';
-import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +8,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class RegisterComponent implements OnInit {
   fields: FieldInterface[];
-  constructor(private router:Router, private fbAuth: AngularFireAuth) { }
+  constructor() { }
 
   ngOnInit() {
     this.fields = [{
@@ -59,16 +57,14 @@ export class RegisterComponent implements OnInit {
       // const restul = await this.fbAuth.auth.createUserWithEmailAndPassword('','')
 
     } else {
-
       if(form.controls.registerPasword.value !== form.controls.registerConfirmPassword.value){
-        alert('deu ruim');
+        alert('Oops');
         return;
       }
-
-      const request  = {
-        email: form.controls.registerName.value,
-        password: form.controls.registerPasword.value
-      }
+      // const request  = {
+      //   email: form.controls.registerName.value,
+      //   password: form.controls.registerPasword.value
+      // }
 
       // this.router.navigate(['/home']);
     }
