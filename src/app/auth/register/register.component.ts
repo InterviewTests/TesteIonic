@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FieldInterface } from '../../utils/form/fieldInterface';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-register',
@@ -8,7 +9,7 @@ import { FieldInterface } from '../../utils/form/fieldInterface';
 })
 export class RegisterComponent implements OnInit {
   fields: FieldInterface[];
-  constructor() { }
+  constructor(private auth: AngularFireAuth) { }
 
   ngOnInit() {
     this.fields = [{
@@ -52,21 +53,18 @@ export class RegisterComponent implements OnInit {
 
   
   async submit(form){
-    if(!form || form.status === 'INVALID'){
-      debugger;
-      // const restul = await this.fbAuth.auth.createUserWithEmailAndPassword('','')
-
-    } else {
-      if(form.controls.registerPasword.value !== form.controls.registerConfirmPassword.value){
+    try{
+      if(!form || form.status === 'INVALID'){
+        alert('Oops');
+      } else if(form.controls.registerPasword.value !== form.controls.registerConfirmPassword.value){
         alert('Oops');
         return;
+      } else {
+        const result = await this.auth.auth.createUserWithEmailAndPassword(form.controls.registerEmail.value,form.controls.registerPassword.value);
+        console.log(result);
       }
-      // const request  = {
-      //   email: form.controls.registerName.value,
-      //   password: form.controls.registerPasword.value
-      // }
-
-      // this.router.navigate(['/home']);
+    } catch(e){
+      debugger;
     }
   }
 }
