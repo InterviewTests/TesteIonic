@@ -3,8 +3,7 @@
   <ion-list>
     <ion-item lines="none" *ngFor="let movie of movies.list" [style.display]="movie.original_title && movie.poster_path ? 'block' : 'none'">
       <ion-label color="light">{{movie.original_title}}</ion-label>
-      
-      <ion-img *ngIf="movie.poster_path" [src]="'http://image.tmdb.org/t/p/w200/'+ movie.poster_path" ></ion-img>
+      <ion-img (ionImgDidLoad)="movie.loaded = true" *ngIf="movie.poster_path" [src]="'http://image.tmdb.org/t/p/w200/'+ movie.poster_path" [style]="movie.loaded ? '' : 'visibility: hidden;'"></ion-img>
     </ion-item>
   </ion-list>
 </div>
