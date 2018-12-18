@@ -20,19 +20,19 @@ export class HomePage implements OnInit{
 
     this.moviesService.getPopular()
     .then(response => this.movieLists.push({list: response.results, title:'Most Popular'}))
-    .catch(e => {});
+    .catch(() => {});
     this.moviesService.getBest()
     .then(response => this.movieLists.push({list: response.results, title:'Most Acclaimed'}))
-    .catch(e => {});
+    .catch(() => {});
     this.moviesService.getNewest()
     .then(response => this.movieLists.push({list: response.results, title:'Newest in Brazil'}))
-    .catch(e => {});
+    .catch(() => {});
     
   }
 
   loadMoreMovies(event) {
     const genre = this.moviesService.randomGenre();
-    console.log(genre);
+
     if(!genre){
       event.target.disabled = true;
       event.target.complete();
@@ -44,8 +44,6 @@ export class HomePage implements OnInit{
       event.target.complete();
       this.movieLists.push({list: response.results, title: genre.name});
     })
-    .catch(e => {
-      event.target.complete();
-    });
+    .catch(() => event.target.complete());
   }
 }
