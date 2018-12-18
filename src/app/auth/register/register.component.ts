@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FieldInterface } from '../../utils/form/fieldInterface';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { ToastController } from '@ionic/angular';
-import { errorHandler } from '@angular/platform-browser/src/browser';
+import { ToastController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +10,11 @@ import { errorHandler } from '@angular/platform-browser/src/browser';
 })
 export class RegisterComponent implements OnInit {
   fields: FieldInterface[];
-  constructor(private auth: AngularFireAuth, public toastController: ToastController) { }
+  constructor(
+    private auth: AngularFireAuth, 
+    private toastController: ToastController,
+    private loadingController: LoadingController
+  ) { }
 
   ngOnInit() {
     this.fields = [
@@ -31,7 +34,7 @@ export class RegisterComponent implements OnInit {
       formControlName: 'registerPassword',
       placeholder: 'Password',
       required: true,
-      minlength: 3
+      minlength: 6
     },
     {
       icon: 'lock',
@@ -40,7 +43,7 @@ export class RegisterComponent implements OnInit {
       formControlName: 'registerConfirmPassword',
       placeholder: 'Confirm Password',
       required: true,
-      minlength: 3
+      minlength: 6
     }];
   }
 
@@ -52,7 +55,11 @@ export class RegisterComponent implements OnInit {
       showCloseButton: false,
       duration: 2000
     };
-    
+    const loading = await this.loadingController.create({
+      keyboardClose: true,  
+      translucent: true
+    });
+
     try{
       if(!form || form.status === 'INVALID'){
         error.message = 'Fill the fields correctly!';
@@ -63,13 +70,16 @@ export class RegisterComponent implements OnInit {
         const toast = await this.toastController.create(error);
         await toast.present();
       } else {
+        await loading.present();
         const result = await this.auth.auth.createUserWithEmailAndPassword(
           form.controls.registerEmail.value,
           form.controls.registerPassword.value
         );
+        await loading.dismiss();
         console.log(result);
       }
     } catch(e){
+      loading.dismiss();
       const toast = await this.toastController.create(error);
       await toast.present();
     }
