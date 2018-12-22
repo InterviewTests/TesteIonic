@@ -20,12 +20,10 @@
     </ion-item>
   </ion-list>
   <ion-button expand="full" type="submit">
-    Login
+    {{primary.text}}
     <ion-ripple-effect></ion-ripple-effect>
-    <ion-icon slot="end" name="log-in"></ion-icon>
   </ion-button>
-  <ion-button fill="clear" href="auth/register" expand="block" color="light">
-      Signup
-    <ion-ripple-effect></ion-ripple-effect>
+  <ion-button fill="clear" [href]="secondary.href" expand="block" color="light">
+    {{secondary.text}}
   </ion-button>
 </form>

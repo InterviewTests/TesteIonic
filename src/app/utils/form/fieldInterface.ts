@@ -1,4 +1,4 @@
-export interface FieldInterface {
+export interface Field {
     type: string,
     formControlName: string,
     icon?: string,

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FieldInterface } from '../../utils/form/fieldInterface';
+import { Field } from '../../utils/form/fieldInterface';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ToastController, LoadingController } from '@ionic/angular';
+import { Button } from '../../utils/form/buttonInterface';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +10,10 @@ import { ToastController, LoadingController } from '@ionic/angular';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  fields: FieldInterface[];
+  fields: Field[];
+  primary: Button;
+  secondary:  Button;
+
   constructor(
     private auth: AngularFireAuth, 
     private toastController: ToastController,
@@ -17,6 +21,11 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.primary = {text: 'Create Account'};
+    this.secondary = {
+      text: 'Back',
+      href: 'auth/login'
+    };
     this.fields = [
     {
       icon: 'at',
@@ -46,7 +55,6 @@ export class RegisterComponent implements OnInit {
       minlength: 6
     }];
   }
-
   
   async submit(form){
     const error = {
@@ -60,8 +68,8 @@ export class RegisterComponent implements OnInit {
       translucent: true
     });
 
-    try{
-      if(!form || form.status === 'INVALID'){
+    try {
+      if(!form || form.status === 'INVALID') {
         error.message = 'Fill the fields correctly!';
         const toast = await this.toastController.create(error);
         await toast.present();
@@ -70,18 +78,18 @@ export class RegisterComponent implements OnInit {
         const toast = await this.toastController.create(error);
         await toast.present();
       } else {
-        await loading.present();
-        const result = await this.auth.auth.createUserWithEmailAndPassword(
-          form.controls.registerEmail.value,
-          form.controls.registerPassword.value
-        );
-        await loading.dismiss();
-        console.log(result);
-      }
-    } catch(e){
-      loading.dismiss();
-      const toast = await this.toastController.create(error);
-      await toast.present();
+          await loading.present();
+          const result = await this.auth.auth.createUserWithEmailAndPassword(
+            form.controls.registerEmail.value,
+            form.controls.registerPassword.value
+          );
+          await loading.dismiss();
+          console.log(result);
+        }
+      } catch(e) {
+        loading.dismiss();
+        const toast = await this.toastController.create(error);
+        await toast.present();
     }
   }
 }

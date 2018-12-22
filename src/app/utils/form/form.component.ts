@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { FieldInterface } from './fieldInterface';
+import { Field } from './fieldInterface';
+import { Button } from './buttonInterface';
 
 @Component({
   selector: 'app-form',
@@ -8,7 +9,9 @@ import { FieldInterface } from './fieldInterface';
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
-  @Input() fields: FieldInterface [];
+  @Input() fields: Field [];
+  @Input() primary: Button;
+  @Input() secondary: Button;
   @Output() onSubmit = new EventEmitter();
   submitted:boolean;
   form: FormGroup;
