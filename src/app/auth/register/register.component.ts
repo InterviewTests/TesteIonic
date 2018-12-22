@@ -91,7 +91,7 @@ export class RegisterComponent implements OnInit {
       
         await this.toastController.create({
           message: 'Account created! Check your email : )',
-          color: 'danger',
+          color: 'success',
           showCloseButton: false,
           duration: 2000
         });
