@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Field } from '../../utils/form/fieldInterface'
 import { Button } from '../../utils/form/buttonInterface';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { ToastController, LoadingController } from '@ionic/angular';
+import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +16,12 @@ export class LoginComponent implements OnInit {
   primary: Button;
   secondary: Button;
   
-  constructor(private router:Router) { }
+  constructor(
+    private auth: AngularFireAuth, 
+    private toastController: ToastController,
+    private loadingController: LoadingController,
+    private router:Router
+  ) { }
 
   ngOnInit() {
     this.primary = {text: 'Login'};
@@ -44,11 +52,40 @@ export class LoginComponent implements OnInit {
     }];
   }
 
-  submit(form){
-    if(!form || form.status === 'INVALID'){
-      
+  async submit(form:FormGroup){
+    const error = {
+      message: 'Error!',
+      color: 'danger',
+      showCloseButton: false,
+      duration: 2000
+    };
+
+  
+    if(!form || form.status === 'INVALID') {
+      error.message = 'Fill the fields correctly!';
+      const toast = await this.toastController.create(error);
+      await toast.present();
     } else {
-      this.router.navigate(['/home']);
+      const loading = await this.loadingController.create({
+        keyboardClose: true,  
+        translucent: true
+      });
+      await loading.present();
+      try{
+        const result = await this.auth.auth.signInWithEmailAndPassword(
+          form.controls.loginEmail.value,
+          form.controls.loginPassword.value
+        );  
+        await loading.dismiss();
+        this.router.navigate(['home']);
+      } catch(e) {
+        if(e.message){
+          error.message = e.message;
+        }
+        const toast = await this.toastController.create(error);
+        await toast.present();
+        await loading.dismiss();
+      }
     }
   }
 

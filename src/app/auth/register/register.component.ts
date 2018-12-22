@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { ToastController, LoadingController } from '@ionic/angular';
 import { Button } from '../../utils/form/buttonInterface';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private auth: AngularFireAuth, 
     private toastController: ToastController,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private router:Router
   ) { }
 
   ngOnInit() {
@@ -86,8 +88,20 @@ export class RegisterComponent implements OnInit {
           form.controls.registerPassword.value
         );
         await loading.dismiss();
-        console.log(result);
+      
+        await this.toastController.create({
+          message: 'Account created! Check your email : )',
+          color: 'danger',
+          showCloseButton: false,
+          duration: 2000
+        });
+
+        this.router.navigate(['auth/login']);
+        
       } catch(e) {
+        if(e.message){
+          error.message = e.message;
+        }
         const toast = await this.toastController.create(error);
         await toast.present();
         await loading.dismiss();
