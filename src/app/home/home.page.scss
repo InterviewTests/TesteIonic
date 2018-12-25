@@ -1,26 +1,30 @@
-.content{
-    background: var(--ion-color-dark);
-    min-height: 100vh;
-    min-width: 100vw;
-    &::-webkit-scrollbar {
-        display: none;
-    }
+.content {
+	background: var(--ion-color-dark);
+	min-height: 100vh;
+	min-width: 100vw;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
 }
 
-ion-header{
-    background: var(--ion-color-dark-shade);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .logo{
-        padding-top: 12px;
-        img{
-            width: 128px;
-        }
-    }
+ion-header {
+	background: var(--ion-color-dark-shade);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	.logo {
+		padding-top: 12px;
+
+		img {
+			width: 128px;
+		}
+	}
 }
 
-ion-infinite-scroll{
-    background: var(--ion-color-dark);
-    color: var(--ion-color-light);
+
+ion-infinite-scroll {
+	background: var(--ion-color-dark);
+	--color: var(--ion-color-primary);
 }
