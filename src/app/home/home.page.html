@@ -3,28 +3,45 @@
         <img src="assets/images/logo.png" alt="">
     </div>
 </ion-header>
-<ion-content>
-    <div class="content">
-        <ion-list>
-            <div *ngIf="movieLists.length === 0">
-                <div *ngFor="let i of [1,2,3,4,5,6,7]" style="margin-bottom: 20px">
-                    <ion-skeleton-text width="90%"></ion-skeleton-text>
-                    <ion-skeleton-text width="80%"></ion-skeleton-text>
-                    <ion-skeleton-text width="50%"></ion-skeleton-text>
-                    <ion-skeleton-text width="60%"></ion-skeleton-text>
-                    <ion-skeleton-text width="70%"></ion-skeleton-text>
+
+    <ion-tabs>
+        <ion-content>
+            <ion-tab tab="home" active>
+                <div class="content">
+                    <ion-list>
+                        <div *ngIf="movieLists.length === 0">
+                            <div *ngFor="let i of [1,2,3,4,5,6,7]" style="margin-bottom: 20px">
+                                <ion-skeleton-text width="90%"></ion-skeleton-text>
+                                <ion-skeleton-text width="80%"></ion-skeleton-text>
+                                <ion-skeleton-text width="50%"></ion-skeleton-text>
+                                <ion-skeleton-text width="60%"></ion-skeleton-text>
+                                <ion-skeleton-text width="70%"></ion-skeleton-text>
+                            </div>
+                        </div>
+                        <app-movie-list 
+                            *ngFor="let movies of movieLists" 
+                            [movies]="movies">
+                        </app-movie-list>
+                    </ion-list>
                 </div>
-            </div>
-            <app-movie-list 
-                *ngFor="let movies of movieLists" 
-                [movies]="movies">
-            </app-movie-list>
-        </ion-list>
-    </div>
-    <ion-infinite-scroll 
-        threshold="100px" 
-        (ionInfinite)="loadMoreMovies($event)">
-        <ion-infinite-scroll-content loadingSpinner="crescent" color="primary">
-        </ion-infinite-scroll-content>
-    </ion-infinite-scroll>
-</ion-content>
+                <ion-infinite-scroll 
+                    threshold="100px" 
+                    (ionInfinite)="loadMoreMovies($event)">
+                    <ion-infinite-scroll-content loadingSpinner="crescent" color="primary">
+                    </ion-infinite-scroll-content>
+                </ion-infinite-scroll>
+            </ion-tab>
+            <ion-tab tab="settings">
+                Settings Content
+            </ion-tab>
+        </ion-content>
+
+        <ion-tab-bar slot="bottom" selected-tab="home">
+            <ion-tab-button tab="home">
+                <ion-icon name="home"></ion-icon>
+            </ion-tab-button>
+            <ion-tab-button tab="settings">
+                <ion-icon name="settings"></ion-icon>
+            </ion-tab-button>
+        </ion-tab-bar>
+    </ion-tabs>
