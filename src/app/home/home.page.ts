@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MoviesService } from '../api/movies.service';
-import { InfiniteScroll } from '@ionic/angular';
+import { InfiniteScroll, IonicModule } from '@ionic/angular';
 
 
 @Component({
@@ -8,42 +8,58 @@ import { InfiniteScroll } from '@ionic/angular';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit{
+export class HomePage implements OnInit {
   @ViewChild(InfiniteScroll) infiniteScroll: InfiniteScroll;
+  private movieLists: any[];
 
-  movieLists: any[];
-  
-  constructor(private moviesService:MoviesService){}
-  
+  constructor (private moviesService: MoviesService) {}
+
+  /* 
+    TODO: Test the catch of the NgOnInit movie getPopular, getBest and getNewest 
+    and do something at the view when it happens.
+  */
   ngOnInit() {
     this.movieLists = [];
-
+    // Loading the most popular movies async.
     this.moviesService.getPopular()
-    .then(response => this.movieLists.push({list: response.results, title:'Most Popular'}))
+    .then(response => this.movieLists.push({
+      list: response.results,
+      title: 'Most Popular'
+    }))
     .catch(() => {});
+    // Loading the best movies async.
     this.moviesService.getBest()
-    .then(response => this.movieLists.push({list: response.results, title:'Most Acclaimed'}))
+    .then(response => this.movieLists.push({
+      list: response.results,
+      title: 'Most Acclaimed'
+    }))
     .catch(() => {});
+    // Loading the newst movies async.
     this.moviesService.getNewest()
-    .then(response => this.movieLists.push({list: response.results, title:'Newest in Brazil'}))
+    .then(response => this.movieLists.push({
+      list: response.results,
+      title: 'Newest in Brazil'
+    }))
     .catch(() => {});
-    
   }
 
-  loadMoreMovies(event) {
+  /*
+    TODO: Find out the type of Ionic Objects like
+    infinite scroll on typescript so i dont have to cast
+    stuff to the "any" type when i call the complete() cuntion
+  */
+  loadMoreMovies (event: CustomEvent) {
     const genre = this.moviesService.randomGenre();
-
-    if(!genre){
-      event.target.disabled = true;
-      event.target.complete();
+    if (!genre) {
+      (<HTMLInputElement>event.target).disabled = true;
+      (<any>event.target).complete();
       return;
     }
-
     this.moviesService.getGenre(genre.id)
     .then(response => {
-      event.target.complete();
+      (<any>event.target).complete();
       this.movieLists.push({list: response.results, title: genre.name});
     })
-    .catch(() => event.target.complete());
+    .catch(() => (<any>event.target).complete());
   }
 }

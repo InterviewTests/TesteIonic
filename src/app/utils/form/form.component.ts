@@ -12,31 +12,35 @@ export class FormComponent implements OnInit {
   @Input() fields: Field [];
   @Input() primary: Button;
   @Input() secondary: Button;
-  @Output() onSubmit = new EventEmitter();
-  submitted:boolean;
+  @Output() submit = new EventEmitter();
+  submitted: boolean;
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor (private fb: FormBuilder) { }
 
-  activate(index){
-    for(let i = 0; i < this.fields.length; i++){
+  ngOnInit () {
+    // Taking the passed props and creating them as angular reactive form components.
+    const formDef = {};
+    this.fields.forEach(field => formDef[field.formControlName] = ['']);
+    this.form = this.fb.group(formDef);
+    this.submitted = false;
+  }
+
+  activate (index: number) {
+    /*
+      This method is just for animations. There must be a better way
+      but since i'm using small forms i'll keept it like this.s
+    */
+    for (let i = 0; i < this.fields.length; i++) {
       this.fields[i].active = false;
     }
     this.fields[index].active = true;
   }
 
-  submitForm(){
+  submitForm () {
+    // This just calls the output supplied submit method when this component form is submitted.
     this.submitted = true;
-    this.onSubmit.emit(this.form);
+    this.submit.emit(this.form);
     return false;
   }
-
-  ngOnInit() {
-    let formDef = {};
-    this.fields.forEach(field => formDef[field.formControlName] = ['']);
-
-    this.form = this.fb.group(formDef); 
-    this.submitted = false;
-  }
-
 }

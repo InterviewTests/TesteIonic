@@ -3,7 +3,6 @@
         <img src="assets/images/logo.png" alt="">
     </div>
 </ion-header>
-
 <ion-content>
     <div class="content">
         <ion-list>
@@ -16,10 +15,15 @@
                     <ion-skeleton-text width="70%"></ion-skeleton-text>
                 </div>
             </div>
-            <app-movie-list *ngFor="let movies of movieLists" [movies]="movies"></app-movie-list>
+            <app-movie-list 
+                *ngFor="let movies of movieLists" 
+                [movies]="movies">
+            </app-movie-list>
         </ion-list>
     </div>
-    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMoreMovies($event)">
+    <ion-infinite-scroll 
+        threshold="100px" 
+        (ionInfinite)="loadMoreMovies($event)">
         <ion-infinite-scroll-content loadingSpinner="lines">
         </ion-infinite-scroll-content>
     </ion-infinite-scroll>

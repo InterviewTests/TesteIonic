@@ -1,9 +1,21 @@
 <div class="container">
   <h3>{{movies.title}}</h3>
   <ion-list>
-    <ion-item lines="none" *ngFor="let movie of movies.list" [style.display]="movie.original_title && movie.poster_path ? 'block' : 'none'">
+    <!-- TODO: 
+        Remove the ion-img since it always shows the broken image link before loading the 
+        image, or find a way to show something while the image is being downloaded.
+    -->
+    <ion-item 
+      lines="none" 
+      *ngFor="let movie of movies.list" 
+      [style.display]="movie.original_title && movie.poster_path ? 'block' : 'none'">
       <ion-label color="light">{{movie.original_title}}</ion-label>
-      <ion-img (ionImgDidLoad)="movie.loaded = true" *ngIf="movie.poster_path" [src]="'http://image.tmdb.org/t/p/w200/'+ movie.poster_path" [style]="movie.loaded ? '' : 'visibility: hidden;'" alt=" "></ion-img>
+      <ion-img 
+        (ionImgDidLoad)="movie.loaded = true" 
+        *ngIf="movie.poster_path" 
+        [src]="http://image.tmdb.org/t/p/w200/${movie.poster_path}`" 
+        [style]="movie.loaded ? '' : 'visibility: hidden;'" alt=" ">
+      </ion-img>
     </ion-item>
   </ion-list>
 </div>

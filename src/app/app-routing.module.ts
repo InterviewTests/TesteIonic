@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: 'test', loadChildren: './test/test.module#TestPageModule' },
   { path: 'auth', loadChildren: './auth/auth.module#AuthPageModule' },
   { path: '**', redirectTo: 'home'}
-];  
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

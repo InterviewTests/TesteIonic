@@ -1,8 +1,18 @@
+<!-- 
+  TODO: Check if the secondary and primary button are supplied 
+  and create then only if.
+-->
 <form [formGroup]="form" (ngSubmit)="submitForm()">
   <ion-list>
-    <ion-item lines="none" *ngFor="let field of fields; index as i" [class.active]="field.active">
+    <ion-item 
+      lines="none" 
+      *ngFor="let field of fields; index as i" 
+      [class.active]="field.active">
       <ion-label v-if="field.icon">
-        <ion-icon :color="field.active ? 'primary' : 'light'" [name]="field.icon"></ion-icon>
+        <ion-icon 
+          [color]="field.active ? 'primary' : 'light'" 
+          [name]="field.icon">
+        </ion-icon>
       </ion-label>
       <ion-input  
         [type]="field.type"
@@ -16,14 +26,24 @@
         [required]="field.required"
         (ionFocus)="activate(i)">
       </ion-input>
-      <ion-icon *ngIf="submitted && form.controls[field.formControlName].invalid" color="danger" slot="end" name="alert" class="error" ></ion-icon>
+      <ion-icon
+        *ngIf="submitted && form.controls[field.formControlName].invalid" 
+        color="danger" 
+        slot="end" 
+        name="alert" 
+        class="error">
+      </ion-icon>
     </ion-item>
   </ion-list>
   <ion-button expand="full" type="submit">
     {{primary.text}}
     <ion-ripple-effect></ion-ripple-effect>
   </ion-button>
-  <ion-button fill="clear" [href]="secondary.href" expand="block" color="light">
+  <ion-button 
+    fill="clear" 
+    [href]="secondary.href" 
+    expand="block" 
+    color="light">
     {{secondary.text}}
   </ion-button>
 </form>

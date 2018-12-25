@@ -15,15 +15,15 @@ export class LoginComponent implements OnInit {
   fields:  Field[];
   primary: Button;
   secondary: Button;
-  
+
   constructor(
-    private auth: AngularFireAuth, 
+    private auth: AngularFireAuth,
     private toastController: ToastController,
     private loadingController: LoadingController,
-    private router:Router
+    private router: Router
   ) { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.primary = {text: 'Login'};
     this.secondary = {
       text: 'Signup',
@@ -39,8 +39,7 @@ export class LoginComponent implements OnInit {
       minlength: 4,
       maxlength: 100,
       autofocus: true
-    },
-    {
+    }, {
       icon: 'lock',
       type: 'password',
       color: 'light',
@@ -52,34 +51,45 @@ export class LoginComponent implements OnInit {
     }];
   }
 
-  async submit(form:FormGroup){
+  /*
+    TODO: Store the user access key (returned by firebase auth)
+    so the login wont be required next time the app is opened.
+  */
+  async submit (form: FormGroup) {
+    /*
+      A constant error object created outstide of any
+      scope since its used at this entire method.
+    */
     const error = {
       message: 'Error!',
       color: 'danger',
       showCloseButton: false,
       duration: 2000
     };
-
-  
-    if(!form || form.status === 'INVALID') {
+    if (!form || form.status === 'INVALID') {
+      // Invalid form
       error.message = 'Fill the fields correctly!';
       const toast = await this.toastController.create(error);
       await toast.present();
     } else {
+      // Form was filled correctly
       const loading = await this.loadingController.create({
-        keyboardClose: true,  
+        keyboardClose: true,
         translucent: true
       });
       await loading.present();
-      try{
-        const result = await this.auth.auth.signInWithEmailAndPassword(
+      try {
+        // Login attempt
+        await this.auth.auth.signInWithEmailAndPassword(
           form.controls.loginEmail.value,
           form.controls.loginPassword.value
-        );  
+        );
+        // Login success
         await loading.dismiss();
         this.router.navigate(['home']);
-      } catch(e) {
-        if(e.message){
+      } catch (e) {
+        // Login failure
+        if (e.message) {
           error.message = e.message;
         }
         const toast = await this.toastController.create(error);
