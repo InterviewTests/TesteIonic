@@ -16,9 +16,18 @@ ion-header {
 
 	.logo {
 		padding-top: 12px;
-
+		transition: 0.3s;
 		img {
+			transition: 0.3s;
 			width: 128px;
+		}
+
+		&:hover{
+			padding-top: 9px;
+			img{
+				filter: drop-shadow(4px 5px 0px);
+				width: 136px;
+			}
 		}
 	}
 }
