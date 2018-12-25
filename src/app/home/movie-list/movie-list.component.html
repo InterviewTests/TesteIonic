@@ -13,7 +13,7 @@
       <ion-img 
         (ionImgDidLoad)="movie.loaded = true" 
         *ngIf="movie.poster_path" 
-        [src]="http://image.tmdb.org/t/p/w200/${movie.poster_path}`" 
+        [src]="'http://image.tmdb.org/t/p/w200/' + movie.poster_path" 
         [style]="movie.loaded ? '' : 'visibility: hidden;'" alt=" ">
       </ion-img>
     </ion-item>

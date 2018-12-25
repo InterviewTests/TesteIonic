@@ -12,7 +12,7 @@ export class FormComponent implements OnInit {
   @Input() fields: Field [];
   @Input() primary: Button;
   @Input() secondary: Button;
-  @Output() submit = new EventEmitter();
+  @Output() submitHandler = new EventEmitter();
   submitted: boolean;
   form: FormGroup;
 
@@ -37,10 +37,11 @@ export class FormComponent implements OnInit {
     this.fields[index].active = true;
   }
 
-  submitForm () {
+  submitForm (event: Event) {
     // This just calls the output supplied submit method when this component form is submitted.
+    event.preventDefault();
     this.submitted = true;
-    this.submit.emit(this.form);
+    this.submitHandler.emit(this.form);
     return false;
   }
 }

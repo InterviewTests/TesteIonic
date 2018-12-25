@@ -2,7 +2,9 @@
   TODO: Check if the secondary and primary button are supplied 
   and create then only if.
 -->
-<form [formGroup]="form" (ngSubmit)="submitForm()">
+<form 
+  [formGroup]="form" 
+  (ngSubmit)="submitForm($event)">
   <ion-list>
     <ion-item 
       lines="none" 
