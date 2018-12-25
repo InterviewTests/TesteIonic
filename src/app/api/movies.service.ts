@@ -134,7 +134,10 @@ export class MoviesService {
     const index = Number(Math.floor(Math.random() * this.genres.length));
     const genre = this.genres[index];
     this.genres.splice(index, 1);
-    return genre;
+    return {
+      genre,
+      next: this.genres.length !== 0
+    };
   }
 
   // TODO: Create a dbMovie interface

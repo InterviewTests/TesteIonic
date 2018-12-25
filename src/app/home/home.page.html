@@ -25,9 +25,12 @@
                     </ion-list>
                 </div>
                 <ion-infinite-scroll 
-                    threshold="100px" 
-                    (ionInfinite)="loadMoreMovies($event)">
-                    <ion-infinite-scroll-content loadingSpinner="crescent" color="primary">
+                    threshold="80px" 
+                    (ionInfinite)="loadMoreMovies($event)"
+                    [style]="showLoader ? '' : 'display: none;'">
+                    <ion-infinite-scroll-content 
+                        loadingSpinner="crescent" 
+                        color="primary">
                     </ion-infinite-scroll-content>
                 </ion-infinite-scroll>
             </ion-tab>

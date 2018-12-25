@@ -11,6 +11,7 @@ import { InfiniteScroll, IonicModule } from '@ionic/angular';
 export class HomePage implements OnInit {
   @ViewChild(InfiniteScroll) infiniteScroll: InfiniteScroll;
   private movieLists: any[];
+  private showLoader: boolean;
 
   constructor (private moviesService: MoviesService) {}
 
@@ -19,6 +20,7 @@ export class HomePage implements OnInit {
     and do something at the view when it happens.
   */
   ngOnInit() {
+    this.showLoader = true;
     this.movieLists = [];
     // Loading the most popular movies async.
     this.moviesService.getPopular()
@@ -49,17 +51,19 @@ export class HomePage implements OnInit {
     stuff to the "any" type when i call the complete() cuntion
   */
   loadMoreMovies (event: CustomEvent) {
-    const genre = this.moviesService.randomGenre();
-    if (!genre) {
+    const { genre, next } = this.moviesService.randomGenre();
+    if (!next) {
+      this.showLoader = false;
       (<HTMLInputElement>event.target).disabled = true;
       (<any>event.target).complete();
-      return;
     }
-    this.moviesService.getGenre(genre.id)
-    .then(response => {
-      (<any>event.target).complete();
-      this.movieLists.push({list: response.results, title: genre.name});
-    })
-    .catch(() => (<any>event.target).complete());
+    if (genre) {
+      this.moviesService.getGenre(genre.id)
+      .then(response => {
+        (<any>event.target).complete();
+        this.movieLists.push({list: response.results, title: genre.name});
+      })
+      .catch(() => (<any>event.target).complete());
+    }
   }
 }

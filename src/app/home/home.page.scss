@@ -23,6 +23,12 @@ ion-header {
 	}
 }
 
+.ion-page{
+	display: block;
+	overflow-y: scroll;
+	position: relative;
+	contain: none;
+}
 
 ion-infinite-scroll {
 	background: var(--ion-color-dark);
