@@ -10,8 +10,8 @@ import { InfiniteScroll, IonicModule } from '@ionic/angular';
 })
 export class HomePage implements OnInit {
   @ViewChild(InfiniteScroll) infiniteScroll: InfiniteScroll;
-  private movieLists: any[];
-  private showLoader: boolean;
+  movieLists: any[];
+  showLoader: boolean;
 
   constructor (private moviesService: MoviesService) {}
 
