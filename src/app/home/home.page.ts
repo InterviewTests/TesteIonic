@@ -29,7 +29,7 @@ export class HomePage implements OnInit {
         showCloseButton: false,
         duration: 2000
       });
-      await toast.present();
+      toast.present();
     }
     this.showLoader = true;
     this.movieLists = [];

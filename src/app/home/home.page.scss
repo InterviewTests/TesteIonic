@@ -32,6 +32,15 @@ ion-header {
 	}
 }
 
+ion-tab-bar{
+	background: black;
+	.tab-selected{
+		ion-icon{
+			--ion-color-base: var(--ion-color-light) !important;
+		}
+	}
+}	
+
 .ion-page{
 	display: block;
 	overflow-y: scroll;
