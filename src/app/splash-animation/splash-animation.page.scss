@@ -13,7 +13,6 @@
         align-items: center;
         background: var(--ion-color-dark);
         position: absolute;
-        animation-name: go-away;
         animation-fill-mode: forwards;
         animation-delay: 1.5s;
         animation-timing-function: ease-in;
@@ -21,6 +20,9 @@
         top: 0;
         img{
             width: 38vw;
+        }
+        &.animated{
+            animation-name: go-away;
         }
     }
 

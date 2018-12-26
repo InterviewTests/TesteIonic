@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-splash-animation',
@@ -7,11 +8,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./splash-animation.page.scss'],
 })
 export class SplashAnimationPage implements OnInit {
+  layer = 'layer';
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private storage: Storage
+  ) { }
 
   ngOnInit() {
-    setTimeout(() => this.router.navigate(['login']), 4300);
+    this.storage.get('user').then(user => {
+      if (user) {
+        this.router.navigate(['home']);
+      } else {
+        this.layer = 'layer animated';
+        setTimeout(() => this.router.navigate(['auth']), 4500);
+      }
+    });
   }
 
 }

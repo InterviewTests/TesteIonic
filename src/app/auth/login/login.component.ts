@@ -5,6 +5,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { ToastController, LoadingController } from '@ionic/angular';
 import { FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
     private toastController: ToastController,
     private loadingController: LoadingController,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private storage: Storage
   ) { }
 
   ngOnInit () {
@@ -79,10 +81,20 @@ export class LoginComponent implements OnInit {
       await loading.present();
       try {
         // Login attempt
-        await this.auth.auth.signInWithEmailAndPassword(
+        const login = await this.auth.auth.signInWithEmailAndPassword(
           form.controls.loginEmail.value,
           form.controls.loginPassword.value
         );
+        if (!login || !login.user) {
+          throw new Error('Auth error');
+        }
+        const user = {
+          email: login.user.email,
+          emailVerified: login.user.emailVerified,
+          refreshToken: login.user.refreshToken
+        };
+        // Storing user so login wont be request next time.
+        this.storage.set('user', user);
         // Login success
         await loading.dismiss();
         this.router.navigate(['home']);
