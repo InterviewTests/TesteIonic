@@ -1,81 +1,56 @@
 <ion-header>
-    <div class="logo">
-        <img src="assets/images/logo.png" alt="">
-    </div>
+	<div class="logo">
+		<img src="assets/images/logo.png" alt="">
+	</div>
 </ion-header>
 <ion-tabs>
-    <ion-content>
-        <ion-tab 
-            tab="home" 
-            [class]="'ion-page hydrated ' + (currentTab === 1 ? 'active' :'tab-hidden')" 
-            [active]="currentTab === 1">
-            <div class="content">
-                <ion-list>
-                    <div *ngIf="movieLists && movieLists.length === 0">
-                        <div *ngFor="let i of [1,2,3,4,5,6,7]" style="margin-bottom: 20px">
-                            <ion-skeleton-text width="90%"></ion-skeleton-text>
-                            <ion-skeleton-text width="80%"></ion-skeleton-text>
-                            <ion-skeleton-text width="50%"></ion-skeleton-text>
-                            <ion-skeleton-text width="60%"></ion-skeleton-text>
-                            <ion-skeleton-text width="70%"></ion-skeleton-text>
-                        </div>
-                    </div>
-                    <app-movie-list 
-                        *ngFor="let movies of movieLists" 
-                        [movies]="movies">
-                    </app-movie-list>
-                </ion-list>
-                <ion-infinite-scroll 
-                    threshold="80px" 
-                    (ionInfinite)="loadMoreMovies($event)"
-                    [style]="showLoader ? '' : 'display: none;'">
-                    <ion-infinite-scroll-content 
-                        loadingSpinner="crescent" 
-                        color="primary">
-                    </ion-infinite-scroll-content>
-                </ion-infinite-scroll>
-            </div>
-        </ion-tab>
-        <ion-tab 
-            tab="favorites"
-            [class]="'ion-page hydrated ' + (currentTab === 2 ? 'active' :'tab-hidden')" 
-            [active]="currentTab === 2">
-            Favorites
-        </ion-tab>
-        <ion-tab 
-            tab="downloads"
-            [class]="'ion-page hydrated ' + (currentTab === 3 ? 'active' :'tab-hidden')" 
-            [active]="currentTab === 3">
-            Downloads
-        </ion-tab>
-        <ion-tab 
-            tab="Info"
-            [class]="'ion-page hydrated ' + (currentTab === 4 ? 'active' :'tab-hidden')" 
-            [active]="currentTab === 4">
-            Secret Info
-        </ion-tab>
-        <ion-tab 
-            tab="settings"
-            [class]="'ion-page hydrated ' + (currentTab === 5 ? 'active' :'tab-hidden')" 
-            [active]="currentTab === 5">
-            Settings Content
-        </ion-tab>
-    </ion-content>
-    <ion-tab-bar slot="bottom" selected-tab="home" >
-        <ion-tab-button tab="home" (click)="changeTab(1)">
-            <ion-icon name="home" color="medium-shade"></ion-icon>
-        </ion-tab-button>
-        <ion-tab-button tab="favorites" (click)="changeTab(2)">
-            <ion-icon name="heart" color="medium-shade"></ion-icon>
-        </ion-tab-button>
-        <ion-tab-button tab="downloads" (click)="changeTab(3)">
-            <ion-icon name="download" color="medium-shade"></ion-icon>
-        </ion-tab-button>
-        <ion-tab-button tab="info" (click)="changeTab(4)">
-            <ion-icon name="information-circle"></ion-icon>
-        </ion-tab-button>
-        <ion-tab-button tab="settings" (click)="changeTab(5)">
-            <ion-icon name="settings" color="medium-shade"></ion-icon>
-        </ion-tab-button>
-    </ion-tab-bar>
+	<ion-content>
+		<ion-tab 
+			tab="home" 
+			[class]="'ion-page hydrated ' + (currentTab === 1 ? 'active' :'tab-hidden')" 
+			[active]="currentTab === 1">
+			<app-dashboard></app-dashboard>
+		</ion-tab>
+		<ion-tab 
+			tab="favorites"
+			[class]="'ion-page hydrated ' + (currentTab === 2 ? 'active' :'tab-hidden')" 
+			[active]="currentTab === 2">
+			Favorites
+		</ion-tab>
+		<ion-tab 
+			tab="downloads"
+			[class]="'ion-page hydrated ' + (currentTab === 3 ? 'active' :'tab-hidden')" 
+			[active]="currentTab === 3">
+			Downloads
+		</ion-tab>
+		<ion-tab 
+			tab="Info"
+			[class]="'ion-page hydrated ' + (currentTab === 4 ? 'active' :'tab-hidden')" 
+			[active]="currentTab === 4">
+			Secret Info
+		</ion-tab>
+		<ion-tab 
+			tab="settings"
+			[class]="'ion-page hydrated ' + (currentTab === 5 ? 'active' :'tab-hidden')" 
+			[active]="currentTab === 5">
+			Settings Content
+		</ion-tab>
+	</ion-content>
+	<ion-tab-bar slot="bottom" selected-tab="home" >
+		<ion-tab-button tab="home" (click)="changeTab(1)">
+			<ion-icon name="home" color="medium-shade"></ion-icon>
+		</ion-tab-button>
+		<ion-tab-button tab="favorites" (click)="changeTab(2)">
+			<ion-icon name="heart" color="medium-shade"></ion-icon>
+		</ion-tab-button>
+		<ion-tab-button tab="downloads" (click)="changeTab(3)">
+			<ion-icon name="download" color="medium-shade"></ion-icon>
+		</ion-tab-button>
+		<ion-tab-button tab="info" (click)="changeTab(4)">
+			<ion-icon name="information-circle"></ion-icon>
+		</ion-tab-button>
+		<ion-tab-button tab="settings" (click)="changeTab(5)">
+			<ion-icon name="settings" color="medium-shade"></ion-icon>
+		</ion-tab-button>
+	</ion-tab-bar>
 </ion-tabs>

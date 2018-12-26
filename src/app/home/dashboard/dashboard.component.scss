@@ -1,0 +1,14 @@
+.content {
+	background: var(--ion-color-dark);
+	min-height: 100vh;
+	min-width: 100vw;
+	
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+ion-infinite-scroll {
+	background: var(--ion-color-dark);
+	--color: var(--ion-color-primary);
+}
