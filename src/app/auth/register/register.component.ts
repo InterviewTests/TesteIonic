@@ -56,8 +56,7 @@ export class RegisterComponent implements OnInit {
       minlength: 6
     }];
   }
-
-  // TODO: Make the signup succes toast show up, it is not showing up because of the router redirect.
+  
   async submit (form: FormGroup) {
     /*
       A constant error object created outstide of any

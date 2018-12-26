@@ -40,12 +40,7 @@ export class HomePage implements OnInit {
     }))
     .catch(() => {});
   }
-
-  /*
-    TODO: Find out the type of Ionic Objects like
-    infinite scroll on typescript so i dont have to cast
-    stuff to the "any" type when i call the complete() cuntion
-  */
+  
   loadMoreMovies (event: CustomEvent) {
     const { genre, next } = this.moviesService.randomGenre();
     if (!next) {

@@ -1,7 +1,3 @@
-<!-- 
-  TODO: Check if the secondary and primary button are supplied 
-  and create then only if.
--->
 <form 
   [formGroup]="form" 
   (ngSubmit)="submitForm($event)">
@@ -38,11 +34,15 @@
       </ion-icon>
     </ion-item>
   </ion-list>
-  <ion-button expand="full" type="submit">
+  <ion-button 
+    expand="full" 
+    type="submit"
+    *ngIf="primary && primary.text">
     {{primary.text}}
     <ion-ripple-effect></ion-ripple-effect>
   </ion-button>
   <ion-button 
+    *ngIf="secondary && secondary.href"
     fill="clear" 
     [href]="secondary.href" 
     expand="block" 
