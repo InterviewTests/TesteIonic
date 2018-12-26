@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MoviesService } from '../api/movies.service';
-import { InfiniteScroll, IonicModule } from '@ionic/angular';
-
+import { InfiniteScroll } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -13,9 +14,23 @@ export class HomePage implements OnInit {
   movieLists: any[];
   showLoader: boolean;
 
-  constructor (private moviesService: MoviesService) {}
-  
-  ngOnInit() {
+  constructor (
+    private moviesService: MoviesService,
+    private toastController: ToastController,
+    private activatedRoute: ActivatedRoute
+  ) {}
+
+  async ngOnInit() {
+    const emailVerified = this.activatedRoute.snapshot.queryParamMap.get('emailVerified');
+    if (!emailVerified || emailVerified === 'false') {
+      const toast = await this.toastController.create({
+        message: 'Validate your email account!',
+        color: 'warning',
+        showCloseButton: false,
+        duration: 2000
+      });
+      await toast.present();
+    }
     this.showLoader = true;
     this.movieLists = [];
     // Loading the most popular movies async.
@@ -40,7 +55,7 @@ export class HomePage implements OnInit {
     }))
     .catch(() => {});
   }
-  
+
   loadMoreMovies (event: CustomEvent) {
     const { genre, next } = this.moviesService.randomGenre();
     if (!next) {

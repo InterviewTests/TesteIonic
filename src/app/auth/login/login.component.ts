@@ -97,7 +97,9 @@ export class LoginComponent implements OnInit {
         this.storage.set('user', user);
         // Login success
         await loading.dismiss();
-        this.router.navigate(['home']);
+        this.router.navigate(['home'], {
+          queryParams: { emailVerified: user.emailVerified }
+        });
       } catch (e) {
         // Login failure
         if (e.message) {
