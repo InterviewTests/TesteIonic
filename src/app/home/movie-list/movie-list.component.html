@@ -1,10 +1,6 @@
 <div class="container">
   <h3>{{movies.title}}</h3>
   <ion-list>
-    <!-- TODO: 
-        Remove the ion-img since it always shows the broken image link before loading the 
-        image, or find a way to show something while the image is being downloaded.
-    -->
     <ion-item 
       lines="none" 
       *ngFor="let movie of movies.list" 

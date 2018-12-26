@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
       minlength: 6
     }];
   }
-  
+
   async submit (form: FormGroup) {
     /*
       A constant error object created outstide of any
