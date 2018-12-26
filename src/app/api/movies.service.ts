@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HTTP } from '@ionic-native/http/ngx';
+import { MOVIE_DB_API_KEY } from '../moviedb.credentials';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({providedIn: 'root'})
 export class MoviesService {
 
   constructor (private http: HTTP) { }
 
-  // TODO: Store my MovieDb credentials at a separate file.
-  private apiKey = '&api_key=590b7b1e1f7d2b0aa954982f95ee16bf';
+  private apiKey = `&api_key=${MOVIE_DB_API_KEY}`;
   private apiUrl = 'https://api.themoviedb.org/3/';
   private mode = 'browser';
 
