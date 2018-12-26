@@ -7,7 +7,7 @@
     <ion-content>
         <ion-tab 
             tab="home" 
-            [class]="currentTab === 1 ? 'ion-page hydrated active' : 'ion-page tab-hidden hydrated'" 
+            [class]="'ion-page hydrated ' + (currentTab === 1 ? 'active' :'tab-hidden')" 
             [active]="currentTab === 1">
             <div class="content">
                 <ion-list>
@@ -38,25 +38,25 @@
         </ion-tab>
         <ion-tab 
             tab="favorites"
-            [class]="currentTab === 2 ? 'ion-page hydrated active' : 'ion-page tab-hidden hydrated'" 
+            [class]="'ion-page hydrated ' + (currentTab === 2 ? 'active' :'tab-hidden')" 
             [active]="currentTab === 2">
             Favorites
         </ion-tab>
         <ion-tab 
             tab="downloads"
-            [class]="currentTab === 3 ? 'ion-page hydrated active' : 'ion-page tab-hidden hydrated'" 
+            [class]="'ion-page hydrated ' + (currentTab === 3 ? 'active' :'tab-hidden')" 
             [active]="currentTab === 3">
             Downloads
         </ion-tab>
         <ion-tab 
             tab="Info"
-            [class]="currentTab === 4 ? 'ion-page hydrated active' : 'ion-page tab-hidden hydrated'" 
+            [class]="'ion-page hydrated ' + (currentTab === 4 ? 'active' :'tab-hidden')" 
             [active]="currentTab === 4">
             Secret Info
         </ion-tab>
         <ion-tab 
             tab="settings"
-            [class]="currentTab === 5 ? 'ion-page hydrated active' : 'ion-page tab-hidden hydrated'" 
+            [class]="'ion-page hydrated ' + (currentTab === 5 ? 'active' :'tab-hidden')" 
             [active]="currentTab === 5">
             Settings Content
         </ion-tab>
