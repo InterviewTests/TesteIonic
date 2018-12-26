@@ -1,0 +1,63 @@
+.content {
+	min-height: 100vh;
+    min-width: 100vw;
+    position: relative;
+    overflow: hidden;
+    background: var(--ion-color-dark);
+
+    .layer{
+        min-height: 100vh;
+        min-width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: var(--ion-color-dark);
+        position: absolute;
+        animation-name: go-away;
+        animation-fill-mode: forwards;
+        animation-delay: 1.5s;
+        animation-timing-function: ease-in;
+        left: 0;
+        top: 0;
+        img{
+            width: 38vw;
+        }
+    }
+
+    #first{
+        animation-duration: 1s;
+        z-index: 10;
+    }
+    #second{
+        animation-duration: 1.5s;
+        background: var(--ion-color-primary);
+        z-index: 9;
+    }
+    #third{
+        animation-duration: 2s;
+        background: var(--ion-color-light);
+        z-index: 8;
+    }
+    #forth{
+        animation-duration: 2.5s;
+        background: var(--ion-color-medium);
+        z-index: 7;
+    }
+    #fith{
+        animation-name: none;
+        img{
+            filter: drop-shadow(4px 5px 0px);
+            animation: pulse 2s infinite ease-in-out;
+        }
+    }
+    
+    @keyframes go-away {
+        from {transform: translateX(0);}
+        100% {transform: translateX(-100%);}
+    }
+    @keyframes pulse {
+        0% {width: 38vw }
+        60% {width: 42vw;}
+        100%{width: 38vw;}
+    }
+}

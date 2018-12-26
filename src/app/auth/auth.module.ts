@@ -15,16 +15,13 @@ const routes: Routes = [
 {
     path: '',
     component: AuthPage,
-    children: [
-      {
+    children: [{
         path: 'login',
         component: LoginComponent
-      },
-      {
+      }, {
         path: 'register',
         component: RegisterComponent
-      },
-      {
+      }, {
         path: '**',
         redirectTo: 'login',
         pathMatch: 'full'
