@@ -2,7 +2,7 @@
 	background: var(--ion-color-dark);
 	min-height: 100vh;
 	min-width: 100vw;
-
+	
 	&::-webkit-scrollbar {
 		display: none;
 	}
@@ -32,6 +32,10 @@ ion-header {
 	}
 }
 
+ion-tab{
+    padding-top: 64px;
+}
+
 ion-tab-bar{
 	background: black;
 	.tab-selected{
@@ -41,12 +45,17 @@ ion-tab-bar{
 	}
 }	
 
-.ion-page{
-	display: block;
+ion-tab{
+	min-width: 100vw;
 	overflow-y: scroll;
-	position: relative;
-	contain: none;
+	display: none;
+	&.active{
+		display: block;
+		position: relative;
+		contain: unset;
+	}
 }
+
 
 ion-infinite-scroll {
 	background: var(--ion-color-dark);

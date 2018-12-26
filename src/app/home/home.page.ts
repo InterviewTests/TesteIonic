@@ -13,6 +13,7 @@ export class HomePage implements OnInit {
   @ViewChild(InfiniteScroll) infiniteScroll: InfiniteScroll;
   movieLists: any[];
   showLoader: boolean;
+  currentTab = 1;
 
   constructor (
     private moviesService: MoviesService,
@@ -56,6 +57,10 @@ export class HomePage implements OnInit {
     .catch(() => {});
   }
 
+  changeTab (tab: number) {
+    this.currentTab = tab;
+  }
+
   loadMoreMovies (event: CustomEvent) {
     const { genre, next } = this.moviesService.randomGenre();
     if (!next) {
@@ -69,7 +74,11 @@ export class HomePage implements OnInit {
         (<any>event.target).complete();
         this.movieLists.push({list: response.results, title: genre.name});
       })
-      .catch(() => (<any>event.target).complete());
+      .catch(() => {
+        (<HTMLInputElement>event.target).disabled = true;
+        this.showLoader = false;
+        (<any>event.target).complete();
+      });
     }
   }
 }
