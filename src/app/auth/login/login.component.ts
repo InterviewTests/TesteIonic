@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
       maxlength: 100
     }];
   }
-  
+
   async submit (form: FormGroup) {
     /*
       A constant error object created outstide of any

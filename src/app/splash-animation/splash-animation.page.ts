@@ -11,7 +11,7 @@ export class SplashAnimationPage implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    setTimeout(() => this.router.navigate(['login']), 3600);
+    setTimeout(() => this.router.navigate(['login']), 4300);
   }
 
 }
