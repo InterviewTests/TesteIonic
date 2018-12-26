@@ -14,11 +14,7 @@ export class HomePage implements OnInit {
   showLoader: boolean;
 
   constructor (private moviesService: MoviesService) {}
-
-  /* 
-    TODO: Test the catch of the NgOnInit movie getPopular, getBest and getNewest 
-    and do something at the view when it happens.
-  */
+  
   ngOnInit() {
     this.showLoader = true;
     this.movieLists = [];

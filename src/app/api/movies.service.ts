@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HTTP } from '@ionic-native/http/ngx';
 import { MOVIE_DB_API_KEY } from '../moviedb.credentials';
+import { Movie } from './movie';
 
 @Injectable({providedIn: 'root'})
 export class MoviesService {
@@ -71,7 +72,6 @@ export class MoviesService {
     'name': 'Western'
   }];
 
-  // TODO: Create a dbMovie interface
   // TODO: Validate both the error and data success objects existance before sending them
   get (url: string) {
     /*
@@ -81,12 +81,7 @@ export class MoviesService {
       i added the "mode" variable that i manually change. It switches this mehtod between using
       the native Http module or using the fetch API to do the http request.
     */
-    return new Promise<{
-      results: [{
-        original_title: string,
-        poster_path: string
-      }]
-    }>((resolve, reject) => {
+    return new Promise<{results: [Movie]}>((resolve, reject) => {
       // Using that mode variable to switch between FetchApi or Native Http
       if (this.mode === 'browser') {
         fetch(this.apiUrl + url  + this.apiKey)
@@ -109,15 +104,9 @@ export class MoviesService {
     });
   }
 
-  // TODO: Create a dbMovie interface
   getPopular () {
     // This method asks for the most popular movieDb movie list.
-    return new Promise<{
-      results: [{
-        original_title: string,
-        poster_path: string
-      }]
-    }>((resolve, reject) =>
+    return new Promise<{results: [Movie]}>((resolve, reject) =>
       this.get('discover/movie?popularity.desc')
       .then(response => resolve(response))
       .catch(error => reject(error))
@@ -138,44 +127,27 @@ export class MoviesService {
     };
   }
 
-  // TODO: Create a dbMovie interface
   getGenre (genre: number) {
     // This method is used with the previous randomGenre method to call a certain genre movie list.
-    return new Promise<{
-      results: [{
-        original_title: string,
-        poster_path: string
-      }]
-    }>((resolve, reject) =>
+    return new Promise<{results: [Movie]}>((resolve, reject) =>
       this.get(`discover/movie?with_genres=${genre}&sort_by=vote_average.desc&vote_count.gte=10`)
       .then(response => resolve(response))
       .catch(error => reject(error))
     );
   }
 
-  // TODO: Create a dbMovie interface
   getBest () {
     // This method asks for the best rated movieDb movie list.
-    return new Promise<{
-      results: [{original_title: string,
-        poster_path: string
-      }]
-    }>((resolve, reject) =>
+    return new Promise<{results: [Movie]}>((resolve, reject) =>
       this.get('discover/movie?sort_by=vote_count.desc')
       .then(response => resolve(response))
       .catch(error => reject(error))
     );
   }
 
-  // TODO: Create a dbMovie interface
   getNewest () {
     // This method asks for the most newsest movieDb movie list.
-    return new Promise<{
-      results: [{
-        original_title: string,
-        poster_path: string
-      }]
-    }>((resolve, reject) =>
+    return new Promise<{results: [Movie]}>((resolve, reject) =>
       this.get('discover/movie?sort_by=release_date.desc&region=br')
       .then(response => resolve(response))
       .catch(error => reject(error))

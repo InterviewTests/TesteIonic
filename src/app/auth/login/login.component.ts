@@ -53,11 +53,7 @@ export class LoginComponent implements OnInit {
       maxlength: 100
     }];
   }
-
-  /*
-    TODO: Store the user access key (returned by firebase auth)
-    so the login wont be required next time the app is opened.
-  */
+  
   async submit (form: FormGroup) {
     /*
       A constant error object created outstide of any

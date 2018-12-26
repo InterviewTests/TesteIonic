@@ -58,10 +58,6 @@ export class RegisterComponent implements OnInit {
   }
 
   // TODO: Make the signup succes toast show up, it is not showing up because of the router redirect.
-  /* 
-    TODO: Take the registration sucess email and pass it to the login page (so a newly registered
-    user has its email auto filled in the login page).
-  */
   async submit (form: FormGroup) {
     /*
       A constant error object created outstide of any
