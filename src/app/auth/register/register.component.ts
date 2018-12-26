@@ -105,7 +105,9 @@ export class RegisterComponent implements OnInit {
           showCloseButton: false,
           duration: 2000
         });
-        this.router.navigate(['auth/login']);
+        this.router.navigate(['auth/login'] , {
+          queryParams: { email: form.controls.registerEmail.value }
+        });
       } catch (e) {
         // Registration Error
         if (e.message) {

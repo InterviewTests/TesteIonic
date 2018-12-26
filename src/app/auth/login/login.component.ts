@@ -4,7 +4,7 @@ import { Button } from '../../utils/form/buttonInterface';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ToastController, LoadingController } from '@ionic/angular';
 import { FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -20,10 +20,12 @@ export class LoginComponent implements OnInit {
     private auth: AngularFireAuth,
     private toastController: ToastController,
     private loadingController: LoadingController,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit () {
+    const email = this.activatedRoute.snapshot.queryParamMap.get('email');
     this.primary = {text: 'Login'};
     this.secondary = {
       text: 'Signup',
@@ -36,6 +38,7 @@ export class LoginComponent implements OnInit {
       formControlName: 'loginEmail',
       placeholder: 'Email',
       required: true,
+      value: email,
       minlength: 4,
       maxlength: 100,
       autofocus: true

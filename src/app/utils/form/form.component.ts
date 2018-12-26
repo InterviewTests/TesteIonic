@@ -21,7 +21,7 @@ export class FormComponent implements OnInit {
   ngOnInit () {
     // Taking the passed props and creating them as angular reactive form components.
     const formDef = {};
-    this.fields.forEach(field => formDef[field.formControlName] = ['']);
+    this.fields.forEach(field => formDef[field.formControlName] = [field.value]);
     this.form = this.fb.group(formDef);
     this.submitted = false;
   }

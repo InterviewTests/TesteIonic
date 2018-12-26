@@ -9,4 +9,5 @@ export interface Field {
     maxlength?: number;
     autofocus?: boolean;
     active?: boolean;
+    value?: string;
 }
