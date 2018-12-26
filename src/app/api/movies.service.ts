@@ -71,8 +71,7 @@ export class MoviesService {
     'id': 37,
     'name': 'Western'
   }];
-
-  // TODO: Validate both the error and data success objects existance before sending them
+  
   get (url: string) {
     /*
       This method does an HTTP request but hides the ugly stuff. Up to this point, this service class
@@ -86,20 +85,22 @@ export class MoviesService {
       if (this.mode === 'browser') {
         fetch(this.apiUrl + url  + this.apiKey)
         .then(response => {
-          if (!response.ok) {
+          if (!response || !response.ok) {
             throw new Error(response.statusText);
           }
           resolve(response.json());
         })
         .catch(error => reject(error));
       } else {
-        this.http.get(
-          `${this.apiUrl}${url}${this.apiKey}`,
-          { /* */ },
-          {'Content-Type': 'application/json'}
-        )
-        .then(data => resolve(JSON.parse(data.data)))
-        .catch(error => reject(error.error));
+        this.http.get(`${this.apiUrl}${url}${this.apiKey}`, { },
+          {'Content-Type': 'application/json'})
+        .then(data => {
+          if (!data || !data.data) {
+            throw new Error('No Response');
+          }
+          resolve(JSON.parse(data.data));
+        })
+        .catch(error => reject(error.error || error));
       }
     });
   }
