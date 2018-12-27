@@ -19,7 +19,6 @@
         background: -webkit-linear-gradient(left, rgb(34,31,31) 0%,rgba(0,0,0,0) 100%);
         background: linear-gradient(to right, rgb(34,31,31) 0%,rgba(0,0,0,0) 100%); 
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=1 );
-        
     }
     &:after{
         right: 8px;        
@@ -42,10 +41,33 @@
             width: 104px;
             height: 182px;
             --min-height	: 100%;
-            background: rgba(0,0,0, 0.7);
+            background: #040303;
             margin: 2px;
             position: relative;
-            ion-img{
+            
+            // .loading-background{
+            //     animation: scrl forwards 1s infinite linear;
+            //     background: #292929;
+            //     width: 64px;
+            //     left: 0;
+            //     top: -32px;
+            //     bottom: -32px;
+            //     transform: rotateZ(30deg);
+            //     opacity: 0.1;
+            //     filter: blur(3px);
+            //     position: absolute;
+            // }
+            // @keyframes scrl{
+            //     0%{
+            //         left: -128px;
+            //     }
+            //     100%{
+            //         left: 198px;
+            //     }
+            // }
+
+
+            img{
                 position: absolute;
                 top: 0;
                 left: 0;            
