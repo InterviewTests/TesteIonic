@@ -94,12 +94,13 @@ export class RegisterComponent implements OnInit {
         );
         // Registration Success
         await loading.dismiss();
-        await this.toastController.create({
+        const toast = await this.toastController.create({
           message: 'Account created! Check your email : )',
           color: 'success',
           showCloseButton: false,
           duration: 2000
         });
+        toast.present();
         this.router.navigate(['auth/login'] , {
           queryParams: { email: form.controls.registerEmail.value }
         });
