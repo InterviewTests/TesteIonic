@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Field } from '../../utils/form/fieldInterface'
+import { Field } from '../../utils/form/fieldInterface';
 import { Button } from '../../utils/form/buttonInterface';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ToastController, LoadingController } from '@ionic/angular';
@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
       // Invalid form
       error.message = 'Fill the fields correctly!';
       const toast = await this.toastController.create(error);
-      await toast.present();
+      toast.present();
     } else {
       // Form was filled correctly
       const loading = await this.loadingController.create({
@@ -106,7 +106,7 @@ export class LoginComponent implements OnInit {
           error.message = e.message;
         }
         const toast = await this.toastController.create(error);
-        await toast.present();
+        toast.present();
         await loading.dismiss();
       }
     }

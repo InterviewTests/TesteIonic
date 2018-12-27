@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Storage } from '@ionic/storage';
+import {  LoadingController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-settings',
@@ -7,9 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private storage: Storage,
+    private router: Router,
+    private loadingController: LoadingController
+  ) { }
 
   ngOnInit() {
+  }
+
+  async signout() {
+    const loading = await this.loadingController.create({
+      keyboardClose: true,
+      translucent: true
+    });
+    await loading.present();
+    await this.storage.remove('user');
+    await loading.dismiss();
+    this.router.navigate(['auth/login']);
+  }
+
+  changePassword() {
+    console.log('Changing the password');
   }
 
 }

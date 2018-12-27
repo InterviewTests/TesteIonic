@@ -73,12 +73,12 @@ export class RegisterComponent implements OnInit {
       // Invalid form
       error.message = 'Fill the fields correctly!';
       const toast = await this.toastController.create(error);
-      await toast.present();
+      toast.present();
     } else if (form.controls.registerPassword.value !== form.controls.registerConfirmPassword.value) {
       // Form is valid but the supplied passwords do not match
       error.message = 'Informed passwords are different!';
       const toast = await this.toastController.create(error);
-      await toast.present();
+      toast.present();
     } else {
       // Form was filled correctly
       const loading = await this.loadingController.create({
@@ -109,7 +109,7 @@ export class RegisterComponent implements OnInit {
           error.message = e.message;
         }
         const toast = await this.toastController.create(error);
-        await toast.present();
+        toast.present();
         await loading.dismiss();
       }
     }

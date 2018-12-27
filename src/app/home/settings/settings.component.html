@@ -1,3 +1,26 @@
 <div class="content">
-  Hello World
+  <ion-list>
+    <ion-item (click)="signout()">
+        <ion-button 
+          expand="full" 
+          type="button" 
+          fill="clear"
+          color="light">
+          <ion-icon name="log-out"></ion-icon>
+          Log Out
+          <ion-ripple-effect></ion-ripple-effect>
+        </ion-button>
+    </ion-item>
+    <ion-item (click)="changePassword()">
+      <ion-button 
+        expand="full" 
+        type="button" 
+        fill="clear" 
+        color="light">
+        <ion-icon name="lock"></ion-icon>
+        Change Password
+        <ion-ripple-effect></ion-ripple-effect>
+      </ion-button>
+    </ion-item>
+  </ion-list>
 </div>

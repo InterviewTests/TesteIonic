@@ -5,4 +5,22 @@
 	&::-webkit-scrollbar {
 		display: none;
 	}
+
+	ion-button{
+		width: 100%;
+		height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+		--box-shadow: none;
+		--background: transparent;
+		--height: 100%;
+	}
+	ion-icon{
+		margin-right: 8px;
+	}
+}
+
+.button-inner{
+	justify-content: start;
 }
