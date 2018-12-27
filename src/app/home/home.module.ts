@@ -8,6 +8,7 @@ import { HomePage } from './home.page';
 import { MovieListComponent } from './dashboard/movie-list/movie-list.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SettingsComponent } from './settings/settings.component';
+import { MovieDetailComponent } from './dashboard/movie-list/movie-detail/movie-detail.component';
 
 @NgModule({
   imports: [
@@ -21,6 +22,6 @@ import { SettingsComponent } from './settings/settings.component';
       }
     ])
   ],
-  declarations: [HomePage, MovieListComponent, DashboardComponent, SettingsComponent]
+  declarations: [HomePage, MovieListComponent, DashboardComponent, SettingsComponent, MovieDetailComponent]
 })
 export class HomePageModule {}
