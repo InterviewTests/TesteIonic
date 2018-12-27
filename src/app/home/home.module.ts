@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { HomePage } from './home.page';
 import { MovieListComponent } from './dashboard/movie-list/movie-list.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   imports: [
@@ -20,6 +21,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
       }
     ])
   ],
-  declarations: [HomePage, MovieListComponent, DashboardComponent]
+  declarations: [HomePage, MovieListComponent, DashboardComponent, SettingsComponent]
 })
 export class HomePageModule {}

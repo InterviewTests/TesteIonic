@@ -15,7 +15,7 @@
       </app-movie-list>
   </ion-list>
   <ion-infinite-scroll 
-      threshold="80px" 
+      threshold="36px" 
       (ionInfinite)="loadMoreMovies($event)"
       [style]="showLoader ? '' : 'display: none;'">
       <ion-infinite-scroll-content 

@@ -45,3 +45,7 @@ ion-tab{
 		contain: unset;
 	}
 }
+
+ion-content{
+	--background: var(--ion-color-dark);
+}
