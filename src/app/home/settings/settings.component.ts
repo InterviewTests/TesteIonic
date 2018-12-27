@@ -19,7 +19,7 @@ export class SettingsComponent implements OnInit {
   ngOnInit() {
   }
 
-  async signout() {
+  async signOut() {
     const loading = await this.loadingController.create({
       keyboardClose: true,
       translucent: true
