@@ -71,7 +71,7 @@ export class MoviesService {
     'id': 37,
     'name': 'Western'
   }];
-  
+
   get (url: string) {
     /*
       This method does an HTTP request but hides the ugly stuff. Up to this point, this service class

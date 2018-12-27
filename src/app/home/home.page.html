@@ -24,15 +24,9 @@
 			Downloads
 		</ion-tab>
 		<ion-tab 
-			tab="Info"
+			tab="settings"
 			[class]="'ion-page hydrated ' + (currentTab === 4 ? 'active' :'tab-hidden')" 
 			[active]="currentTab === 4">
-			Secret Info
-		</ion-tab>
-		<ion-tab 
-			tab="settings"
-			[class]="'ion-page hydrated ' + (currentTab === 5 ? 'active' :'tab-hidden')" 
-			[active]="currentTab === 5">
 			<app-settings></app-settings>
 		</ion-tab>
 	</ion-content>
@@ -46,10 +40,7 @@
 		<ion-tab-button tab="downloads" (click)="changeTab(3)">
 			<ion-icon name="download" color="medium-shade"></ion-icon>
 		</ion-tab-button>
-		<ion-tab-button tab="info" (click)="changeTab(4)">
-			<ion-icon name="information-circle"></ion-icon>
-		</ion-tab-button>
-		<ion-tab-button tab="settings" (click)="changeTab(5)">
+		<ion-tab-button tab="settings" (click)="changeTab(4)">
 			<ion-icon name="settings" color="medium-shade"></ion-icon>
 		</ion-tab-button>
 	</ion-tab-bar>

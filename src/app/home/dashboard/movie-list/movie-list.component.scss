@@ -1,8 +1,7 @@
-.container{
+.content{
     max-width: 100vw;
     padding: 0 8px;
     color: var(--ion-color-light);
-    
     position: relative;
     &::before,&::after{
         content: '';
@@ -27,6 +26,10 @@
         background: -webkit-linear-gradient(left, rgba(0,0,0,0) 0%,rgb(34,31,31) 100%);
         background: linear-gradient(to right, rgba(0,0,0,0) 0%,rgb(34,31,31) 100%); 
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=1 );
+    }
+
+    .title{
+        margin: 0;
     }
 
     ion-list{

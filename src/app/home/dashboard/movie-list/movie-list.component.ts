@@ -11,11 +11,22 @@ export class MovieListComponent implements OnInit {
     title: string,
     list: [Movie]
   };
+  details: boolean;
+  detailMovie?: Movie;
 
   constructor() { }
 
   ngOnInit() {
+    this.details = false;
+    this.detailMovie = null;
+  }
 
+  showDetails(movieId: number) {
+    if (this.details) {
+      return;
+    }
+    this.detailMovie = this.movies.list.find(x => x.id === movieId);
+    this.details = true;
   }
 
 }
