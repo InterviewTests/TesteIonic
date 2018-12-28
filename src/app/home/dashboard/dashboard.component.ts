@@ -10,6 +10,7 @@ import { MovieList } from 'src/app/api/movie-list';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  @Input() public downloads: Movie[];
   @ViewChild(InfiniteScroll) infiniteScroll: InfiniteScroll;
   isDetailsVisible: boolean;
   detailsMovie?: Movie;
@@ -95,6 +96,8 @@ export class DashboardComponent implements OnInit {
     this.detailsMovie.favorited = favIndex > -1;
     const myListIndex = this.myListMoviesList.list.findIndex(m => m.id === this.detailsMovie.id);
     this.detailsMovie.myListed = myListIndex > -1;
+    const downloadIndex = this.downloads.findIndex(m => m.id === this.detailsMovie.id);
+    this.detailsMovie.downloaded = downloadIndex > -1;
   }
 
   hideDetails() {

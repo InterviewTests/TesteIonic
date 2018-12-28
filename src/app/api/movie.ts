@@ -10,4 +10,5 @@ export interface Movie {
     release_date: string;
     favorited: boolean;
     myListed: boolean;
+    downloaded: boolean;
 }

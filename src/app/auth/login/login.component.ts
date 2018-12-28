@@ -95,7 +95,7 @@ export class LoginComponent implements OnInit {
           uid: login.user.uid
         };
         // Storing user so login wont be request next time.
-        this.storage.set('user', user);
+        await this.storage.set('user', user);
         // Login success
         await loading.dismiss();
         this.router.navigate(['home'], {

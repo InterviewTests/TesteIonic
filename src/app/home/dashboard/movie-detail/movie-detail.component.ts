@@ -4,6 +4,7 @@ import { MovieList } from 'src/app/api/movie-list';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { ToastController, LoadingController } from '@ionic/angular';
 import { MoviesService } from 'src/app/api/movies.service';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-movie-detail',
@@ -17,15 +18,17 @@ export class MovieDetailComponent implements OnInit {
   @Input() public active: boolean;
   @Input() public favorites: MovieList;
   @Input() public myList: MovieList;
+  @Input() public downloads: Movie[];
 
   constructor(
     private socialSharing: SocialSharing,
     private loadingController: LoadingController,
     private toastController: ToastController,
-    private moviesService: MoviesService
+    private moviesService: MoviesService,
+    private storage: Storage
   ) { }
 
-  async ngOnInit() {}
+  ngOnInit() { }
 
   async favoritesAction() {
     const loading = await this.loadingController.create({
@@ -48,8 +51,6 @@ export class MovieDetailComponent implements OnInit {
         this.movie.favorited = false;
         toastDef.color = 'success';
         toastDef.message = 'Movie unfavorited!';
-        const toast = await this.toastController.create(toastDef);
-        toast.present();
       } else {
         // Favorite
         await this.moviesService.favorite(this.movie);
@@ -57,9 +58,9 @@ export class MovieDetailComponent implements OnInit {
         this.movie.favorited = true;
         toastDef.color = 'success';
         toastDef.message = 'Movie favorited!';
-        const toast = await this.toastController.create(toastDef);
-        toast.present();
       }
+      const toast = await this.toastController.create(toastDef);
+      toast.present();
       await loading.dismiss();
     } catch (e) {
       const toast = await this.toastController.create(toastDef);
@@ -89,8 +90,6 @@ export class MovieDetailComponent implements OnInit {
         this.movie.myListed = false;
         toastDef.color = 'success';
         toastDef.message = 'Removed from My List!';
-        const toast = await this.toastController.create(toastDef);
-        toast.present();
       } else {
         // Add to My List
         await this.moviesService.addToMyList(this.movie);
@@ -98,9 +97,9 @@ export class MovieDetailComponent implements OnInit {
         this.movie.myListed = true;
         toastDef.color = 'success';
         toastDef.message = 'Added to My List!';
-        const toast = await this.toastController.create(toastDef);
-        toast.present();
       }
+      const toast = await this.toastController.create(toastDef);
+      toast.present();
       await loading.dismiss();
     } catch (e) {
       const toast = await this.toastController.create(toastDef);
@@ -108,6 +107,45 @@ export class MovieDetailComponent implements OnInit {
       await loading.dismiss();
     }
   }
+
+  async download() {
+    const loading = await this.loadingController.create({
+      keyboardClose: true,
+      translucent: true
+    });
+    const toastDef = {
+      message: 'Try again later.',
+      color: 'error',
+      showCloseButton: false,
+      duration: 2000
+    };
+    await loading.present();
+    try {
+      const index = this.downloads.findIndex(d => d.id === this.movie.id);
+      if (index > -1) {
+        // Delete
+        this.downloads.splice(index, 1);
+        this.movie.downloaded = false;
+        toastDef.color = 'success';
+        toastDef.message = 'Movie Deleted!';
+      } else {
+        // Download
+        this.downloads.push(this.movie);
+        this.movie.downloaded = true;
+        toastDef.color = 'success';
+        toastDef.message = 'Movie Downloaded!';
+      }
+      const toast = await this.toastController.create(toastDef);
+      toast.present();
+      await loading.dismiss();
+      await this.storage.set('downloads', this.downloads);
+    } catch (e) {
+      const toast = await this.toastController.create(toastDef);
+      toast.present();
+      await loading.dismiss();
+    }
+  }
+
   share() {
     this.socialSharing.share(
       'Share Movie Poster',

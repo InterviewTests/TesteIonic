@@ -26,6 +26,7 @@ export class SettingsComponent implements OnInit {
     });
     await loading.present();
     await this.storage.remove('user');
+    await this.storage.remove('downloads');
     await loading.dismiss();
     this.router.navigate(['auth/login']);
   }

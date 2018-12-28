@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
+import { Movie } from 'src/app/api/movie';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +11,12 @@ import { ToastController } from '@ionic/angular';
 })
 export class HomePage implements OnInit {
   currentTab: Number;
+  downloads: Movie[];
 
   constructor (
     private toastController: ToastController,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private storage: Storage
   ) {}
 
   async ngOnInit() {
@@ -27,6 +31,7 @@ export class HomePage implements OnInit {
       });
       toast.present();
     }
+    this.downloads = await this.storage.get('downloads') || [];
   }
 
   changeTab (tab: number) {

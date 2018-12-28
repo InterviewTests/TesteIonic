@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Movie } from 'src/app/api/movie';
 
 @Component({
   selector: 'app-downloads',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./downloads.component.scss']
 })
 export class DownloadsComponent implements OnInit {
+  @Input() public downloads: Movie[];
 
   constructor() { }
 
