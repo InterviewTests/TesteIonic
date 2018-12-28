@@ -8,6 +8,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 
 import { AppComponent } from './app.component';
@@ -23,7 +24,7 @@ import { FIREBASE_CREDENTIALS } from './firebase.credentials';
   entryComponents: [],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(),
+    IonicModule.forRoot({hardwareBackButton: false}),
     AppRoutingModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(FIREBASE_CREDENTIALS),
@@ -35,6 +36,7 @@ import { FIREBASE_CREDENTIALS } from './firebase.credentials';
     StatusBar,
     SplashScreen,
     ScreenOrientation,
+    SocialSharing,
     HTTP,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
