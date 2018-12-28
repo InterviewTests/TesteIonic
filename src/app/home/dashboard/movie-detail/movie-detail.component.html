@@ -9,10 +9,8 @@
             <span class="score">{{movie.vote_average === '10' ? '100' : movie.vote_average.toString().replace('.','').replace(',', '').padEnd(2,'0')  + '% Match'}}</span>
             <span class="date">{{movie.release_date | date}}</span>
         </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        {{movie | json}}
+        <div class="decription">
+            {{movie.overview || 'No description for this movie.'}}
+        </div>
     </div>
 </div>
