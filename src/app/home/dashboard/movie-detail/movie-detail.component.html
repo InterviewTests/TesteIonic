@@ -32,7 +32,7 @@
                     fill="clear" 
                     color="light"
                     (click)="favoritesAction()">
-                    <ion-icon name="heart-empty" slot="icon-only"></ion-icon>
+                    <ion-icon [name]="movie.favorited ? 'heart' : 'heart-empty'" slot="icon-only"></ion-icon>
                     <ion-ripple-effect></ion-ripple-effect>
                 </ion-button>
                 <span>Favorite</span>

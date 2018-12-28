@@ -45,6 +45,7 @@ export class MovieDetailComponent implements OnInit {
         // Unfavorite
         await this.moviesService.unfavorite(this.movie);
         this.favorites.list.splice(index, 1);
+        this.movie.favorited = false;
         toastDef.color = 'success';
         toastDef.message = 'Movie unfavorited!';
         const toast = await this.toastController.create(toastDef);
@@ -53,6 +54,7 @@ export class MovieDetailComponent implements OnInit {
         // Favorite
         await this.moviesService.favorite(this.movie);
         this.favorites.list.push(this.movie);
+        this.movie.favorited = true;
         toastDef.color = 'success';
         toastDef.message = 'Movie favorited!';
         const toast = await this.toastController.create(toastDef);

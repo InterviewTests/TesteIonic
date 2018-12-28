@@ -92,6 +92,9 @@ export class DashboardComponent implements OnInit {
     }
     this.detailsMovie = movie;
     this.isDetailsVisible = true;
+
+    const index = this.favoriteMoviesList.list.findIndex(m => m.id === this.detailsMovie.id);
+    this.detailsMovie.favorited = index > -1;
   }
 
   hideDetails() {

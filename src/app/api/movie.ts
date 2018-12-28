@@ -8,4 +8,5 @@ export interface Movie {
     vote_count: number;
     overview: string;
     release_date: string;
+    favorited: boolean;
 }
