@@ -180,8 +180,12 @@ export class MoviesService {
     this.userFavoritesCollection = this.userDoc.collection<Movie>('favorites');
   }
 
-  async saveFavorite (movie: Movie) {
+  async favorite (movie: Movie) {
     await this.userFavoritesCollection.doc(movie.id.toString()).set(movie);
+  }
+
+  async unfavorite(movie: Movie) {
+    await this.userFavoritesCollection.doc(movie.id.toString()).delete();
   }
 
   getUserFavorites() {

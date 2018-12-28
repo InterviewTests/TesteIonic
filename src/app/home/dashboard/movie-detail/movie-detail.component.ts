@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Movie } from '../../../api/movie';
+import { MovieList } from '../../../api/movie-list';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { ToastController, LoadingController } from '@ionic/angular';
 import { MoviesService } from 'src/app/api/movies.service';
@@ -14,7 +15,7 @@ export class MovieDetailComponent implements OnInit {
   @Output() public hide = new EventEmitter();
   @Input() public movie?: Movie;
   @Input() public active: boolean;
-
+  @Input() public favorites: MovieList;
 
   constructor(
     private socialSharing: SocialSharing,
@@ -23,9 +24,7 @@ export class MovieDetailComponent implements OnInit {
     private moviesService: MoviesService
   ) { }
 
-  async ngOnInit() {
-
-  }
+  async ngOnInit() {}
 
   async favorite() {
     const loading = await this.loadingController.create({
@@ -33,18 +32,31 @@ export class MovieDetailComponent implements OnInit {
       translucent: true
     });
     const toastDef = {
-      message: 'Could not favorite this movie!',
+      message: 'Try again later',
       color: 'danger',
       showCloseButton: false,
       duration: 2000
     };
     await loading.present();
     try {
-      await this.moviesService.saveFavorite(this.movie);
-      toastDef.color = 'success';
-      toastDef.message = 'Movie favorited!';
-      const toast = await this.toastController.create(toastDef);
-      toast.present();
+      const index = this.favorites.list.findIndex(m => m.id === this.movie.id);
+      if (index > 0) {
+        // Unfavorite
+        await this.moviesService.unfavorite(this.movie);
+        this.favorites.list.splice(index, 1);
+        toastDef.color = 'success';
+        toastDef.message = 'Movie unfavorited!';
+        const toast = await this.toastController.create(toastDef);
+        toast.present();
+      } else {
+        // Favorite
+        await this.moviesService.favorite(this.movie);
+        this.favorites.list.push(this.movie);
+        toastDef.color = 'success';
+        toastDef.message = 'Movie favorited!';
+        const toast = await this.toastController.create(toastDef);
+        toast.present();
+      }
       await loading.dismiss();
     } catch (e) {
       const toast = await this.toastController.create(toastDef);

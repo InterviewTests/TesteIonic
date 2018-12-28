@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Movie } from '../../../api/movie';
+import { MovieList } from '../../../api/movie-list';
 
 @Component({
   selector: 'app-movie-list',
@@ -7,10 +8,7 @@ import { Movie } from '../../../api/movie';
   styleUrls: ['./movie-list.component.scss']
 })
 export class MovieListComponent implements OnInit {
-  @Input() public movies: {
-    title: string,
-    list: [Movie]
-  };
+  @Input() public movies: MovieList;
   @Output() showDetails = new EventEmitter();
 
   constructor() { }

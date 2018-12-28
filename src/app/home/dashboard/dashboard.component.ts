@@ -78,6 +78,14 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  // addFavorite() {
+
+  // }
+  
+  // removeFavorite() {
+
+  // }
+
   showDetails(movie: Movie) {
     if (this.isDetailsVisible) {
       return;
