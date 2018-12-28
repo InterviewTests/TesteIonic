@@ -16,6 +16,7 @@ export class MovieDetailComponent implements OnInit {
   @Input() public movie?: Movie;
   @Input() public active: boolean;
   @Input() public favorites: MovieList;
+  @Input() public myList: MovieList;
 
   constructor(
     private socialSharing: SocialSharing,
@@ -26,7 +27,7 @@ export class MovieDetailComponent implements OnInit {
 
   async ngOnInit() {}
 
-  async favorite() {
+  async favoritesAction() {
     const loading = await this.loadingController.create({
       keyboardClose: true,
       translucent: true
@@ -65,6 +66,44 @@ export class MovieDetailComponent implements OnInit {
     }
   }
 
+  async myListAction() {
+    const loading = await this.loadingController.create({
+      keyboardClose: true,
+      translucent: true
+    });
+    const toastDef = {
+      message: 'Try again later',
+      color: 'danger',
+      showCloseButton: false,
+      duration: 2000
+    };
+    await loading.present();
+    try {
+      const index = this.myList.list.findIndex(m => m.id === this.movie.id);
+      if (index > -1) {
+        // Remove from My List
+        await this.moviesService.removeFromMyList(this.movie);
+        this.myList.list.splice(index, 1);
+        toastDef.color = 'success';
+        toastDef.message = 'Removed from My List!';
+        const toast = await this.toastController.create(toastDef);
+        toast.present();
+      } else {
+        // Add to My List
+        await this.moviesService.addToMyList(this.movie);
+        this.myList.list.push(this.movie);
+        toastDef.color = 'success';
+        toastDef.message = 'Added to My List!';
+        const toast = await this.toastController.create(toastDef);
+        toast.present();
+      }
+      await loading.dismiss();
+    } catch (e) {
+      const toast = await this.toastController.create(toastDef);
+      toast.present();
+      await loading.dismiss();
+    }
+  }
   share() {
     this.socialSharing.share(
       'Share Movie Poster',

@@ -177,7 +177,7 @@ export class MoviesService {
     const user = await this.storage.get('user');
     this.userDoc = this.firestore.doc<User>(`users/${user.uid}`);
     this.userFavoritesCollection = this.userDoc.collection<Movie>('favorites');
-    this.userMyListCollection = this.userDoc.collection<Movie>('my-list');
+    this.userMyListCollection = this.userDoc.collection<Movie>('myList');
   }
 
   async favorite (movie: Movie) {
@@ -188,11 +188,11 @@ export class MoviesService {
     await this.userFavoritesCollection.doc(movie.id.toString()).delete();
   }
 
-  async addToList (movie: Movie) {
+  async addToMyList (movie: Movie) {
     await this.userMyListCollection.doc(movie.id.toString()).set(movie);
   }
 
-  async removeFromList (movie: Movie) {
+  async removeFromMyList (movie: Movie) {
     await this.userMyListCollection.doc(movie.id.toString()).delete();
   }
 
