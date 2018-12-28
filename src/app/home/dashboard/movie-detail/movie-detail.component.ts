@@ -27,7 +27,7 @@ export class MovieDetailComponent implements OnInit {
 
   favorite() {
     this.storage.get('user').then(user => {
-      if (!user) {
+      if (!user || !user.uid) {
         return;
       }
       console.log(user);

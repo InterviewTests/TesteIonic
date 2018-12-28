@@ -1,5 +1,5 @@
 export interface Movie {
-    refreshToken: string;
+    uid: string;
     id: number;
     vote_average: string;
     title: string;

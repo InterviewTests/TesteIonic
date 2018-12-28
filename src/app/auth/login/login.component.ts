@@ -91,7 +91,8 @@ export class LoginComponent implements OnInit {
         const user = {
           email: login.user.email,
           emailVerified: login.user.emailVerified,
-          refreshToken: login.user.refreshToken
+          refreshToken: login.user.refreshToken,
+          uid: login.user.uid
         };
         // Storing user so login wont be request next time.
         this.storage.set('user', user);
