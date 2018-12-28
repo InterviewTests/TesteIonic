@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Movie } from 'src/app/api/movie';
 import { ToastController, LoadingController } from '@ionic/angular';
 
@@ -8,6 +8,7 @@ import { ToastController, LoadingController } from '@ionic/angular';
   styleUrls: ['./downloads.component.scss']
 })
 export class DownloadsComponent implements OnInit {
+  @Output() public changeTab = new EventEmitter();
   @Input() public downloads: Movie[];
   now: number;
 
@@ -37,6 +38,9 @@ export class DownloadsComponent implements OnInit {
     const toast = await this.toastController.create(toastDef);
     toast.present();
     await loading.dismiss();
+    if (this.downloads.length === 0) {
+      this.changeTab.emit(1);
+    }
   }
 
 }

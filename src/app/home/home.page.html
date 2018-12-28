@@ -15,7 +15,7 @@
 			tab="downloads"
 			[class]="'ion-page hydrated ' + (currentTab === 2 ? 'active' :'tab-hidden')" 
 			[active]="currentTab === 2">
-			<app-downloads [downloads]="downloads"></app-downloads>
+			<app-downloads [downloads]="downloads" (changeTab)="changeTab($event)"></app-downloads>
 		</ion-tab>
 		<ion-tab 
 			tab="settings"
@@ -28,7 +28,7 @@
 		<ion-tab-button tab="home" (click)="changeTab(1)">
 			<ion-icon name="home" color="medium-shade"></ion-icon>
 		</ion-tab-button>
-		<ion-tab-button tab="downloads" (click)="changeTab(2)">
+		<ion-tab-button tab="downloads" [disabled]="!downloads || downloads.length === 0" (click)="changeTab(2)">
 			<ion-icon name="download" color="medium-shade"></ion-icon>
 		</ion-tab-button>
 		<ion-tab-button tab="settings" (click)="changeTab(3)">
