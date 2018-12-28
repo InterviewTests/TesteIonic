@@ -88,6 +88,17 @@
                 white-space: nowrap;
             }
         }
+        .header{
+            .score{
+                color: var(--ion-color-success);
+                font-weight: bold;
+                margin-right: 16px;
+            }
+            .date{
+                font-size: 10px;
+                color: var(--ion-color-medium);
+            }
+        }
     }
 
 }

@@ -5,6 +5,14 @@
             <img [src]="'http://image.tmdb.org/t/p/w780/' + (movie.backdrop_path || movie.poster_path)"/>
             <span>{{movie.title}}</span>
         </div>
+        <div class="header">
+            <span class="score">{{movie.vote_average.toString().replace('.','').replace(',', '').padEnd(2,'0')  + '% Match'}}</span>
+            <span class="date">{{movie.release_date}}</span>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
         {{movie | json}}
     </div>
 </div>

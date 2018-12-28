@@ -1,6 +1,6 @@
 export interface Movie {
     id: number;
-    vote_average: number;
+    vote_average: string;
     title: string;
     original_title: string;
     poster_path: string;
