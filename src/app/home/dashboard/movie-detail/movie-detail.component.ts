@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Movie } from '../../../api/movie';
 
 @Component({
@@ -8,7 +8,9 @@ import { Movie } from '../../../api/movie';
 })
 
 export class MovieDetailComponent implements OnInit {
+  @Output() public hide = new EventEmitter();
   @Input() public movie?: Movie;
+  @Input() public active: boolean;
 
   constructor() { }
 

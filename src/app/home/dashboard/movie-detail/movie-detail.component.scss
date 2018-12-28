@@ -3,10 +3,27 @@
     height: 100vh;
     padding: 0 8px;
     color: var(--ion-color-light);
-    position: absolute;
-    left: 0;
+    background: var(--ion-color-dark);
+    position: fixed;
+    transition: 0.5s;
+    left: 100%;
     top: 0;
-    display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 72px;
+    padding-bottom: 64px;
+
+    &.active{
+        transition: 0.8s;
+        display: block;
+        left: 0;
+    }
+
+    ion-icon{
+        top: 72px;
+        left: 8px;
+        position: absolute;
+        font-size: 24px;
+        z-index: 10;
+    }
 }

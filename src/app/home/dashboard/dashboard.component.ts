@@ -10,8 +10,8 @@ import { Movie } from 'src/app/api/movie';
 })
 export class DashboardComponent implements OnInit {
   @ViewChild(InfiniteScroll) infiniteScroll: InfiniteScroll;
-  isDetailVisible: boolean;
-  detailMovie?: Movie;
+  isDetailsVisible: boolean;
+  detailsMovie?: Movie;
   movieLists: any[];
   showLoader: boolean;
 
@@ -20,8 +20,8 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.detailMovie = null;
-    this.isDetailVisible = false;
+    this.detailsMovie = null;
+    this.isDetailsVisible = false;
     this.showLoader = true;
     this.movieLists = [];
     // Loading the most popular movies async.
@@ -69,6 +69,14 @@ export class DashboardComponent implements OnInit {
   }
 
   showDetails(movie: Movie) {
-    debugger;
+    if (this.isDetailsVisible) {
+      return;
+    }
+    this.detailsMovie = movie;
+    this.isDetailsVisible = true;
+  }
+
+  hideDetails() {
+    this.isDetailsVisible = false;
   }
 }
