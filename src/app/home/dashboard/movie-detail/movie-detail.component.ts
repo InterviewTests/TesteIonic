@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Movie } from '../../../api/movie';
 import { User } from '../../../api/user';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { ToastController, LoadingController } from '@ionic/angular';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Storage } from '@ionic/storage';
 
@@ -23,7 +24,9 @@ export class MovieDetailComponent implements OnInit {
   constructor(
     private socialSharing: SocialSharing,
     private storage: Storage,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private loadingController: LoadingController,
+    private toastController: ToastController
   ) { }
 
   async ngOnInit() {
@@ -33,20 +36,32 @@ export class MovieDetailComponent implements OnInit {
   }
 
   async favorite() {
-    await this.userFavoritesCollection
-      .doc(this.movie.id.toString())
-      .set(this.movie);
+    const loading = await this.loadingController.create({
+      keyboardClose: true,
+      translucent: true
+    });
+    const toastDef = {
+      message: 'Could not favorite this movie!',
+      color: 'danger',
+      showCloseButton: false,
+      duration: 2000
+    };
+    await loading.present();
+    try {
+      await this.userFavoritesCollection
+        .doc(this.movie.id.toString())
+        .set(this.movie);
 
-    // this.storage.get('user').then(async user => {
-    //   if (!user || !user.uid) {
-    //     return;
-    //   }
-    //   try {
-    //     const response = await this.favoritesCollection.add(this.movie);
-    //   } catch (e) {
-    //     console.log(e);
-    //   }
-    // });
+      toastDef.color = 'success';
+      toastDef.message = 'Movie favorited!';
+      const toast = await this.toastController.create(toastDef);
+      toast.present();
+      await loading.dismiss();
+    } catch (e) {
+      const toast = await this.toastController.create(toastDef);
+      toast.present();
+      await loading.dismiss();
+    }
   }
 
   share() {
