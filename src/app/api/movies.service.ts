@@ -20,9 +20,9 @@ export class MoviesService {
   ) { }
 
   // Firestore objects
-  private userListCollection: AngularFirestoreCollection<Movie>;
   private userDoc: AngularFirestoreDocument<User>;
   private userFavoritesCollection: AngularFirestoreCollection<Movie>;
+  private userMyListCollection: AngularFirestoreCollection<Movie>;
 
   private apiKey = `&api_key=${MOVIE_DB_API_KEY}`;
   private apiUrl = 'https://api.themoviedb.org/3/';
@@ -122,9 +122,6 @@ export class MoviesService {
   }
 
   async getPopular () {
-    const user = await this.storage.get('user');
-    this.userDoc = this.firestore.doc<User>(`users/${user.uid}`);
-    this.userFavoritesCollection = this.userDoc.collection<Movie>('favorites');
     // This method asks for the most popular movieDb movie list.
     return new Promise<{results: [Movie]}>((resolve, reject) =>
       this.get('discover/movie?popularity.desc')
@@ -175,9 +172,12 @@ export class MoviesService {
   }
 
   async loadFirestore() {
+
+    // Retrieving the user favorited and MyListed movies.
     const user = await this.storage.get('user');
     this.userDoc = this.firestore.doc<User>(`users/${user.uid}`);
     this.userFavoritesCollection = this.userDoc.collection<Movie>('favorites');
+    this.userMyListCollection = this.userDoc.collection<Movie>('my-list');
   }
 
   async favorite (movie: Movie) {
@@ -188,10 +188,30 @@ export class MoviesService {
     await this.userFavoritesCollection.doc(movie.id.toString()).delete();
   }
 
+  async addToList (movie: Movie) {
+    await this.userMyListCollection.doc(movie.id.toString()).set(movie);
+  }
+
+  async removeFromList (movie: Movie) {
+    await this.userMyListCollection.doc(movie.id.toString()).delete();
+  }
+
   getUserFavorites() {
     return new Promise((resolve, reject) => {
       try {
         this.userFavoritesCollection
+          .valueChanges()
+          .subscribe(data => resolve(data));
+      } catch (e) {
+        reject(e);
+      }
+    });
+  }
+
+  getUserMyList() {
+    return new Promise((resolve, reject) => {
+      try {
+        this.userMyListCollection
           .valueChanges()
           .subscribe(data => resolve(data));
       } catch (e) {

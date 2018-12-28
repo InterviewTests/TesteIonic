@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
   isDetailsVisible: boolean;
   detailsMovie?: Movie;
   favoriteMoviesList: MovieList;
+  myListMoviesList: MovieList;
   movieLists: MovieList[];
   showLoader: boolean;
 
@@ -32,6 +33,13 @@ export class DashboardComponent implements OnInit {
     this.favoriteMoviesList = {
       title: 'Favorite Movies',
       list: favoriteMovies
+    };
+
+    await this.moviesService.loadFirestore();
+    const myListMovie = <Movie[]> await this.moviesService.getUserMyList();
+    this.myListMoviesList = {
+      title: 'My List',
+      list: myListMovie
     };
 
      // Loading the most popular movies async.
@@ -77,14 +85,6 @@ export class DashboardComponent implements OnInit {
       });
     }
   }
-
-  // addFavorite() {
-
-  // }
-  
-  // removeFavorite() {
-
-  // }
 
   showDetails(movie: Movie) {
     if (this.isDetailsVisible) {
