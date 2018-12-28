@@ -4,11 +4,11 @@
     <ion-item 
       lines="none" 
       *ngFor="let movie of movies.list" 
-      (click)="showDetails(movie.id)"
+      (click)="showDetailsEmmiter(movie.id)"
       [style.display]="movie.poster_path ? 'block' : 'none'">
       <ion-label color="light">{{movie.original_title || '-'}}</ion-label>
       <img 
-        [src]="'http://image.tmdb.org/t/p/w200/' + movie.poster_path" 
+        [src]="movie.poster_path ? 'http://image.tmdb.org/t/p/w200/' + movie.poster_path : ''" 
         onerror="this.style.display='none'"/>
     </ion-item>
   </ion-list>

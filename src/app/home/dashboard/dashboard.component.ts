@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MoviesService } from '../../api/movies.service';
 import { InfiniteScroll } from '@ionic/angular';
+import { Movie } from 'src/app/api/movie';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,6 +10,8 @@ import { InfiniteScroll } from '@ionic/angular';
 })
 export class DashboardComponent implements OnInit {
   @ViewChild(InfiniteScroll) infiniteScroll: InfiniteScroll;
+  isDetailVisible: boolean;
+  detailMovie?: Movie;
   movieLists: any[];
   showLoader: boolean;
 
@@ -17,6 +20,8 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.detailMovie = null;
+    this.isDetailVisible = false;
     this.showLoader = true;
     this.movieLists = [];
     // Loading the most popular movies async.
@@ -61,5 +66,9 @@ export class DashboardComponent implements OnInit {
         (<any>event.target).complete();
       });
     }
+  }
+
+  showDetail(movie: Movie) {
+    debugger;
   }
 }

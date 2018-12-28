@@ -1,6 +1,6 @@
 <div class="content">
   <ion-list>
-      <div *ngIf="movieLists && movieLists.length === 0">
+      <div *ngIf="!movieLists || movieLists.length === 0">
           <div *ngFor="let i of [1,2,3,4,5,6,7]" style="margin-bottom: 20px">
               <ion-skeleton-text width="90%"></ion-skeleton-text>
               <ion-skeleton-text width="80%"></ion-skeleton-text>
@@ -9,9 +9,7 @@
               <ion-skeleton-text width="70%"></ion-skeleton-text>
           </div>
       </div>
-      <app-movie-list 
-          *ngFor="let movies of movieLists" 
-          [movies]="movies">
+      <app-movie-list *ngFor="let movies of movieLists" [movies]="movies">
       </app-movie-list>
   </ion-list>
   <ion-infinite-scroll 
@@ -24,3 +22,4 @@
       </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </div>
+<app-movie-detail [movie]="detailMovie" (showDetail)="showDetail($event)"></app-movie-detail>

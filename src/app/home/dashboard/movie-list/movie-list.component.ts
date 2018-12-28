@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Movie } from '../../../api/movie';
 
 @Component({
@@ -11,22 +11,15 @@ export class MovieListComponent implements OnInit {
     title: string,
     list: [Movie]
   };
-  details: boolean;
-  detailMovie?: Movie;
+  @Output() showDetails = new EventEmitter();
 
   constructor() { }
 
-  ngOnInit() {
-    this.details = false;
-    this.detailMovie = null;
-  }
+  ngOnInit() { }
 
-  showDetails(movieId: number) {
-    if (this.details) {
-      return;
-    }
-    this.detailMovie = this.movies.list.find(x => x.id === movieId);
-    this.details = true;
+  showDetailsEmmiter(movieId: number) {
+    const movie = this.movies.list.find(x => x.id === movieId);
+    this.showDetails.emit(movie);
   }
 
 }

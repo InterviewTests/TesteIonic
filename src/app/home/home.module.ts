@@ -8,7 +8,7 @@ import { HomePage } from './home.page';
 import { MovieListComponent } from './dashboard/movie-list/movie-list.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SettingsComponent } from './settings/settings.component';
-import { MovieDetailComponent } from './dashboard/movie-list/movie-detail/movie-detail.component';
+import { MovieDetailComponent } from './dashboard/movie-detail/movie-detail.component';
 
 @NgModule({
   imports: [
