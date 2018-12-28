@@ -9,7 +9,10 @@
               <ion-skeleton-text width="70%"></ion-skeleton-text>
           </div>
       </div>
-      <app-movie-list *ngFor="let movies of movieLists" [movies]="movies">
+      <app-movie-list 
+        *ngFor="let movies of movieLists" 
+        [movies]="movies" 
+        (showDetails)="showDetails($event)">
       </app-movie-list>
   </ion-list>
   <ion-infinite-scroll 
@@ -22,4 +25,4 @@
       </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </div>
-<app-movie-detail [movie]="detailMovie" (showDetail)="showDetail($event)"></app-movie-detail>
+<app-movie-detail [movie]="detailMovie"></app-movie-detail>

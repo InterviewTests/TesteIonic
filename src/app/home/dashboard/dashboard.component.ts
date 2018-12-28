@@ -68,7 +68,7 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  showDetail(movie: Movie) {
+  showDetails(movie: Movie) {
     debugger;
   }
 }
