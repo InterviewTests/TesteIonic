@@ -2,11 +2,27 @@ import { Injectable } from '@angular/core';
 import { HTTP } from '@ionic-native/http/ngx';
 import { MOVIE_DB_API_KEY } from '../moviedb.credentials';
 import { Movie } from './movie';
+import { User } from './user';
+import {
+  AngularFirestore,
+  AngularFirestoreDocument,
+  AngularFirestoreCollection
+} from '@angular/fire/firestore';
+import { Storage } from '@ionic/storage';
 
 @Injectable({providedIn: 'root'})
 export class MoviesService {
 
-  constructor (private http: HTTP) { }
+  constructor (
+    private http: HTTP,
+    private storage: Storage,
+    private firestore: AngularFirestore
+  ) { }
+
+  // Firestore objects
+  private userListCollection: AngularFirestoreCollection<Movie>;
+  private userDoc: AngularFirestoreDocument<User>;
+  private userFavoritesCollection: AngularFirestoreCollection<Movie>;
 
   private apiKey = `&api_key=${MOVIE_DB_API_KEY}`;
   private apiUrl = 'https://api.themoviedb.org/3/';
@@ -105,7 +121,10 @@ export class MoviesService {
     });
   }
 
-  getPopular () {
+  async getPopular () {
+    const user = await this.storage.get('user');
+    this.userDoc = this.firestore.doc<User>(`users/${user.uid}`);
+    this.userFavoritesCollection = this.userDoc.collection<Movie>('favorites');
     // This method asks for the most popular movieDb movie list.
     return new Promise<{results: [Movie]}>((resolve, reject) =>
       this.get('discover/movie?popularity.desc')
@@ -153,5 +172,15 @@ export class MoviesService {
       .then(response => resolve(response))
       .catch(error => reject(error))
     );
+  }
+
+  async loadFirestore() {
+    const user = await this.storage.get('user');
+    this.userDoc = this.firestore.doc<User>(`users/${user.uid}`);
+    this.userFavoritesCollection = this.userDoc.collection<Movie>('favorites');
+  }
+
+  async saveFavorite (movie: Movie) {
+    await this.userFavoritesCollection.doc(movie.id.toString()).set(movie);
   }
 }

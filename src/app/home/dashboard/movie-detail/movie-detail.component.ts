@@ -1,10 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Movie } from '../../../api/movie';
-import { User } from '../../../api/user';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { ToastController, LoadingController } from '@ionic/angular';
-import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Storage } from '@ionic/storage';
+import { MoviesService } from 'src/app/api/movies.service';
 
 @Component({
   selector: 'app-movie-detail',
@@ -17,22 +15,16 @@ export class MovieDetailComponent implements OnInit {
   @Input() public movie?: Movie;
   @Input() public active: boolean;
 
-  private userDoc: AngularFirestoreDocument<User>;
-  private userFavoritesCollection: AngularFirestoreCollection<Movie>;
-  private userListCollection: AngularFirestoreCollection<Movie>;
 
   constructor(
     private socialSharing: SocialSharing,
-    private storage: Storage,
-    private firestore: AngularFirestore,
     private loadingController: LoadingController,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private movieService: MoviesService
   ) { }
 
   async ngOnInit() {
-    const user = await this.storage.get('user');
-    this.userDoc = this.firestore.doc<User>(`users/${user.uid}`);
-    this.userFavoritesCollection = this.userDoc.collection<Movie>('favorites');
+    await this.movieService.loadFirestore();
   }
 
   async favorite() {
@@ -48,10 +40,7 @@ export class MovieDetailComponent implements OnInit {
     };
     await loading.present();
     try {
-      await this.userFavoritesCollection
-        .doc(this.movie.id.toString())
-        .set(this.movie);
-
+      await this.movieService.saveFavorite(this.movie);
       toastDef.color = 'success';
       toastDef.message = 'Movie favorited!';
       const toast = await this.toastController.create(toastDef);
