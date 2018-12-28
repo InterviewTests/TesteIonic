@@ -183,4 +183,16 @@ export class MoviesService {
   async saveFavorite (movie: Movie) {
     await this.userFavoritesCollection.doc(movie.id.toString()).set(movie);
   }
+
+  getUserFavorites() {
+    return new Promise((resolve, reject) => {
+      try {
+        this.userFavoritesCollection
+          .valueChanges()
+          .subscribe(data => resolve(data));
+      } catch (e) {
+        reject(e);
+      }
+    });
+  }
 }

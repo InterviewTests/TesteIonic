@@ -20,11 +20,11 @@ export class MovieDetailComponent implements OnInit {
     private socialSharing: SocialSharing,
     private loadingController: LoadingController,
     private toastController: ToastController,
-    private movieService: MoviesService
+    private moviesService: MoviesService
   ) { }
 
   async ngOnInit() {
-    await this.movieService.loadFirestore();
+
   }
 
   async favorite() {
@@ -40,7 +40,7 @@ export class MovieDetailComponent implements OnInit {
     };
     await loading.present();
     try {
-      await this.movieService.saveFavorite(this.movie);
+      await this.moviesService.saveFavorite(this.movie);
       toastDef.color = 'success';
       toastDef.message = 'Movie favorited!';
       const toast = await this.toastController.create(toastDef);

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MoviesService } from '../../api/movies.service';
 import { InfiniteScroll } from '@ionic/angular';
 import { Movie } from 'src/app/api/movie';
+import { MovieList } from 'src/app/api/movie-list';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,39 +13,48 @@ export class DashboardComponent implements OnInit {
   @ViewChild(InfiniteScroll) infiniteScroll: InfiniteScroll;
   isDetailsVisible: boolean;
   detailsMovie?: Movie;
-  movieLists: any[];
+  favoriteMoviesList: MovieList;
+  movieLists: MovieList[];
   showLoader: boolean;
 
   constructor(
     private moviesService: MoviesService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.detailsMovie = null;
     this.isDetailsVisible = false;
     this.showLoader = true;
     this.movieLists = [];
-    // Loading the most popular movies async.
-    this.moviesService.getPopular()
-    .then(response => this.movieLists.push({
-      list: response.results,
-      title: 'Most Popular'
-    }))
-    .catch(() => {});
-    // Loading the best movies async.
-    this.moviesService.getBest()
-    .then(response => this.movieLists.push({
-      list: response.results,
-      title: 'Most Acclaimed'
-    }))
-    .catch(() => {});
-    // Loading the newst movies async.
-    this.moviesService.getNewest()
-    .then(response => this.movieLists.push({
-      list: response.results,
-      title: 'Newest in Brazil'
-    }))
-    .catch(() => {});
+
+    await this.moviesService.loadFirestore();
+    const favoriteMovies = <Movie[]> await this.moviesService.getUserFavorites();
+    this.favoriteMoviesList = {
+      title: 'Favorite Movies',
+      list: favoriteMovies
+    };
+
+     // Loading the most popular movies async.
+     this.moviesService.getPopular()
+     .then(response => this.movieLists.push({
+       list: response.results,
+       title: 'Most Popular'
+     }))
+     .catch(() => {});
+     // Loading the best movies async.
+     this.moviesService.getBest()
+     .then(response => this.movieLists.push({
+       list: response.results,
+       title: 'Most Acclaimed'
+     }))
+     .catch(() => {});
+     // Loading the newst movies async.
+     this.moviesService.getNewest()
+     .then(response => this.movieLists.push({
+       list: response.results,
+       title: 'Newest in Brazil'
+     }))
+     .catch(() => {});
   }
 
   loadMoreMovies (event: CustomEvent) {
