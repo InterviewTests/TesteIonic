@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Field } from '../../utils/form/fieldInterface';
+import { Field } from 'src/app/utils/form/fieldInterface';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ToastController, LoadingController } from '@ionic/angular';
-import { Button } from '../../utils/form/buttonInterface';
+import { Button } from 'src/app/utils/form/buttonInterface';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 

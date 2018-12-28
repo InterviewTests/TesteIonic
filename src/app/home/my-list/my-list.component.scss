@@ -1,0 +1,79 @@
+.content {
+    min-width: 100vw;
+    color: var(--ion-color-light);
+    padding: 8px 8px 0 8px;
+	&::-webkit-scrollbar {
+		display: none;
+    }
+    .title{
+        margin: 0;
+    }
+    ion-list{
+        padding-top: 8px;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        ion-item{
+            width: 104px;
+            height: 182px;
+            --min-height	: 100%;
+            background: #040303;
+            margin: 2px;
+            position: relative;
+
+            img{
+                position: absolute;
+                top: 0;
+                left: 0;            
+                width: 104px;
+                height: 156px;
+            }
+            ion-label{
+                opacity: 0;
+                z-index: 1;
+                transition: 1s;
+                background: #00000099;
+                padding: 8px;
+                border-radius: 8px;
+                font-size: 10px;
+                text-align: center;
+            }
+            &:after{
+                content: '';
+                transition: 0.5s;
+                display: block; 
+                position: absolute;
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                background: transparent;
+                z-index: 0;
+            }
+            &:before{
+                content: 'i';
+                position: absolute;
+                color: white;
+                bottom: 4px;
+                left: 50%;
+                -webkit-transform: translateX(-50%);
+                transform: translateX(-50%);
+                opacity: 0.7;
+                font-size: 10px;
+                border: 1px solid white;
+                border-radius: 50%;
+                padding: 0px 5px;
+                font-weight: bold;
+            }
+            &:focus, &:hover, &.active{
+                &:after{
+                    background: #00000099;
+                }
+                ion-label{
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}

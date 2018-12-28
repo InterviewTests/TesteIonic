@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Movie } from '../../../api/movie';
-import { MovieList } from '../../../api/movie-list';
+import { Movie } from 'src/app/api/movie';
+import { MovieList } from 'src/app/api/movie-list';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { ToastController, LoadingController } from '@ionic/angular';
 import { MoviesService } from 'src/app/api/movies.service';

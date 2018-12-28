@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MoviesService } from '../../api/movies.service';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { MoviesService } from 'src/app/api/movies.service';
 import { InfiniteScroll } from '@ionic/angular';
 import { Movie } from 'src/app/api/movie';
 import { MovieList } from 'src/app/api/movie-list';
@@ -10,11 +10,11 @@ import { MovieList } from 'src/app/api/movie-list';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  @Input() myListMoviesList: MovieList;
   @ViewChild(InfiniteScroll) infiniteScroll: InfiniteScroll;
   isDetailsVisible: boolean;
   detailsMovie?: Movie;
   favoriteMoviesList: MovieList;
-  myListMoviesList: MovieList;
   movieLists: MovieList[];
   showLoader: boolean;
 
@@ -33,13 +33,6 @@ export class DashboardComponent implements OnInit {
     this.favoriteMoviesList = {
       title: 'Favorite Movies',
       list: favoriteMovies
-    };
-
-    await this.moviesService.loadFirestore();
-    const myListMovie = <Movie[]> await this.moviesService.getUserMyList();
-    this.myListMoviesList = {
-      title: 'My List',
-      list: myListMovie
     };
 
      // Loading the most popular movies async.

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { Movie } from 'src/app/api/movie';
+import { MovieList } from 'src/app/api/movie-list';
+import { MoviesService } from 'src/app/api/movies.service';
 
 @Component({
   selector: 'app-home',
@@ -8,14 +11,17 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  currentTab = 1;
+  myListMoviesList: MovieList;
+  currentTab: Number;
 
   constructor (
     private toastController: ToastController,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private moviesService: MoviesService
   ) {}
 
   async ngOnInit() {
+    this.currentTab = 1;
     const emailVerified = this.activatedRoute.snapshot.queryParamMap.get('emailVerified');
     if (!emailVerified || emailVerified === 'false') {
       const toast = await this.toastController.create({
@@ -26,6 +32,14 @@ export class HomePage implements OnInit {
       });
       toast.present();
     }
+
+    await this.moviesService.loadFirestore();
+    const myListMovie = <Movie[]> await this.moviesService.getUserMyList();
+    this.myListMoviesList = {
+      title: 'My List',
+      list: myListMovie
+    };
+
   }
 
   changeTab (tab: number) {

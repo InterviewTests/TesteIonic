@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Field } from '../../utils/form/fieldInterface';
-import { Button } from '../../utils/form/buttonInterface';
+import { Field } from 'src/app/utils/form/fieldInterface';
+import { Button } from 'src/app/utils/form/buttonInterface';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ToastController, LoadingController } from '@ionic/angular';
 import { FormGroup } from '@angular/forms';
