@@ -14,6 +14,8 @@ export class DashboardComponent implements OnInit {
   @ViewChild(InfiniteScroll) infiniteScroll: InfiniteScroll;
   isDetailsVisible: boolean;
   detailsMovie?: Movie;
+  highlightedMovies: Movie[];
+  currentHighlight: number;
   favoriteMoviesList: MovieList;
   myListMoviesList: MovieList;
   movieLists: MovieList[];
@@ -42,10 +44,24 @@ export class DashboardComponent implements OnInit {
     };
      // Loading the most popular movies async.
      this.moviesService.getPopular()
-     .then(response => this.movieLists.push({
+     .then(response => {
+       this.highlightedMovies = [
+        response.results[0],
+        response.results[1],
+        response.results[2]
+      ];
+      this.currentHighlight = 0;
+       this.movieLists.push({
        list: response.results,
        title: 'Most Popular'
-     }))
+      });
+      setInterval(() => {
+        this.currentHighlight ++;
+        if (this.currentHighlight > 2) {
+          this.currentHighlight = 0;
+        }
+      }, 4200);
+    })
      .catch(() => {});
      // Loading the best movies async.
      this.moviesService.getBest()

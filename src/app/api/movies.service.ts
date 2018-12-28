@@ -96,7 +96,7 @@ export class MoviesService {
       i added the "mode" variable that i manually change. It switches this mehtod between using
       the native Http module or using the fetch API to do the http request.
     */
-    return new Promise<{results: [Movie]}>((resolve, reject) => {
+    return new Promise<{results: Movie[]}>((resolve, reject) => {
       // Using that mode variable to switch between FetchApi or Native Http
       if (this.mode === 'browser') {
         fetch(this.apiUrl + url  + this.apiKey)
@@ -123,7 +123,7 @@ export class MoviesService {
 
   async getPopular () {
     // This method asks for the most popular movieDb movie list.
-    return new Promise<{results: [Movie]}>((resolve, reject) =>
+    return new Promise<{results: Movie[]}>((resolve, reject) =>
       this.get('discover/movie?popularity.desc')
       .then(response => resolve(response))
       .catch(error => reject(error))
@@ -146,7 +146,7 @@ export class MoviesService {
 
   getGenre (genre: number) {
     // This method is used with the previous randomGenre method to call a certain genre movie list.
-    return new Promise<{results: [Movie]}>((resolve, reject) =>
+    return new Promise<{results: Movie[]}>((resolve, reject) =>
       this.get(`discover/movie?with_genres=${genre}&sort_by=vote_average.desc&vote_count.gte=10`)
       .then(response => resolve(response))
       .catch(error => reject(error))
@@ -155,7 +155,7 @@ export class MoviesService {
 
   getBest () {
     // This method asks for the best rated movieDb movie list.
-    return new Promise<{results: [Movie]}>((resolve, reject) =>
+    return new Promise<{results: Movie[]}>((resolve, reject) =>
       this.get('discover/movie?sort_by=vote_count.desc')
       .then(response => resolve(response))
       .catch(error => reject(error))
@@ -164,7 +164,7 @@ export class MoviesService {
 
   getNewest () {
     // This method asks for the most newsest movieDb movie list.
-    return new Promise<{results: [Movie]}>((resolve, reject) =>
+    return new Promise<{results: Movie[]}>((resolve, reject) =>
       this.get('discover/movie?sort_by=release_date.desc&region=br')
       .then(response => resolve(response))
       .catch(error => reject(error))

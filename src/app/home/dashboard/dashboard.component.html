@@ -1,5 +1,19 @@
 <div class="content">
   <ion-list>
+    <div class="img-container">
+        <img 
+            *ngIf="highlightedMovies && highlightedMovies.length > 0"
+            [class.active]="currentHighlight === 0"
+            [src]="'http://image.tmdb.org/t/p/w780/' + (highlightedMovies[0].poster_path || highlightedMovies[0].backdrop_path)"/>
+            <img 
+            *ngIf="highlightedMovies && highlightedMovies.length > 0"
+            [class.active]="currentHighlight === 1"
+            [src]="'http://image.tmdb.org/t/p/w780/' + (highlightedMovies[1].poster_path || highlightedMovies[1].backdrop_path)"/>
+            <img 
+            *ngIf="highlightedMovies && highlightedMovies.length > 0"
+            [class.active]="currentHighlight === 2"
+            [src]="'http://image.tmdb.org/t/p/w780/' + (highlightedMovies[2].poster_path || highlightedMovies[2].backdrop_path)"/>
+    </div>
     <div *ngIf="!movieLists || movieLists.length === 0">
         <div *ngFor="let i of [1,2,3,4,5,6,7]" style="margin-bottom: 20px">
             <ion-skeleton-text width="90%"></ion-skeleton-text>

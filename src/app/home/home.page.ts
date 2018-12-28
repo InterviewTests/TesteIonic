@@ -12,7 +12,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 })
 export class HomePage implements OnInit {
   @ViewChild(DashboardComponent) dashboard: DashboardComponent;
-  currentTab: Number;
+  currentTab: number;
   downloads: Movie[];
 
   constructor (

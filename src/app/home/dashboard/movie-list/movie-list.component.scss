@@ -10,12 +10,11 @@
         content: '';
         width: 12px ;
         position: absolute;
-        top: 36px;
-        height: 224px;
+        top: 32px;
+        height: 196px;
         z-index: 1;
     }
     &:before{
-        top: 0;
         left: 6px;
         background: linear-gradient(to right,var(--ion-color-dark), #ffffff00);
         background: -moz-linear-gradient(left, rgb(34,31,31) 0%, rgba(0,0,0,0) 100%);

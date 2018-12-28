@@ -22,7 +22,7 @@ export class DownloadsComponent implements OnInit {
     setInterval(() => this.now = Date.now(), 1000);
   }
 
-  async delete(id: Number) {
+  async delete(id: number) {
     const loading = await this.loadingController.create({
       keyboardClose: true,
       translucent: true
