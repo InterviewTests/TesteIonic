@@ -1,4 +1,9 @@
 <div class="content" [class.active]="active">
     <ion-icon name="arrow-back" (click)="hide.emit()"></ion-icon>
-    <img [src]="'http://image.tmdb.org/t/p/w780/' + movie.backdrop_path"/>
+    <div class="info" *ngIf="movie">
+        <div class="img-container">
+            <img [src]="'http://image.tmdb.org/t/p/w780/' + (movie.backdrop_path || movie.poster_path)"/>
+            <span>{{movie.title}}</span>
+        </div>
+    </div>
 </div>
