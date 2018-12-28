@@ -21,7 +21,7 @@
         position: absolute;
         top: 64px;
         height: 28px;
-        left :0;
+        left: 0;
         right: 0;
         background: -moz-linear-gradient(top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.65) 36%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
         background: -webkit-linear-gradient(top, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.65) 36%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
@@ -89,10 +89,11 @@
             }
         }
         .header{
+            padding-left: 8px;
             .score{
                 color: var(--ion-color-success);
                 font-weight: bold;
-                margin-right: 16px;
+                margin-right: 12px;
             }
             .date{
                 font-size: 10px;
