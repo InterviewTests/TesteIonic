@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import {  LoadingController } from '@ionic/angular';
+import { ToastController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-settings',
@@ -11,8 +12,10 @@ import { Router } from '@angular/router';
 export class SettingsComponent implements OnInit {
 
   constructor(
+    private auth: AngularFireAuth,
     private storage: Storage,
     private router: Router,
+    private toastController: ToastController,
     private loadingController: LoadingController
   ) { }
 
@@ -31,7 +34,38 @@ export class SettingsComponent implements OnInit {
     this.router.navigate(['auth/login']);
   }
 
-  changePassword() {
+  async forgotPassword() {
+    const toastDef = {
+      message: 'Error!',
+      color: 'danger',
+      showCloseButton: false,
+      position: 'top' as 'top',
+      duration: 2000
+    };
+    const loading = await this.loadingController.create({
+      keyboardClose: true,
+      translucent: true
+    });
+    await loading.present();
+    try {
+      const user = await this.storage.get('user');
+      if (!user || !user.email) {
+        return;
+      }
+      await this.auth.auth.sendPasswordResetEmail(user.email);
+      toastDef.color = 'success';
+      toastDef.message = 'A password reset email sent!';
+      const toast = await this.toastController.create(toastDef);
+      toast.present();
+      await loading.dismiss();
+    } catch (e) {
+      if (e.message) {
+        toastDef.message = e.message;
+      }
+      const toast = await this.toastController.create(toastDef);
+      toast.present();
+      await loading.dismiss();
+    }
     console.log('Changing the password');
   }
 
