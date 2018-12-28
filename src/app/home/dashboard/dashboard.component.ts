@@ -3,6 +3,8 @@ import { MoviesService } from 'src/app/api/movies.service';
 import { InfiniteScroll } from '@ionic/angular';
 import { Movie } from 'src/app/api/movie';
 import { MovieList } from 'src/app/api/movie-list';
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,7 +24,9 @@ export class DashboardComponent implements OnInit {
   showLoader: boolean;
 
   constructor(
-    private moviesService: MoviesService
+    private moviesService: MoviesService,
+    private router: Router,
+    private toastController: ToastController
   ) { }
 
   async ngOnInit() {
@@ -30,53 +34,63 @@ export class DashboardComponent implements OnInit {
     this.isDetailsVisible = false;
     this.showLoader = true;
     this.movieLists = [];
-
-    await this.moviesService.loadFirestore();
-    const favoriteMovies = <Movie[]> await this.moviesService.getUserFavorites();
-    this.favoriteMoviesList = {
-      title: 'Favorite Movies',
-      list: favoriteMovies
-    };
-    const myListMovie = <Movie[]> await this.moviesService.getUserMyList();
-    this.myListMoviesList = {
-      title: 'My List',
-      list: myListMovie
-    };
-     // Loading the most popular movies async.
-     this.moviesService.getPopular()
-     .then(response => {
-       this.highlightedMovies = [
-        response.results[0],
-        response.results[1],
-        response.results[2]
-      ];
-      this.currentHighlight = 0;
-       this.movieLists.push({
-       list: response.results,
-       title: 'Most Popular'
+    try {
+      await this.moviesService.loadFirestore();
+      const favoriteMovies = <Movie[]> await this.moviesService.getUserFavorites();
+      this.favoriteMoviesList = {
+        title: 'Favorite Movies',
+        list: favoriteMovies
+      };
+      const myListMovie = <Movie[]> await this.moviesService.getUserMyList();
+      this.myListMoviesList = {
+        title: 'My List',
+        list: myListMovie
+      };
+      // Loading the most popular movies async.
+      this.moviesService.getPopular()
+      .then(response => {
+        this.highlightedMovies = [
+          response.results[0],
+          response.results[1],
+          response.results[2]
+        ];
+        this.currentHighlight = 0;
+        this.movieLists.push({
+        list: response.results,
+        title: 'Most Popular'
+        });
+        setInterval(() => {
+          this.currentHighlight ++;
+          if (this.currentHighlight > 2) {
+            this.currentHighlight = 0;
+          }
+        }, 3600);
+      })
+      .catch(() => {});
+      // Loading the best movies async.
+      this.moviesService.getBest()
+      .then(response => this.movieLists.push({
+        list: response.results,
+        title: 'Most Acclaimed'
+      }))
+      .catch(() => {});
+      // Loading the newst movies async.
+      this.moviesService.getNewest()
+      .then(response => this.movieLists.push({
+        list: response.results,
+        title: 'Newest in Brazil'
+      }))
+      .catch(() => {});
+    } catch (e) {
+      const toast = await this.toastController.create({
+        message: 'Please Log!',
+        color: 'danger',
+        showCloseButton: false,
+        position: 'top' as 'top',
+        duration: 2000
       });
-      setInterval(() => {
-        this.currentHighlight ++;
-        if (this.currentHighlight > 2) {
-          this.currentHighlight = 0;
-        }
-      }, 3600);
-    })
-     .catch(() => {});
-     // Loading the best movies async.
-     this.moviesService.getBest()
-     .then(response => this.movieLists.push({
-       list: response.results,
-       title: 'Most Acclaimed'
-     }))
-     .catch(() => {});
-     // Loading the newst movies async.
-     this.moviesService.getNewest()
-     .then(response => this.movieLists.push({
-       list: response.results,
-       title: 'Newest in Brazil'
-     }))
-     .catch(() => {});
+      this.router.navigate(['auth']);
+    }
   }
 
   loadMoreMovies (event: CustomEvent) {

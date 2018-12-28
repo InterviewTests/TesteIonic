@@ -172,9 +172,11 @@ export class MoviesService {
   }
 
   async loadFirestore() {
-
     // Retrieving the user favorited and MyListed movies.
     const user = await this.storage.get('user');
+    if (!user || !user.uid) {
+      throw new Error('Not Logged In');
+    }
     this.userDoc = this.firestore.doc<User>(`users/${user.uid}`);
     this.userFavoritesCollection = this.userDoc.collection<Movie>('favorites');
     this.userMyListCollection = this.userDoc.collection<Movie>('myList');

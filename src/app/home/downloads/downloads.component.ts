@@ -31,6 +31,7 @@ export class DownloadsComponent implements OnInit {
       message: 'Movie Deleted!',
       color: 'success',
       showCloseButton: false,
+      position: 'top' as 'top',
       duration: 2000
     };
     await loading.present();

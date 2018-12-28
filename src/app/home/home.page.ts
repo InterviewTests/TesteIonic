@@ -29,6 +29,7 @@ export class HomePage implements OnInit {
         message: 'Validate your email account!',
         color: 'warning',
         showCloseButton: false,
+        position: 'top' as 'top',
         duration: 2000
       });
       toast.present();

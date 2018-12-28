@@ -66,6 +66,7 @@ export class RegisterComponent implements OnInit {
       message: 'Error!',
       color: 'danger',
       showCloseButton: false,
+      position: 'top' as 'top',
       duration: 2000
     };
 
@@ -98,6 +99,7 @@ export class RegisterComponent implements OnInit {
           message: 'Account created! Check your email : )',
           color: 'success',
           showCloseButton: false,
+          position: 'top' as 'top',
           duration: 2000
         });
         toast.present();

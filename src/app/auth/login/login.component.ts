@@ -65,6 +65,7 @@ export class LoginComponent implements OnInit {
       message: 'Error!',
       color: 'danger',
       showCloseButton: false,
+      position: 'top' as 'top',
       duration: 2000
     };
     if (!form || form.status === 'INVALID') {

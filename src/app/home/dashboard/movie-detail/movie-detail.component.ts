@@ -43,6 +43,7 @@ export class MovieDetailComponent implements OnInit {
       message: 'Try again later',
       color: 'danger',
       showCloseButton: false,
+      position: 'top' as 'top',
       duration: 2000
     };
     await loading.present();
@@ -82,6 +83,7 @@ export class MovieDetailComponent implements OnInit {
       message: 'Try again later',
       color: 'danger',
       showCloseButton: false,
+      position: 'top' as 'top',
       duration: 2000
     };
     await loading.present();
@@ -121,6 +123,7 @@ export class MovieDetailComponent implements OnInit {
       message: 'Try again later.',
       color: 'error',
       showCloseButton: false,
+      position: 'top' as 'top',
       duration: 2000
     };
     await loading.present();
