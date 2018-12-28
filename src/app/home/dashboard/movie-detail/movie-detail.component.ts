@@ -19,6 +19,7 @@ export class MovieDetailComponent implements OnInit {
   @Input() public favorites: MovieList;
   @Input() public myList: MovieList;
   @Input() public downloads: Movie[];
+  now: number;
 
   constructor(
     private socialSharing: SocialSharing,
@@ -28,7 +29,10 @@ export class MovieDetailComponent implements OnInit {
     private storage: Storage
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.now = Date.now();
+    setInterval(() => this.now = Date.now(), 1000);
+  }
 
   async favoritesAction() {
     const loading = await this.loadingController.create({
@@ -131,8 +135,8 @@ export class MovieDetailComponent implements OnInit {
       } else {
         // Download
         this.movie.timeDownloaded = Date.now();
-        this.downloads.push(this.movie);
         this.movie.downloaded = true;
+        this.downloads.push(this.movie);
         toastDef.color = 'success';
         toastDef.message = 'Movie Downloaded!';
       }

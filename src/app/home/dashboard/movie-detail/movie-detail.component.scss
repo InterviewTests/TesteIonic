@@ -126,10 +126,19 @@
                 font-size: 10px;
                 ion-button{
                     width: 100%;
+                    ion-icon.loading{
+                        animation: spin 2s infinite ease-in-out;
+                    }
+                    
+                    @keyframes spin {
+                        70% {transform: rotateZ(0);}
+                        100% {transform: rotateZ(180deg);}
+                    }
                 }
                 span{
                     text-align: center;
                 }
+                
             }
         }
     }

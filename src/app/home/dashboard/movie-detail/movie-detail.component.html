@@ -44,7 +44,11 @@
                     fill="clear" 
                     color="light"
                     (click)="download()">
-                    <ion-icon [name]="movie.downloaded ? 'close' : 'download'" slot="icon-only"></ion-icon>
+                    <ion-icon
+                        [class.loading]="movie.downloaded && now - movie.timeDownloaded < 15000" 
+                        [name]="movie.downloaded ? (now - movie.timeDownloaded < 15000 ? 'hourglass' : 'close') : 'download'" 
+                        slot="icon-only">
+                    </ion-icon>
                     <ion-ripple-effect></ion-ripple-effect>
                 </ion-button>
                 <span>Download</span>

@@ -18,6 +18,7 @@ export class DownloadsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.now = Date.now();
     setInterval(() => this.now = Date.now(), 1000);
   }
 
