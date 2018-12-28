@@ -98,7 +98,7 @@ export class MoviesService {
     */
     return new Promise<{results: Movie[]}>((resolve, reject) => {
       // Using that mode variable to switch between FetchApi or Native Http
-      if (!environment.production) {
+      // if (!environment.production) {
         fetch(this.apiUrl + url  + this.apiKey)
         .then(response => {
           if (!response || !response.ok) {
@@ -107,17 +107,17 @@ export class MoviesService {
           resolve(response.json());
         })
         .catch(error => reject(error));
-      } else {
-        this.http.get(`${this.apiUrl}${url}${this.apiKey}`, { },
-          {'Content-Type': 'application/json'})
-        .then(data => {
-          if (!data || !data.data) {
-            throw new Error('No Response');
-          }
-          resolve(JSON.parse(data.data));
-        })
-        .catch(error => reject(error.error || error));
-      }
+      // } else {
+      //   this.http.get(`${this.apiUrl}${url}${this.apiKey}`, { },
+      //     {'Content-Type': 'application/json'})
+      //   .then(data => {
+      //     if (!data || !data.data) {
+      //       throw new Error('No Response');
+      //     }
+      //     resolve(JSON.parse(data.data));
+      //   })
+      //   .catch(error => reject(error.error || error));
+      // }
     });
   }
 
