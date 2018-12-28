@@ -60,7 +60,7 @@ export class DashboardComponent implements OnInit {
         if (this.currentHighlight > 2) {
           this.currentHighlight = 0;
         }
-      }, 4200);
+      }, 3600);
     })
      .catch(() => {});
      // Loading the best movies async.
