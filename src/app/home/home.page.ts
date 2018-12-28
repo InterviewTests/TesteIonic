@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { Movie } from 'src/app/api/movie';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +11,7 @@ import { Movie } from 'src/app/api/movie';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
+  @ViewChild(DashboardComponent) dashboard: DashboardComponent;
   currentTab: Number;
   downloads: Movie[];
 
@@ -36,6 +38,7 @@ export class HomePage implements OnInit {
 
   changeTab (tab: number) {
     this.currentTab = tab;
+    this.dashboard.hideDetails();
   }
 
 }
