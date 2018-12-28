@@ -1,8 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Movie } from '../../../api/movie';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -16,21 +15,30 @@ export class MovieDetailComponent implements OnInit {
   @Input() public movie?: Movie;
   @Input() public active: boolean;
 
+  private favoritesCollection: AngularFirestoreCollection<Movie>;
+
   constructor(
     private socialSharing: SocialSharing,
     private storage: Storage,
     private firestore: AngularFirestore
-  ) { }
+  ) {
+    this.favoritesCollection = firestore.collection<Movie>('movies');
+  }
 
   ngOnInit() {
   }
 
   favorite() {
-    this.storage.get('user').then(user => {
+    this.storage.get('user').then(async user => {
       if (!user || !user.uid) {
         return;
       }
-      console.log(user);
+      try {
+        this.movie.uid = user.uid;
+        const response = await this.favoritesCollection.add(this.movie);
+      } catch (e) {
+        console.log(e);
+      }
     });
   }
 
