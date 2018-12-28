@@ -9,6 +9,7 @@ import {
   AngularFirestoreCollection
 } from '@angular/fire/firestore';
 import { Storage } from '@ionic/storage';
+import { environment } from 'src/environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class MoviesService {
@@ -26,7 +27,6 @@ export class MoviesService {
 
   private apiKey = `&api_key=${MOVIE_DB_API_KEY}`;
   private apiUrl = 'https://api.themoviedb.org/3/';
-  private mode = 'browser';
 
   // The MovieDb genre List. Hardcoded since this app category list wont change.
   private genres = [{
@@ -98,7 +98,7 @@ export class MoviesService {
     */
     return new Promise<{results: Movie[]}>((resolve, reject) => {
       // Using that mode variable to switch between FetchApi or Native Http
-      if (this.mode === 'browser') {
+      if (!environment.production) {
         fetch(this.apiUrl + url  + this.apiKey)
         .then(response => {
           if (!response || !response.ok) {
