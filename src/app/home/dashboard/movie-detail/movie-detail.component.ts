@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Movie } from '../../../api/movie';
+import { User } from '../../../api/user';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Storage } from '@ionic/storage';
@@ -15,31 +16,37 @@ export class MovieDetailComponent implements OnInit {
   @Input() public movie?: Movie;
   @Input() public active: boolean;
 
-  private favoritesCollection: AngularFirestoreCollection<Movie>;
+  private userDoc: AngularFirestoreDocument<User>;
+  private userFavoritesCollection: AngularFirestoreCollection<Movie>;
+  private userListCollection: AngularFirestoreCollection<Movie>;
 
   constructor(
     private socialSharing: SocialSharing,
     private storage: Storage,
     private firestore: AngularFirestore
-  ) {
-    this.favoritesCollection = firestore.collection<Movie>('movies');
+  ) { }
+
+  async ngOnInit() {
+    const user = await this.storage.get('user');
+    this.userDoc = this.firestore.doc<User>(`users/${user.uid}`);
+    this.userFavoritesCollection = this.userDoc.collection<Movie>('favorites');
   }
 
-  ngOnInit() {
-  }
+  async favorite() {
+    await this.userFavoritesCollection
+      .doc(this.movie.id.toString())
+      .set(this.movie);
 
-  favorite() {
-    this.storage.get('user').then(async user => {
-      if (!user || !user.uid) {
-        return;
-      }
-      try {
-        this.movie.uid = user.uid;
-        const response = await this.favoritesCollection.add(this.movie);
-      } catch (e) {
-        console.log(e);
-      }
-    });
+    // this.storage.get('user').then(async user => {
+    //   if (!user || !user.uid) {
+    //     return;
+    //   }
+    //   try {
+    //     const response = await this.favoritesCollection.add(this.movie);
+    //   } catch (e) {
+    //     console.log(e);
+    //   }
+    // });
   }
 
   share() {

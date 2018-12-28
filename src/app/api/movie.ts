@@ -1,5 +1,4 @@
 export interface Movie {
-    uid: string;
     id: number;
     vote_average: string;
     title: string;
