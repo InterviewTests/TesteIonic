@@ -28,7 +28,7 @@
 			}
 			span{
 				position: absolute;
-				bottom: 16px;
+				bottom: 0px;
 				left: 50%;
 				transform: translateX(-50%);
 				font-size: 24px;
@@ -36,16 +36,16 @@
 				opacity: 0;
 				color: var(--ion-color-light);
 				&.show{
-					animation: go-up 1.2s ease-in forwards;
+					animation: go-up 1.5s ease-in-out forwards;
 				}
 				@keyframes go-up {
 					from { 
 						opacity: 0;
-						bottom: 16px;
+						bottom: 0;
 					}
 					to {
 						opacity: 1;
-						bottom: 24px;
+						bottom: 32px;
 					}
 				}
 			}
