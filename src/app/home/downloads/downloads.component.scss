@@ -9,5 +9,20 @@
     img{
         width: 100%;
         filter: brightness(65%);
-    }
+    }   
+}
+
+.title{
+    padding-left: 8px;
+    font-size: 14px;
+    color: var(--ion-color-light);
+}
+
+ion-icon.loading{
+    animation: spin 2s infinite ease-in-out;
+}
+
+@keyframes spin {
+    70% {transform: rotateZ(0);}
+    100% {transform: rotateZ(180deg);}
 }

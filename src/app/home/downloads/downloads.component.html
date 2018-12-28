@@ -1,8 +1,24 @@
 <ion-list>
   <ion-item lines="none" *ngFor="let movie of downloads">
-      <div class="img-container">
-          <img [src]="'http://image.tmdb.org/t/p/w300/' + (movie.backdrop_path || movie.poster_path)"/>
-          <span></span>
-      </div>
+    <div class="img-container">
+        <img [src]="'http://image.tmdb.org/t/p/w300/' + (movie.backdrop_path || movie.poster_path)"/>
+    </div>
+    <div class="title">
+        {{movie.title || movie.original_title}}
+    </div>
+    <ion-icon
+        *ngIf="now - movie.timeDownloaded < 15000" 
+        slot="end" 
+        class="loading"
+        name="hourglass" 
+        color="light">
+    </ion-icon>
+    <ion-icon
+        *ngIf="now - movie.timeDownloaded >= 15000"
+        slot="end" 
+        name="close" 
+        color="light"
+        (click)="delete(movie.id)">
+    </ion-icon>
   </ion-item>
 </ion-list>
