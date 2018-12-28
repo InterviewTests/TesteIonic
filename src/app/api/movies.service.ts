@@ -9,7 +9,7 @@ import {
   AngularFirestoreCollection
 } from '@angular/fire/firestore';
 import { Storage } from '@ionic/storage';
-import { environment } from 'src/environments/environment';
+// import { environment } from 'src/environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class MoviesService {
@@ -41,7 +41,17 @@ export class MoviesService {
   }, {
     'id': 35,
     'name': 'Comedy'
-  }, {
+  }, { // } else {
+    //   this.http.get(`${this.apiUrl}${url}${this.apiKey}`, { },
+    //     {'Content-Type': 'application/json'})
+    //   .then(data => {
+    //     if (!data || !data.data) {
+    //       throw new Error('No Response');
+    //     }
+    //     resolve(JSON.parse(data.data));
+    //   })
+    //   .catch(error => reject(error.error || error));
+    // }
     'id': 80,
     'name': 'Crime'
   }, {
