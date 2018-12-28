@@ -10,11 +10,11 @@ import { MovieList } from 'src/app/api/movie-list';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  @Input() myListMoviesList: MovieList;
   @ViewChild(InfiniteScroll) infiniteScroll: InfiniteScroll;
   isDetailsVisible: boolean;
   detailsMovie?: Movie;
   favoriteMoviesList: MovieList;
+  myListMoviesList: MovieList;
   movieLists: MovieList[];
   showLoader: boolean;
 
@@ -34,7 +34,11 @@ export class DashboardComponent implements OnInit {
       title: 'Favorite Movies',
       list: favoriteMovies
     };
-
+    const myListMovie = <Movie[]> await this.moviesService.getUserMyList();
+    this.myListMoviesList = {
+      title: 'My List',
+      list: myListMovie
+    };
      // Loading the most popular movies async.
      this.moviesService.getPopular()
      .then(response => this.movieLists.push({

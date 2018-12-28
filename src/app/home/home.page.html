@@ -9,24 +9,18 @@
 			tab="home" 
 			[class]="'ion-page hydrated ' + (currentTab === 1 ? 'active' :'tab-hidden')" 
 			[active]="currentTab === 1">
-			<app-dashboard [myListMoviesList]="myListMoviesList"></app-dashboard>
-		</ion-tab>
-		<ion-tab 
-			tab="my-list"
-			[class]="'ion-page hydrated ' + (currentTab === 2 ? 'active' :'tab-hidden')" 
-			[active]="currentTab === 2">
-			<app-my-list [movieList]="myListMoviesList"></app-my-list>
+			<app-dashboard></app-dashboard>
 		</ion-tab>
 		<ion-tab 
 			tab="downloads"
-			[class]="'ion-page hydrated ' + (currentTab === 3 ? 'active' :'tab-hidden')" 
-			[active]="currentTab === 3">
+			[class]="'ion-page hydrated ' + (currentTab === 2 ? 'active' :'tab-hidden')" 
+			[active]="currentTab === 2">
 			Downloads
 		</ion-tab>
 		<ion-tab 
 			tab="settings"
-			[class]="'ion-page hydrated ' + (currentTab === 4 ? 'active' :'tab-hidden')" 
-			[active]="currentTab === 4">
+			[class]="'ion-page hydrated ' + (currentTab === 3 ? 'active' :'tab-hidden')" 
+			[active]="currentTab === 3">
 			<app-settings></app-settings>
 		</ion-tab>
 	</ion-content>
@@ -34,13 +28,10 @@
 		<ion-tab-button tab="home" (click)="changeTab(1)">
 			<ion-icon name="home" color="medium-shade"></ion-icon>
 		</ion-tab-button>
-		<ion-tab-button tab="my-list" (click)="changeTab(2)">
-			<ion-icon name="film" color="medium-shade"></ion-icon>
-		</ion-tab-button>
-		<ion-tab-button tab="downloads" (click)="changeTab(3)">
+		<ion-tab-button tab="downloads" (click)="changeTab(2)">
 			<ion-icon name="download" color="medium-shade"></ion-icon>
 		</ion-tab-button>
-		<ion-tab-button tab="settings" (click)="changeTab(4)">
+		<ion-tab-button tab="settings" (click)="changeTab(3)">
 			<ion-icon name="settings" color="medium-shade"></ion-icon>
 		</ion-tab-button>
 	</ion-tab-bar>
