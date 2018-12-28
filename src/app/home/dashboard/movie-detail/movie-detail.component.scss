@@ -1,7 +1,6 @@
 .content{
     width: 100vw;
     height: 100vh;
-    padding: 0 8px;
     color: var(--ion-color-light);
     background: var(--ion-color-dark);
     position: fixed;
@@ -10,7 +9,7 @@
     top: 0;
     justify-content: center;
     align-items: center;
-    padding-top: 72px;
+    padding-top: 64px;
     padding-bottom: 64px;
 
     &.active{
@@ -26,4 +25,5 @@
         font-size: 24px;
         z-index: 10;
     }
+
 }
