@@ -4,7 +4,9 @@
     position: relative;
     overflow: hidden;
     background: var(--ion-color-dark);
-
+	&::-webkit-scrollbar {
+		display: none;
+	}
     .layer{
         min-height: 100vh;
         min-width: 100vw;

@@ -3,6 +3,9 @@
     padding: 0 8px;
     color: var(--ion-color-light);
     position: relative;
+    &::-webkit-scrollbar {
+		display: none;
+	}
     &::before,&::after{
         content: '';
         width: 12px ;

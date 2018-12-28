@@ -12,10 +12,10 @@
 			<app-dashboard></app-dashboard>
 		</ion-tab>
 		<ion-tab 
-			tab="favorites"
+			tab="my-list"
 			[class]="'ion-page hydrated ' + (currentTab === 2 ? 'active' :'tab-hidden')" 
 			[active]="currentTab === 2">
-			Favorites
+			My List
 		</ion-tab>
 		<ion-tab 
 			tab="downloads"
@@ -34,8 +34,8 @@
 		<ion-tab-button tab="home" (click)="changeTab(1)">
 			<ion-icon name="home" color="medium-shade"></ion-icon>
 		</ion-tab-button>
-		<ion-tab-button tab="favorites" (click)="changeTab(2)">
-			<ion-icon name="heart" color="medium-shade"></ion-icon>
+		<ion-tab-button tab="my-list" (click)="changeTab(2)">
+			<ion-icon name="film" color="medium-shade"></ion-icon>
 		</ion-tab-button>
 		<ion-tab-button tab="downloads" (click)="changeTab(3)">
 			<ion-icon name="download" color="medium-shade"></ion-icon>

@@ -11,7 +11,11 @@
     align-items: center;
     padding-top: 64px;
     padding-bottom: 64px;
-
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+		display: none;
+    }
+    
     &:before{
         content: '';
         position: absolute;
