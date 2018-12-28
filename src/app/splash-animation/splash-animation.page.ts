@@ -17,7 +17,7 @@ export class SplashAnimationPage implements OnInit {
 
   ngOnInit() {
     this.storage.get('user').then(user => {
-      if (user) {
+      if (user && user.uid) {
         this.router.navigate(['home']);
       } else {
         this.layer = 'layer animated';

@@ -20,6 +20,8 @@ export class AppComponent {
   initializeApp() {
     if (environment.production) {
       this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+      this.platform.backButton.subscribeWithPriority(9999, () => { /* Back Button Event Killing Attempt */});
+      this.platform.backButton.subscribe(() => { });
     }
     this.platform.ready().then(() => this.statusBar.styleDefault());
   }
