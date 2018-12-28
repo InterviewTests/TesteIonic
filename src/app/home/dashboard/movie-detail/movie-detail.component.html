@@ -21,7 +21,12 @@
                 <span>My List</span>
             </div>
             <div>
-                <ion-button expand="full" type="button" fill="clear" color="light">
+                <ion-button 
+                    expand="full" 
+                    type="button" 
+                    fill="clear" 
+                    color="light"
+                    (click)="favorite()">
                     <ion-icon name="heart-empty" slot="icon-only"></ion-icon>
                     <ion-ripple-effect></ion-ripple-effect>
                 </ion-button>
