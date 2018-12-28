@@ -40,7 +40,7 @@ export class MovieDetailComponent implements OnInit {
     await loading.present();
     try {
       const index = this.favorites.list.findIndex(m => m.id === this.movie.id);
-      if (index > 0) {
+      if (index > -1) {
         // Unfavorite
         await this.moviesService.unfavorite(this.movie);
         this.favorites.list.splice(index, 1);
