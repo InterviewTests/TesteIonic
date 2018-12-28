@@ -11,4 +11,5 @@ export interface Movie {
     favorited: boolean;
     myListed: boolean;
     downloaded: boolean;
+    timeDownloaded: number;
 }

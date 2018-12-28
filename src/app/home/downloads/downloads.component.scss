@@ -4,9 +4,10 @@
     height: 80px;
     overflow: hidden;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     img{
         width: 100%;
+        filter: brightness(65%);
     }
 }

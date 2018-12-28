@@ -1,7 +1,7 @@
 <ion-list>
-  <ion-item lines="none">
+  <ion-item lines="none" *ngFor="let movie of downloads">
       <div class="img-container">
-          <!-- <img [src]="'http://image.tmdb.org/t/p/w300/' + (movie.backdrop_path || movie.poster_path)"/> -->
+          <img [src]="'http://image.tmdb.org/t/p/w300/' + (movie.backdrop_path || movie.poster_path)"/>
           <span></span>
       </div>
   </ion-item>

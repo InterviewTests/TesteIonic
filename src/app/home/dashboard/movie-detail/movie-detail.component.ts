@@ -130,6 +130,7 @@ export class MovieDetailComponent implements OnInit {
         toastDef.message = 'Movie Deleted!';
       } else {
         // Download
+        this.movie.timeDownloaded = Date.now();
         this.downloads.push(this.movie);
         this.movie.downloaded = true;
         toastDef.color = 'success';
