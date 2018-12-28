@@ -6,7 +6,7 @@
             <span>{{movie.title}}</span>
         </div>
         <div class="header">
-            <span class="score">{{movie.vote_average.toString().replace('.','').replace(',', '').padEnd(2,'0')  + '% Match'}}</span>
+            <span class="score">{{movie.vote_average === '10' ? '100' : movie.vote_average.toString().replace('.','').replace(',', '').padEnd(2,'0')  + '% Match'}}</span>
             <span class="date">{{movie.release_date}}</span>
         </div>
         <br>
