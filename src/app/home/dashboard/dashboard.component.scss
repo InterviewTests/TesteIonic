@@ -26,6 +26,29 @@
 				background: linear-gradient(to bottom, rgba(34,31,31,0) 0%,rgba(34,31,31,0) 9%,rgba(34,31,31,0.65) 55%,rgba(34,31,31,0.9) 90%,rgba(34,31,31,0.99) 98%,rgba(34,31,31,1) 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00221f1f', endColorstr='#221f1f',GradientType=0 ); /* IE6-9 */
 			}
+			span{
+				position: absolute;
+				bottom: 16px;
+				left: 50%;
+				transform: translateX(-50%);
+				font-size: 24px;
+				z-index: 5;
+				opacity: 0;
+				color: var(--ion-color-light);
+				&.show{
+					animation: go-up 1.2s ease-in forwards;
+				}
+				@keyframes go-up {
+					from { 
+						opacity: 0;
+						bottom: 16px;
+					}
+					to {
+						opacity: 1;
+						bottom: 24px;
+					}
+				}
+			}
 			img{
 				position: absolute;
 				opacity: 0;
