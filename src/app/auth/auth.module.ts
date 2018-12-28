@@ -11,8 +11,7 @@ import { FormComponent } from '../utils/form/form.component';
 
 import { AuthPage } from './auth.page';
 
-const routes: Routes = [
-{
+const routes: Routes = [{
     path: '',
     component: AuthPage,
     children: [{

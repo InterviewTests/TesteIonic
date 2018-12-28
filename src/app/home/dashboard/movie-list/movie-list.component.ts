@@ -15,6 +15,7 @@ export class MovieListComponent implements OnInit {
   ngOnInit() { }
 
   showDetailsEmmiter(movieId: number) {
+    // Calls the showDetail method from the dashboard component to show a movie details.
     const movie = this.movies.list.find(x => x.id === movieId);
     this.showDetails.emit(movie);
   }

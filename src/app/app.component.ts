@@ -19,6 +19,7 @@ export class AppComponent {
 
   initializeApp() {
     if (environment.production) {
+      // If we are in production, the  it's an apk build, so lock the screen orientation to portraid mode.
       this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     }
     this.platform.ready().then(() => this.statusBar.styleDefault());

@@ -25,11 +25,13 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit () {
+    // Setting this page buttons.
     this.primary = {text: 'Create Account'};
     this.secondary = {
       text: 'Back',
       href: 'auth/login'
     };
+    // Setting this page form fields.
     this.fields = [{
       icon: 'at',
       type: 'email',
@@ -103,6 +105,7 @@ export class RegisterComponent implements OnInit {
           duration: 2000
         });
         toast.present();
+        // Redirec to the login page passing the newly created email as an arg.
         this.router.navigate(['auth/login'] , {
           queryParams: { email: form.controls.registerEmail.value }
         });

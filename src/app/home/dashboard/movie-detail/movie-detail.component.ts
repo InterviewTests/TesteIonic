@@ -30,11 +30,16 @@ export class MovieDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // Create a reference to the current time in milliseconds.
     this.now = Date.now();
     setInterval(() => this.now = Date.now(), 1000);
   }
 
   async favoritesAction() {
+    /*
+      Called when the user clicks on the favore/unfavorite button at the details page.
+      It checks if the movie was already favorited and favorites of unfavorites accordingly.
+    */
     const loading = await this.loadingController.create({
       keyboardClose: true,
       translucent: true
@@ -75,6 +80,10 @@ export class MovieDetailComponent implements OnInit {
   }
 
   async myListAction() {
+    /*
+      Called when the user clicks on the "add to"/"remove from" MyList button at the details page.
+      It checks if the movie was already on the list and updates it accordingly.
+    */
     const loading = await this.loadingController.create({
       keyboardClose: true,
       translucent: true
@@ -115,6 +124,10 @@ export class MovieDetailComponent implements OnInit {
   }
 
   async download() {
+    /*
+      Called when the user clicks on the download/delete button at the details page.
+      It checks if the movie was already downloaded and downloads or deletes it.
+    */
     const loading = await this.loadingController.create({
       keyboardClose: true,
       translucent: true
@@ -155,6 +168,7 @@ export class MovieDetailComponent implements OnInit {
   }
 
   share() {
+    // This function is called when the user shares a movie, it opens the share sheet and shares the movie poster.
     this.socialSharing.share(
       'Share Movie Poster',
       '',

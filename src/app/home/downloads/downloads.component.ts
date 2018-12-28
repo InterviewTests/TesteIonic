@@ -18,11 +18,13 @@ export class DownloadsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // Create a reference to the current time in milliseconds.
     this.now = Date.now();
     setInterval(() => this.now = Date.now(), 1000);
   }
 
   async delete(id: number) {
+    // Deletes a downloaded movie
     const loading = await this.loadingController.create({
       keyboardClose: true,
       translucent: true

@@ -16,6 +16,10 @@ export class SplashAnimationPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    /*
+      When the splash screen is loaded, check if the user is logged in. If so, redirect
+      to the home component. If the user is not logged, show the animation and go to the login page.
+    */
     this.storage.get('user').then(user => {
       if (user && user.uid) {
         this.router.navigate(['home']);

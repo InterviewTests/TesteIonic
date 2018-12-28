@@ -23,6 +23,7 @@ export class SettingsComponent implements OnInit {
   }
 
   async signOut() {
+    // This method sings out a user by removing its info from the local db and redirecting to the login page.
     const loading = await this.loadingController.create({
       keyboardClose: true,
       translucent: true
@@ -35,6 +36,7 @@ export class SettingsComponent implements OnInit {
   }
 
   async forgotPassword() {
+    // Sends an email to the user that resets the account password. Uses a fireauth method.
     const toastDef = {
       message: 'Error!',
       color: 'danger',
@@ -48,10 +50,12 @@ export class SettingsComponent implements OnInit {
     });
     await loading.present();
     try {
+      // Retrieving this user email from local storage.
       const user = await this.storage.get('user');
       if (!user || !user.email) {
         return;
       }
+      // Sending email.
       await this.auth.auth.sendPasswordResetEmail(user.email);
       toastDef.color = 'success';
       toastDef.message = 'A password reset email sent!';

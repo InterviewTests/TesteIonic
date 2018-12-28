@@ -25,6 +25,7 @@ export class MoviesService {
   private userFavoritesCollection: AngularFirestoreCollection<Movie>;
   private userMyListCollection: AngularFirestoreCollection<Movie>;
 
+  // MovieDb apiKey and apiBaseUrl
   private apiKey = `&api_key=${MOVIE_DB_API_KEY}`;
   private apiUrl = 'https://api.themoviedb.org/3/';
 
@@ -41,17 +42,7 @@ export class MoviesService {
   }, {
     'id': 35,
     'name': 'Comedy'
-  }, { // } else {
-    //   this.http.get(`${this.apiUrl}${url}${this.apiKey}`, { },
-    //     {'Content-Type': 'application/json'})
-    //   .then(data => {
-    //     if (!data || !data.data) {
-    //       throw new Error('No Response');
-    //     }
-    //     resolve(JSON.parse(data.data));
-    //   })
-    //   .catch(error => reject(error.error || error));
-    // }
+  }, {
     'id': 80,
     'name': 'Crime'
   }, {
@@ -102,13 +93,9 @@ export class MoviesService {
     /*
       This method does an HTTP request but hides the ugly stuff. Up to this point, this service class
       is the only one that does an Http request.
-      Since i don't have the LiveReload/HotReload while i test NativeApi modules (like the httpModule),
-      i added the "mode" variable that i manually change. It switches this mehtod between using
-      the native Http module or using the fetch API to do the http request.
+       I was using NativeHttp requests here but found that the fetch API worked faster at my tests.
     */
     return new Promise<{results: Movie[]}>((resolve, reject) => {
-      // Using that mode variable to switch between FetchApi or Native Http
-      // if (!environment.production) {
         fetch(this.apiUrl + url  + this.apiKey)
         .then(response => {
           if (!response || !response.ok) {
@@ -117,18 +104,7 @@ export class MoviesService {
           resolve(response.json());
         })
         .catch(error => reject(error));
-      // } else {
-      //   this.http.get(`${this.apiUrl}${url}${this.apiKey}`, { },
-      //     {'Content-Type': 'application/json'})
-      //   .then(data => {
-      //     if (!data || !data.data) {
-      //       throw new Error('No Response');
-      //     }
-      //     resolve(JSON.parse(data.data));
-      //   })
-      //   .catch(error => reject(error.error || error));
-      // }
-    });
+      });
   }
 
   async getPopular () {
@@ -182,7 +158,7 @@ export class MoviesService {
   }
 
   async loadFirestore() {
-    // Retrieving the user favorited and MyListed movies.
+    // This method should be called once and it initializes the firestore connection
     const user = await this.storage.get('user');
     if (!user || !user.uid) {
       throw new Error('Not Logged In');
@@ -193,22 +169,27 @@ export class MoviesService {
   }
 
   async favorite (movie: Movie) {
+    // Adds a movie to the favorite movies list at firestore
     await this.userFavoritesCollection.doc(movie.id.toString()).set(movie);
   }
 
   async unfavorite(movie: Movie) {
+    // Removes a movie from the favorite movies list at firestore
     await this.userFavoritesCollection.doc(movie.id.toString()).delete();
   }
 
   async addToMyList (movie: Movie) {
+    // Adds a movie to the "My List" list at firestore
     await this.userMyListCollection.doc(movie.id.toString()).set(movie);
   }
 
   async removeFromMyList (movie: Movie) {
+    // Removes a movie from the "My List" list at firestore
     await this.userMyListCollection.doc(movie.id.toString()).delete();
   }
 
   getUserFavorites() {
+    // Returns the favorite movies listd from firestore.
     return new Promise((resolve, reject) => {
       try {
         this.userFavoritesCollection
@@ -221,6 +202,7 @@ export class MoviesService {
   }
 
   getUserMyList() {
+    // Returns the "My List" movies list from firestore.
     return new Promise((resolve, reject) => {
       try {
         this.userMyListCollection

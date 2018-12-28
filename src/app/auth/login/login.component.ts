@@ -27,12 +27,15 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit () {
+    // Checking if there is an email in the route query, if there is then fill the email field with it.
     const email = this.activatedRoute.snapshot.queryParamMap.get('email');
+    // Setting up this page buttons
     this.primary = {text: 'Login'};
     this.secondary = {
       text: 'Signup',
       href: 'auth/register'
     };
+    // Setting up this page form fields
     this.fields = [{
       icon: 'at',
       type: 'email',
@@ -95,9 +98,9 @@ export class LoginComponent implements OnInit {
           refreshToken: login.user.refreshToken,
           uid: login.user.uid
         };
-        // Storing user so login wont be request next time.
+        // Storing user data locally. Used to login auto, retrieve data from firestore and more.
         await this.storage.set('user', user);
-        // Login success
+        // Login success, redirect ot home
         await loading.dismiss();
         this.router.navigate(['home'], {
           queryParams: { emailVerified: user.emailVerified }
