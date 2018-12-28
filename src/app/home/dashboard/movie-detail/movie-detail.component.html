@@ -12,5 +12,35 @@
         <div class="decription">
             {{movie.overview || 'No description for this movie.'}}
         </div>
+        <div class="actions">
+            <div>
+                <ion-button expand="full" type="button" fill="clear" color="light">
+                    <ion-icon name="add" slot="icon-only"></ion-icon>
+                    <ion-ripple-effect></ion-ripple-effect>
+                </ion-button>
+                <span>My List</span>
+            </div>
+            <div>
+                <ion-button expand="full" type="button" fill="clear" color="light">
+                    <ion-icon name="heart-empty" slot="icon-only"></ion-icon>
+                    <ion-ripple-effect></ion-ripple-effect>
+                </ion-button>
+                <span>Favorite</span>
+            </div>
+            <div>
+                <ion-button expand="full" type="button" fill="clear" color="light">
+                    <ion-icon name="download" slot="icon-only"></ion-icon>
+                    <ion-ripple-effect></ion-ripple-effect>
+                </ion-button>
+                <span>Download</span>
+            </div>
+            <div>
+                <ion-button expand="full" type="button" fill="clear" color="light">
+                    <ion-icon name="share" slot="icon-only"></ion-icon>
+                    <ion-ripple-effect></ion-ripple-effect>
+                </ion-button>
+                <span>Share</span>
+            </div>
+        </div>
     </div>
 </div>
