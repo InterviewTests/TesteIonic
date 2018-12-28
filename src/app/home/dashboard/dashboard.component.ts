@@ -87,11 +87,14 @@ export class DashboardComponent implements OnInit {
     if (this.isDetailsVisible) {
       return;
     }
+    // Calling the details component
     this.detailsMovie = movie;
     this.isDetailsVisible = true;
-
-    const index = this.favoriteMoviesList.list.findIndex(m => m.id === this.detailsMovie.id);
-    this.detailsMovie.favorited = index > -1;
+    // Setting the fav and myList icons filling.
+    const favIndex = this.favoriteMoviesList.list.findIndex(m => m.id === this.detailsMovie.id);
+    this.detailsMovie.favorited = favIndex > -1;
+    const myListIndex = this.myListMoviesList.list.findIndex(m => m.id === this.detailsMovie.id);
+    this.detailsMovie.myListed = myListIndex > -1;
   }
 
   hideDetails() {

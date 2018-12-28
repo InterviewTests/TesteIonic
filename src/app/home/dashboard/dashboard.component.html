@@ -9,16 +9,21 @@
             <ion-skeleton-text width="70%"></ion-skeleton-text>
         </div>
     </div>
-      <app-movie-list
+    <app-movie-list
         *ngIf="favoriteMoviesList && favoriteMoviesList.list && favoriteMoviesList.list.length > 0"
         [movies]="favoriteMoviesList"
         (showDetails)="showDetails($event)">
-      </app-movie-list>
-      <app-movie-list 
+    </app-movie-list>
+    <app-movie-list
+        *ngIf="myListMoviesList && myListMoviesList.list && myListMoviesList.list.length > 0"
+        [movies]="myListMoviesList"
+        (showDetails)="showDetails($event)">
+    </app-movie-list>
+    <app-movie-list 
         *ngFor="let movies of movieLists" 
         [movies]="movies" 
         (showDetails)="showDetails($event)">
-      </app-movie-list>
+    </app-movie-list>
   </ion-list>
   <ion-infinite-scroll 
       threshold="48px" 

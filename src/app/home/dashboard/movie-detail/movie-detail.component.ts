@@ -86,6 +86,7 @@ export class MovieDetailComponent implements OnInit {
         // Remove from My List
         await this.moviesService.removeFromMyList(this.movie);
         this.myList.list.splice(index, 1);
+        this.movie.myListed = false;
         toastDef.color = 'success';
         toastDef.message = 'Removed from My List!';
         const toast = await this.toastController.create(toastDef);
@@ -94,6 +95,7 @@ export class MovieDetailComponent implements OnInit {
         // Add to My List
         await this.moviesService.addToMyList(this.movie);
         this.myList.list.push(this.movie);
+        this.movie.myListed = true;
         toastDef.color = 'success';
         toastDef.message = 'Added to My List!';
         const toast = await this.toastController.create(toastDef);

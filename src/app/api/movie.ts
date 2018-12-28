@@ -9,4 +9,5 @@ export interface Movie {
     overview: string;
     release_date: string;
     favorited: boolean;
+    myListed: boolean;
 }
