@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { Movie } from 'src/app/api/movie';
+import { Platform } from '@ionic/angular';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 @Component({
@@ -18,7 +19,8 @@ export class HomePage implements OnInit {
   constructor (
     private toastController: ToastController,
     private activatedRoute: ActivatedRoute,
-    private storage: Storage
+    private storage: Storage,
+    private platform: Platform
   ) {}
 
   async ngOnInit() {
@@ -35,6 +37,18 @@ export class HomePage implements OnInit {
       toast.present();
     }
     this.downloads = await this.storage.get('downloads') || [];
+
+    this.platform.backButton.subscribeWithPriority(9999, async () => {
+      this.changeTab(1);
+    });
+    this.platform.backButton.subscribe(async () => {
+      this.changeTab(1);
+    });
+    this.platform.ready().then(() => {
+      document.addEventListener('backbutton', async () => {
+        this.changeTab(1);
+      });
+    });
   }
 
   changeTab (tab: number) {
