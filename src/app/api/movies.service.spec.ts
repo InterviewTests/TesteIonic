@@ -1,31 +1,26 @@
 import { TestBed } from '@angular/core/testing';
 import { MoviesService } from './movies.service';
-import { MOVIE_DB_API_KEY } from '../moviedb.credentials';
-import { Movie } from './movie';
-import { User } from './user';
-import { genres } from './genres';
-import { Storage } from '@ionic/storage';
 import { IonicStorageModule } from '@ionic/storage';
 
-import {
-  AngularFirestore,
-  AngularFirestoreDocument,
-  AngularFirestoreCollection
-} from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { FIREBASE_CREDENTIALS } from 'src/app/firebase.credentials';
+
 import { IonicModule } from '@ionic/angular';
 
 describe('MoviesService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
+        AngularFireModule.initializeApp(FIREBASE_CREDENTIALS),
+        AngularFireAuthModule,
+        AngularFirestoreModule,
         IonicModule.forRoot(),
         IonicStorageModule.forRoot()
       ],
       providers: [
-        MoviesService,
-        AngularFirestore,
-        AngularFirestoreDocument,
-        AngularFirestoreCollection
+        MoviesService
       ]
     }).compileComponents();
   });
