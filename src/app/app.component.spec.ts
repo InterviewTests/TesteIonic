@@ -4,6 +4,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 import { AppComponent } from './app.component';
 
@@ -12,13 +13,15 @@ describe('AppComponent', () => {
   let statusBarSpy: any,
       splashScreenSpy: any,
       platformReadySpy: any,
-      platformSpy: any;
+      platformSpy: any,
+      screenOrientationSpy: any;
 
   beforeEach(async(() => {
     statusBarSpy = jasmine.createSpyObj('StatusBar', ['styleDefault']);
     splashScreenSpy = jasmine.createSpyObj('SplashScreen', ['hide']);
     platformReadySpy = Promise.resolve();
     platformSpy = jasmine.createSpyObj('Platform', { ready: platformReadySpy });
+    screenOrientationSpy = jasmine.createSpyObj('ScreenOrientation', ['lock']);
 
     TestBed.configureTestingModule({
       declarations: [AppComponent],
@@ -27,9 +30,13 @@ describe('AppComponent', () => {
         { provide: StatusBar, useValue: statusBarSpy },
         { provide: SplashScreen, useValue: splashScreenSpy },
         { provide: Platform, useValue: platformSpy },
+        { provide: ScreenOrientation, useValue: screenOrientationSpy }
       ],
     }).compileComponents();
   }));
+
+  beforeEach(() => jasmine.clock().install());
+  afterEach(() => jasmine.clock().uninstall());
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
@@ -42,6 +49,5 @@ describe('AppComponent', () => {
     expect(platformSpy.ready).toHaveBeenCalled();
     await platformReadySpy;
     expect(statusBarSpy.styleDefault).toHaveBeenCalled();
-    expect(splashScreenSpy.hide).toHaveBeenCalled();
   });
 });
