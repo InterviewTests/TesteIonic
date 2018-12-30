@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ToastController, LoadingController } from '@ionic/angular';
 import { HomePage } from './home.page';
 
 describe('HomePage', () => {
@@ -11,6 +11,10 @@ describe('HomePage', () => {
     TestBed.configureTestingModule({
       declarations: [ HomePage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [
+        ToastController,
+        LoadingController
+      ]
     })
       .compileComponents();
   }));

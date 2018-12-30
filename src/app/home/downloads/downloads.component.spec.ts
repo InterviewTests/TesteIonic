@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { DownloadsComponent } from './downloads.component';
+import { ToastController, LoadingController } from '@ionic/angular';
 
 describe('DownloadsComponent', () => {
   let component: DownloadsComponent;
@@ -9,7 +10,11 @@ describe('DownloadsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ DownloadsComponent ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+      providers: [
+        ToastController,
+        LoadingController
+      ]
     })
     .compileComponents();
   }));
