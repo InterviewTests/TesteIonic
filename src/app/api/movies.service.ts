@@ -4,7 +4,11 @@ import { Movie } from './movie';
 import { User } from './user';
 import { genres } from './genres';
 import { Storage } from '@ionic/storage';
-import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection} from '@angular/fire/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreDocument,
+  AngularFirestoreCollection
+} from '@angular/fire/firestore';
 
 @Injectable({providedIn: 'root'})
 export class MoviesService {
@@ -36,15 +40,6 @@ export class MoviesService {
         }
         resolve(response.json());
       })
-      .catch(error => reject(error))
-    );
-  }
-
-  async getPopular () {
-    // This method asks for the most popular movieDb movie list.
-    return new Promise <{results: Movie[]}> ( (resolve, reject) =>
-      this.get('discover/movie?popularity.desc')
-      .then(response => resolve(response))
       .catch(error => reject(error))
     );
   }
@@ -88,6 +83,14 @@ export class MoviesService {
     );
   }
 
+  getPopular () {
+    // This method asks for the most popular movieDb movie list.
+    return new Promise <{results: Movie[]}> ( (resolve, reject) =>
+      this.get('discover/movie?popularity.desc')
+      .then(response => resolve(response))
+      .catch(error => reject(error))
+    );
+  }
   async loadFirestore() {
     // This method should be called once and it initializes the firestore connection
     const user = await this.storage.get('user');
@@ -122,10 +125,10 @@ export class MoviesService {
   getUserFavorites() {
     // Returns the favorite movies listd from firestore.
     return new Promise( (resolve, reject) => {
-      try {
-        this.userFavoritesCollection
-          .valueChanges()
-          .subscribe(data => resolve(data));
+      try {useValue
+        this.userFavoritesColleuseValuection
+          .valueChanges()useValue
+          .subscribe(data => reuseValuesolve(data));
       } catch (e) {
         reject(e);
       }
