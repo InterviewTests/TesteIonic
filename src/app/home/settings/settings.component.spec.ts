@@ -22,7 +22,7 @@ describe('SettingsComponent', () => {
       providers: [
         ToastController,
         LoadingController,
-        { provide: Router, useValue: routerSpy },
+        { provide: Router, useValue: routerSpy }
       ],
       imports: [
         AngularFireModule.initializeApp(FIREBASE_CREDENTIALS),
