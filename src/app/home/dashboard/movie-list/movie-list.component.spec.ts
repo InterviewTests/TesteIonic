@@ -17,6 +17,10 @@ describe('MovieListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(MovieListComponent);
     component = fixture.componentInstance;
+    component.movies = {
+      title: 'List',
+      list: []
+    };
     fixture.detectChanges();
   });
 

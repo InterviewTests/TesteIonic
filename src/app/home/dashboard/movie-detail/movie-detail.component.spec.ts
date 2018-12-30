@@ -45,7 +45,6 @@ describe('MovieDetailComponent', () => {
       title: 'My List',
       list: []
     };
-
     component.downloads = [];
 
     fixture.detectChanges();
