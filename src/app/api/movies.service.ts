@@ -1,21 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HTTP } from '@ionic-native/http/ngx';
 import { MOVIE_DB_API_KEY } from '../moviedb.credentials';
 import { Movie } from './movie';
 import { User } from './user';
-import {
-  AngularFirestore,
-  AngularFirestoreDocument,
-  AngularFirestoreCollection
-} from '@angular/fire/firestore';
+import { genres } from './genres';
 import { Storage } from '@ionic/storage';
-// import { environment } from 'src/environments/environment';
+import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection} from '@angular/fire/firestore';
 
 @Injectable({providedIn: 'root'})
 export class MoviesService {
-
   constructor (
-    private http: HTTP,
     private storage: Storage,
     private firestore: AngularFirestore
   ) { }
@@ -29,87 +22,27 @@ export class MoviesService {
   private apiKey = `&api_key=${MOVIE_DB_API_KEY}`;
   private apiUrl = 'https://api.themoviedb.org/3/';
 
-  // The MovieDb genre List. Hardcoded since this app category list wont change.
-  private genres = [{
-    'id': 28,
-    'name': 'Action'
-  }, {
-    'id': 12,
-    'name': 'Adventure'
-  }, {
-    'id': 16,
-    'name': 'Animation'
-  }, {
-    'id': 35,
-    'name': 'Comedy'
-  }, {
-    'id': 80,
-    'name': 'Crime'
-  }, {
-    'id': 99,
-    'name': 'Documentary'
-  }, {
-    'id': 18,
-    'name': 'Drama'
-  }, {
-    'id': 10751,
-    'name': 'Family'
-  }, {
-    'id': 14,
-    'name': 'Fantasy'
-  }, {
-    'id': 36,
-    'name': 'History'
-  }, {
-    'id': 27,
-    'name': 'Horror'
-  }, {
-    'id': 10402,
-    'name': 'Music'
-  }, {
-    'id': 9648,
-    'name': 'Mystery'
-  }, {
-    'id': 10749,
-    'name': 'Romance'
-  }, {
-    'id': 878,
-    'name': 'Science Fiction'
-  }, {
-    'id': 10770,
-    'name': 'TV Movie'
-  }, {
-    'id': 53,
-    'name': 'Thriller'
-  }, {
-    'id': 10752,
-    'name': 'War'
-  }, {
-    'id': 37,
-    'name': 'Western'
-  }];
-
   get (url: string) {
     /*
       This method does an HTTP request but hides the ugly stuff. Up to this point, this service class
       is the only one that does an Http request.
        I was using NativeHttp requests here but found that the fetch API worked faster at my tests.
     */
-    return new Promise<{results: Movie[]}>((resolve, reject) => {
-        fetch(this.apiUrl + url  + this.apiKey)
-        .then(response => {
-          if (!response || !response.ok) {
-            throw new Error(response.statusText);
-          }
-          resolve(response.json());
-        })
-        .catch(error => reject(error));
-      });
+    return new Promise <{results: Movie[]}> ( (resolve, reject) =>
+      fetch(`${this.apiUrl}${url}${this.apiKey}`)
+      .then(response => {
+        if (!response || !response.ok) {
+          throw new Error(response.statusText);
+        }
+        resolve(response.json());
+      })
+      .catch(error => reject(error))
+    );
   }
 
   async getPopular () {
     // This method asks for the most popular movieDb movie list.
-    return new Promise<{results: Movie[]}>((resolve, reject) =>
+    return new Promise <{results: Movie[]}> ( (resolve, reject) =>
       this.get('discover/movie?popularity.desc')
       .then(response => resolve(response))
       .catch(error => reject(error))
@@ -118,21 +51,19 @@ export class MoviesService {
 
   randomGenre () {
     // This method checks wich categories the user has not seen yet, calls one and returns it.
-    if (this.genres.length === 0) {
+    if (genres.length === 0) {
       return null;
     }
-    const index = Number(Math.floor(Math.random() * this.genres.length));
-    const genre = this.genres[index];
-    this.genres.splice(index, 1);
-    return {
-      genre,
-      next: this.genres.length !== 0
-    };
+    const index = Number(Math.floor(Math.random() * genres.length));
+    const genre = genres[index];
+    genres.splice(index, 1);
+
+    return { genre, next: genres.length !== 0};
   }
 
   getGenre (genre: number) {
     // This method is used with the previous randomGenre method to call a certain genre movie list.
-    return new Promise<{results: Movie[]}>((resolve, reject) =>
+    return new Promise <{results: Movie[]}> ( (resolve, reject) =>
       this.get(`discover/movie?with_genres=${genre}&sort_by=vote_average.desc&vote_count.gte=10`)
       .then(response => resolve(response))
       .catch(error => reject(error))
@@ -141,7 +72,7 @@ export class MoviesService {
 
   getBest () {
     // This method asks for the best rated movieDb movie list.
-    return new Promise<{results: Movie[]}>((resolve, reject) =>
+    return new Promise <{results: Movie[]}> ( (resolve, reject) =>
       this.get('discover/movie?sort_by=vote_count.desc')
       .then(response => resolve(response))
       .catch(error => reject(error))
@@ -150,7 +81,7 @@ export class MoviesService {
 
   getNewest () {
     // This method asks for the most newsest movieDb movie list.
-    return new Promise<{results: Movie[]}>((resolve, reject) =>
+    return new Promise <{results: Movie[]}> ( (resolve, reject) =>
       this.get('discover/movie?sort_by=release_date.desc&region=br')
       .then(response => resolve(response))
       .catch(error => reject(error))
@@ -190,7 +121,7 @@ export class MoviesService {
 
   getUserFavorites() {
     // Returns the favorite movies listd from firestore.
-    return new Promise((resolve, reject) => {
+    return new Promise( (resolve, reject) => {
       try {
         this.userFavoritesCollection
           .valueChanges()
@@ -203,7 +134,7 @@ export class MoviesService {
 
   getUserMyList() {
     // Returns the "My List" movies list from firestore.
-    return new Promise((resolve, reject) => {
+    return new Promise( (resolve, reject) => {
       try {
         this.userMyListCollection
           .valueChanges()
