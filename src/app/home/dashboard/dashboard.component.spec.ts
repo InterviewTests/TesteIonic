@@ -7,7 +7,6 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FIREBASE_CREDENTIALS } from 'src/app/firebase.credentials';
 import { Router } from '@angular/router';
-import { ToastControllerStub } from 'src/app/testing/ToastControllerStub';
 import { ToastController } from '@ionic/angular';
 
 
@@ -15,11 +14,9 @@ describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
   let routerSpy: any;
-  let toastControllerStub: ToastControllerStub;
 
   beforeEach(async(() => {
     routerSpy = jasmine.createSpyObj('Router', ['navigate']);
-    toastControllerStub = new ToastControllerStub();
 
     TestBed.configureTestingModule({
       declarations: [ DashboardComponent ],
@@ -32,7 +29,7 @@ describe('DashboardComponent', () => {
       ],
       providers: [
         { provide: Router, useValue: routerSpy },
-        { provide: ToastController, useValue: toastControllerStub }
+        ToastController
       ]
     })
     .compileComponents();
