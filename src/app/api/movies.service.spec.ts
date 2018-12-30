@@ -1,13 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { MoviesService } from './movies.service';
 import { IonicStorageModule } from '@ionic/storage';
-
+import { IonicModule } from '@ionic/angular';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FIREBASE_CREDENTIALS } from 'src/app/firebase.credentials';
 
-import { IonicModule } from '@ionic/angular';
 
 describe('MoviesService', () => {
   beforeEach(() => {

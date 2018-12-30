@@ -125,10 +125,10 @@ export class MoviesService {
   getUserFavorites() {
     // Returns the favorite movies listd from firestore.
     return new Promise( (resolve, reject) => {
-      try {useValue
-        this.userFavoritesColleuseValuection
-          .valueChanges()useValue
-          .subscribe(data => reuseValuesolve(data));
+      try {
+        this.userFavoritesCollection
+          .valueChanges()
+          .subscribe(data => resolve(data));
       } catch (e) {
         reject(e);
       }
