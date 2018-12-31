@@ -10,8 +10,9 @@ import { AngularFireAuth } from '@angular/fire/auth';
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
+  showSecret: boolean;
 
-  constructor(
+  constructor (
     private auth: AngularFireAuth,
     private storage: Storage,
     private router: Router,
@@ -19,10 +20,11 @@ export class SettingsComponent implements OnInit {
     private loadingController: LoadingController
   ) { }
 
-  ngOnInit() {
+  ngOnInit () {
+    this.showSecret = false;
   }
 
-  async signOut() {
+  async signOut () {
     // This method sings out a user by removing its info from the local db and redirecting to the login page.
     const loading = await this.loadingController.create({
       keyboardClose: true,
@@ -35,7 +37,7 @@ export class SettingsComponent implements OnInit {
     this.router.navigate(['auth/login']);
   }
 
-  async forgotPassword() {
+  async forgotPassword () {
     // Sends an email to the user that resets the account password. Uses a fireauth method.
     const toastDef = {
       message: 'Error!',
@@ -70,7 +72,9 @@ export class SettingsComponent implements OnInit {
       toast.present();
       await loading.dismiss();
     }
-    console.log('Changing the password');
   }
 
+  secret() {
+    this.showSecret = true;
+  }
 }

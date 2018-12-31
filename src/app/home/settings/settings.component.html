@@ -12,5 +12,16 @@
         Forgot Password
       </div>
     </ion-item>
+    <ion-item (click)="secret()" class="secret">
+        <div class="button">
+          <ion-icon name="happy" color="light"></ion-icon>
+          Secret
+        </div>
+      </ion-item>
   </ion-list>
+</div>
+<div class="pyro" *ngIf="showSecret">
+  <div class="before"></div>
+  <div class="after"></div>
+  <div class="message">I'm so happy i finished this!</div>
 </div>
