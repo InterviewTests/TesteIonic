@@ -52,18 +52,28 @@ describe('LoginComponent', () => {
 
   it('Should create the login form.', () => {
     const html = fixture.nativeElement;
-    console.log('>>>> LOG: ');
-    console.log(html);
     const form = html.querySelector('form');
     expect(form).toBeTruthy('Did not find the login form.');
-    const emailField = html.querySelector('input[name="loginEmail"]');
-    expect(emailField).toBeTruthy('Did not find the login email field.');
-    const passwordField = html.querySelector('input[name="passwordField"]');
-    expect(passwordField).toBeTruthy('Did not find the login password field.');
+    const loginEmail = html.querySelector('ion-input[ng-reflect-name="loginEmail"]');
+    expect(loginEmail).toBeTruthy('Did not find the login email field.');
+    const loginPassword = html.querySelector('ion-input[ng-reflect-name="loginPassword"]');
+    expect(loginPassword).toBeTruthy('Did not find the login password field.');
   });
 
   it('should create with the email field filled', () => {
-    activatedRouteStub.setQueryParam('email', 'testuser@email.com');
+    const email = 'testuser@email.com';
+    activatedRouteStub.setQueryParam('email', email);
+    fixture = TestBed.createComponent(LoginComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    const html = fixture.nativeElement;
+    const form = html.querySelector('form');
+    expect(form).toBeTruthy('Did not find the login form.');
+    const loginEmail = html.querySelector('ion-input[ng-reflect-name="loginEmail"]');
+    expect(loginEmail).toBeTruthy();
+    expect(loginEmail.value).toEqual(email);
   });
+
+
 
 });
