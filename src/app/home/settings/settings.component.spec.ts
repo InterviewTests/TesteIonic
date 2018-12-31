@@ -7,7 +7,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FIREBASE_CREDENTIALS } from 'src/app/firebase.credentials';
 import { IonicStorageModule } from '@ionic/storage';
-import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SettingsComponent', () => {
   let component: SettingsComponent;
@@ -21,13 +21,13 @@ describe('SettingsComponent', () => {
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
       providers: [
         ToastController,
-        LoadingController,
-        { provide: Router, useValue: routerSpy }
+        LoadingController
       ],
       imports: [
         AngularFireModule.initializeApp(FIREBASE_CREDENTIALS),
         AngularFireAuthModule,
         AngularFirestoreModule,
+        RouterTestingModule,
         IonicStorageModule.forRoot()
       ]
     })

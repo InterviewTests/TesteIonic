@@ -6,7 +6,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FIREBASE_CREDENTIALS } from 'src/app/firebase.credentials';
-import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { ToastController } from '@ionic/angular';
 
 
@@ -25,10 +25,10 @@ describe('DashboardComponent', () => {
         AngularFireModule.initializeApp(FIREBASE_CREDENTIALS),
         AngularFireAuthModule,
         AngularFirestoreModule,
+        RouterTestingModule,
         IonicStorageModule.forRoot()
       ],
       providers: [
-        { provide: Router, useValue: routerSpy },
         ToastController
       ]
     })

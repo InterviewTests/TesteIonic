@@ -27,7 +27,10 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit () {
-    // Checking if there is an email in the route query, if there is then fill the email field with it.
+    /*
+      Checking if there is an email in the route query, if there is then
+      fill the email field with it.
+    */
     const email = this.activatedRoute.snapshot.queryParamMap.get('email');
     // Setting up this page buttons
     this.primary = {text: 'Login'};
