@@ -1,6 +1,8 @@
 <div class="content">
   <ion-list>
-    <div class="img-container">
+    <div 
+        class="img-container" 
+        (click)="showDetails(highlightedMovies[currentHighlight])">
         <span [class.show]="highlightedMovies && highlightedMovies.length > 0">Highlights</span>
         <img 
             *ngIf="highlightedMovies && highlightedMovies.length > 0"
