@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { MoviesService } from './movies.service';
-import { IonicStorageModule } from '@ionic/storage';
+import { IonicStorageModule, Storage } from '@ionic/storage';
 import { IonicModule } from '@ionic/angular';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
