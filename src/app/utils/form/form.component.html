@@ -38,6 +38,7 @@
   <ion-button 
     expand="full" 
     type="submit"
+    class="primary"
     *ngIf="primary && primary.text">
     {{primary.text}}
     <ion-ripple-effect></ion-ripple-effect>
@@ -45,6 +46,7 @@
   <ion-button 
     *ngIf="secondary && secondary.href"
     fill="clear" 
+    class="secondary"
     [href]="secondary.href" 
     expand="block" 
     color="light">

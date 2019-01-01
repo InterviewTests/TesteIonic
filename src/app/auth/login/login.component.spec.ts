@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { FormComponent } from 'src/app/utils/form/form.component';
 import { IonicStorageModule } from '@ionic/storage';
@@ -7,20 +7,21 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FIREBASE_CREDENTIALS } from 'src/app/firebase.credentials';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ActivatedRouteStub } from 'src/app/testing/ActivatedRouteStub';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import {Location} from '@angular/common';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-
+  let router: Router;
   let activatedRouteStub: ActivatedRouteStub;
+  let location: Location;
 
   beforeEach(async(() => {
     activatedRouteStub = new ActivatedRouteStub();
-
     TestBed.configureTestingModule({
       declarations: [ LoginComponent, FormComponent ],
       providers: [
@@ -30,7 +31,7 @@ describe('LoginComponent', () => {
         AngularFireModule.initializeApp(FIREBASE_CREDENTIALS),
         AngularFireAuthModule,
         AngularFirestoreModule,
-        RouterTestingModule,
+        RouterTestingModule.withRoutes([]),
         FormsModule,
         ReactiveFormsModule,
         IonicModule.forRoot(),
@@ -44,9 +45,12 @@ describe('LoginComponent', () => {
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    location = TestBed.get(Location);
+    router = TestBed.get(Router);
+    spyOn(router, 'navigate');
   });
 
-  it('should create', () => {
+  it('Should create', () => {
     expect(component).toBeTruthy();
   });
 
@@ -74,6 +78,11 @@ describe('LoginComponent', () => {
     expect(loginEmail.value).toEqual(email);
   });
 
-
-
+  it('Go to registration page', fakeAsync(() => {
+    const html = fixture.nativeElement;
+    html.querySelector('.primary').click();
+    fixture.whenStable()
+    .then(() => expect(location.path()).toBe('/auth/register'))
+    .catch(() => fail('Failed at click'));
+  }));
 });
