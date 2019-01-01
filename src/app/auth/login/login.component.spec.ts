@@ -93,8 +93,8 @@ describe('LoginComponent', () => {
 
   it('Bad login attempt', async () => {
     const html = fixture.nativeElement;
-    html.querySelector('#loginEmail').value = 'error@error.com';
-    html.querySelector('#loginPassword').value = '12345678';
+    html.querySelector('[ng-reflect-name="loginEmail"]').value = 'error@error.com';
+    html.querySelector('[ng-reflect-name="loginPassword"]').value = '12345678';
     html.querySelector('.primary').click();
     fixture.detectChanges();
     return fixture.whenStable()
@@ -103,7 +103,6 @@ describe('LoginComponent', () => {
   });
 
   it('Ok login attempt', async () => {
-    fail('wt');
     const html = fixture.nativeElement;
     html.querySelector('[ng-reflect-name="loginEmail"]').value = 'test@email.com';
     html.querySelector('[ng-reflect-name="loginPassword"]').value = '12345678';
