@@ -74,28 +74,14 @@ describe('RegisterComponent', () => {
     });
   });
 
-  // it('should create with the email field filled', () => {
-  //   const email = 'testuser@email.com';
-  //   activatedRouteStub.setQueryParam('email', email);
-  //   fixture = TestBed.createComponent(LoginComponent);
-  //   component = fixture.componentInstance;
-  //   fixture.detectChanges();
-  //   const html = fixture.nativeElement;
-  //   const form = html.querySelector('form');
-  //   expect(form).toBeTruthy('Did not find the login form.');
-  //   const loginEmail = html.querySelector('ion-input[ng-reflect-name="loginEmail"]');
-  //   expect(loginEmail).toBeTruthy();
-  //   expect(loginEmail.value).toEqual(email);
-  // });
-
-  // it('Go to registration page', () => {
-  //   const html = fixture.nativeElement;
-  //   html.querySelector('.primary').click();
-  //   fixture.detectChanges();
-  //   fixture.whenStable()
-  //   .then(() => expect(location.path()).toBe('/register'))
-  //   .catch(() => fail('Failed at click'));
-  // });
+  it('Go to login page', () => {
+    const html = fixture.nativeElement;
+    html.querySelector('.secondary').click();
+    fixture.detectChanges();
+    return fixture.whenStable()
+    .then(() => expect(location.path()).toBe('/login'))
+    .catch(() => fail('Failed at click'));
+  });
 
   // it('Bad login attempt', async () => {
   //   const html = fixture.nativeElement;

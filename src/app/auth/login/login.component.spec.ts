@@ -87,9 +87,9 @@ describe('LoginComponent', () => {
 
   it('Go to registration page', () => {
     const html = fixture.nativeElement;
-    html.querySelector('.primary').click();
+    html.querySelector('.secondary').click();
     fixture.detectChanges();
-    fixture.whenStable()
+    return fixture.whenStable()
     .then(() => expect(location.path()).toBe('/register'))
     .catch(() => fail('Failed at click'));
   });
