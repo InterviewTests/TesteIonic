@@ -47,7 +47,7 @@ describe('RegisterComponent', () => {
     .compileComponents();
   }));
 
-  beforeEach(() => {
+  beforeEach(async () => {
     fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -56,6 +56,7 @@ describe('RegisterComponent', () => {
     router.initialNavigation();
     spyOn(router, 'navigate');
     jasmine.clock().install();
+    await router.navigate(['register']);
   });
 
   afterEach(() => jasmine.clock().uninstall());
@@ -74,12 +75,14 @@ describe('RegisterComponent', () => {
     });
   });
 
-  it('Go to login page', () => {
+  it('Go to login page', async () => {
     const html = fixture.nativeElement;
     html.querySelector('.secondary').click();
     fixture.detectChanges();
     return fixture.whenStable()
-    .then(() => expect(location.path()).toBe('/login'))
+    .then(() => {
+      expect(location.path()).toBe('/loginf');
+    })
     .catch(() => fail('Failed at click'));
   });
 

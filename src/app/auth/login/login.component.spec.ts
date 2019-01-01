@@ -85,10 +85,11 @@ describe('LoginComponent', () => {
     expect(loginEmail.value).toEqual(email);
   });
 
-  it('Go to registration page', () => {
+  it('Go to registration page', async () => {
     const html = fixture.nativeElement;
     html.querySelector('.secondary').click();
     fixture.detectChanges();
+    jasmine.clock().tick(1000);
     return fixture.whenStable()
     .then(() => expect(location.path()).toBe('/register'))
     .catch(() => fail('Failed at click'));
