@@ -1,17 +1,19 @@
 # Show me the code
 
+Projeto desenvolvido por Daniel de Freitas Gonçalves @ 2019
+
 ### # DESAFIO:
 
-Você deverá criar um aplicativo, que será um clone do aplicativo do Netflix. 
+Você deverá criar um aplicativo, que será um clone do aplicativo do Netflix.
 
 São obrigatórias:
  * Página de cadastro.
  * Página de login, deve ser possivel autenticar-se utilizando a digital (Fingerprint/TouchId), para permitir que o cliente acesse seu app com mais facilidade.
- * Home, onde serão exibidas diversas listas horizontais de filmes, que você poderá organizar como quiser. 
+ * Home, onde serão exibidas diversas listas horizontais de filmes, que você poderá organizar como quiser.
     Exemplo: Exibir listas de acordo com genêro, exibir listas de acordo com popularidade, etc. Consulte as opções de query disponíveis na API e use a criatividade. :smiley:
  * No topo das listas deve haver uma lista de "Favoritos", onde os filmes favoritados pelo cliente devem ser exibidos.
  * Página de informações sobre o filme, como sinopse, ano de lançamento e etc, esta deverá ser exibida quando o cliente clicar em um filme. Deve conter um botão para que o cliente possa favoritar o filme, esta deve ser a marcação utilizada para exibir o filme na lista de favoritos da Home.
- 
+
  **Importante: Cada lista de filmes deve ser um componente isolado.**
 
 ### # Avaliação
