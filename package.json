@@ -1,8 +1,8 @@
 {
-  "name": "netflix-clone",
+  "name": "FakeFlix",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "author": "Daniel Freitas",
+  "homepage": "https://github.com/daniielf/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
