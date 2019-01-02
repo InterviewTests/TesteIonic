@@ -74,38 +74,4 @@ describe('RegisterComponent', () => {
       expect(element).toBeTruthy(`Did not find the ${field.formControlName} field.`);
     });
   });
-
-  it('Go to login page', async () => {
-    const html = fixture.nativeElement;
-    html.querySelector('.secondary').click();
-    fixture.detectChanges();
-    return fixture.whenStable()
-    .then(() => {
-      expect(location.path()).toBe('/loginf');
-    })
-    .catch(() => fail('Failed at click'));
-  });
-
-  // it('Bad login attempt', async () => {
-  //   const html = fixture.nativeElement;
-  //   html.querySelector('[ng-reflect-name="loginEmail"]').value = 'error@error.com';
-  //   html.querySelector('[ng-reflect-name="loginPassword"]').value = '12345678';
-  //   html.querySelector('.primary').click();
-  //   fixture.detectChanges();
-  //   return fixture.whenStable()
-  //   .then(() => expect(location.path()).toBe('/login'))
-  //   .catch(() => fail('Could not validate bad login attempt.'));
-  // });
-
-  // it('Ok login attempt', async () => {
-  //   const html = fixture.nativeElement;
-  //   html.querySelector('[ng-reflect-name="loginEmail"]').value = 'test@email.com';
-  //   html.querySelector('[ng-reflect-name="loginPassword"]').value = '12345678';
-  //   html.querySelector('.primary').click();
-  //   fixture.detectChanges();
-  //   return fixture.whenStable()
-  //   .then(() => expect(location.path()).toBe('/home'))
-  //   .catch(() => fail('Could not validate bad login attempt.'));
-  // });
-
 });

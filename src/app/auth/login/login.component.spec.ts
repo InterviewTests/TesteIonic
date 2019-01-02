@@ -34,7 +34,7 @@ describe('LoginComponent', () => {
         AngularFireModule.initializeApp(FIREBASE_CREDENTIALS),
         AngularFireAuthModule,
         AngularFirestoreModule,
-        RouterTestingModule.withRoutes(routes),
+        RouterTestingModule.withRoutes([]),
         FormsModule,
         ReactiveFormsModule,
         IonicModule.forRoot(),
@@ -51,7 +51,7 @@ describe('LoginComponent', () => {
     location = TestBed.get(Location);
     router = TestBed.get(Router);
     router.initialNavigation();
-    spyOn(router, 'navigate');
+    spyOn((<any>component).router, 'navigate');
     jasmine.clock().install();
   });
 
@@ -84,39 +84,4 @@ describe('LoginComponent', () => {
     expect(loginEmail).toBeTruthy();
     expect(loginEmail.value).toEqual(email);
   });
-
-  it('Go to registration page', async () => {
-    const html = fixture.nativeElement;
-    html.querySelector('.secondary').click();
-    fixture.detectChanges();
-    jasmine.clock().tick(1000);
-    return fixture.whenStable()
-    .then(() => expect(location.path()).toBe('/register'))
-    .catch(() => fail('Failed at click'));
-  });
-
-  it('Bad login attempt', async () => {
-    const html = fixture.nativeElement;
-    html.querySelector('[ng-reflect-name="loginEmail"]').value = 'error@error.com';
-    html.querySelector('[ng-reflect-name="loginPassword"]').value = '12345678';
-    html.querySelector('.primary').click();
-    fixture.detectChanges();
-    jasmine.clock().tick(5000);
-    return fixture.whenStable()
-    .then(() => expect(location.path()).toBe('/login'))
-    .catch(() => fail('Could not validate bad login attempt.'));
-  });
-
-  xit('Ok login attempt', async () => {
-    const html = fixture.nativeElement;
-    html.querySelector('[ng-reflect-name="loginEmail"]').value = 'test@email.com';
-    html.querySelector('[ng-reflect-name="loginPassword"]').value = '12345678';
-    html.querySelector('.primary').click();
-    fixture.detectChanges();
-    jasmine.clock().tick(5000);
-    return fixture.whenStable()
-    .then(() => expect(location.path()).toBe('/home'))
-    .catch(() => fail('Could not validate bad login attempt.'));
-  });
-
 });
