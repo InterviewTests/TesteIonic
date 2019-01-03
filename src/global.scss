@@ -59,7 +59,19 @@
 
 
 // CONFIGURAÇÕES GLOBAIS DE CSS
-ion-toolbar{
+
+
+ion-menu {
+  --ion-background-color: #f5f5f1;
+  --background: #f5f5f1;
+  --width: 50%;
+}
+
+item-inner {
+  border-width: 0;
+}
+
+ion-toolbar {
   --background: #E50914;
 }
 

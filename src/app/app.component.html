@@ -1,3 +1,45 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-split-pane>
+    <ion-menu >
+      <ion-header>
+        <ion-toolbar>
+          <!-- <ion-title> -->
+            <span class="f-24 white k2d-eb">MENU</span>
+          <!-- </ion-title> -->
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="menu-content">
+        <ion-list>
+          <ion-menu-toggle auto-hide="false" *ngFor="let menuItem of appMenuItems">
+            <ion-item class="ion-item-class" *ngIf="menuItem.label !== 'Categorias'">
+              <span class="f-20 black k2d-b">
+                {{ menuItem.label }}
+              </span>
+            </ion-item>
+            <ion-item class="ion-item-class category-menu" *ngIf="menuItem.label === 'Categorias'">
+              <ion-col>
+                <ion-row>
+                  <span class="f-20 black k2d-b">
+                    {{ menuItem.label }}
+                  </span>
+                </ion-row>
+                <ion-row>
+                  <ion-list class="category-list">
+                    <ion-menu-toggle auto-hide="false" *ngFor="let category of categoriesItems">
+                      <ion-item class="ion-item-class">
+                        <span class="f-16 black k2d-b">
+                          {{ category.label }}
+                        </span>
+                      </ion-item>
+                    </ion-menu-toggle>
+                  </ion-list>
+                </ion-row>
+              </ion-col>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet main></ion-router-outlet>
+  </ion-split-pane>
 </ion-app>
