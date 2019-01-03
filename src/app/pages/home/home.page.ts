@@ -30,4 +30,8 @@ export class HomePage {
     this.searchingText = value;
     this.searchActive = value !== '';
   }
+
+  private viewMovieInfo(movie) {
+    // TODO
+  }
 }
