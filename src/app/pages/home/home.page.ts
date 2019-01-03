@@ -7,7 +7,11 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
+  private searchActive: boolean = false;
+  private searchingText: string = '';
+
   searchEventEmmited(value: string) {
-    console.log('Got Event from Searchbar:', value);
+    this.searchingText = value;
+    this.searchActive = value !== '';
   }
 }

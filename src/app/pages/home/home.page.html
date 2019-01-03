@@ -10,7 +10,16 @@
   <div class="upper-content">
     <app-search (searchEvent)="searchEventEmmited($event)"></app-search>
   </div>
-  <div class="scroll-content">
+  <div class="scroll-content" *ngIf="!searchActive">
     <app-horizontal-scroll [categoryName]="'Favoritos'"></app-horizontal-scroll>
+    <app-horizontal-scroll [categoryName]="'Em Alta'"></app-horizontal-scroll>
+    <app-horizontal-scroll [categoryName]="'Recomendados'"></app-horizontal-scroll>
+    <app-horizontal-scroll [categoryName]="'Mais Assistidos'"></app-horizontal-scroll>
+  </div>
+  <div class="scroll-content" *ngIf="searchActive">
+    <span class="f-14 white k2d-bi search-label">Filmes encontrados com "{{ searchingText }}"...</span>
+    <div class="movies-display-grid">
+      <app-grid-view></app-grid-view>
+    </div>
   </div>
 </ion-content>

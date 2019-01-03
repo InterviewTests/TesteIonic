@@ -1,5 +1,6 @@
-<span class="title k2d-eb f-24 white">{{ categoryName }}</span>
-<div class="slide-box">
+<div class="component-content">
+  <span class="title k2d-eb f-24 white">{{ categoryName }}</span>
+  <div class="slide-box">
     <ion-slides #slide class="slides-content" (ionSlideDidChange)="updateCurrentSlideIndex()">
       <ion-slide class="slide-class" *ngFor="let movie of moviesArray">
         <img class="movie-img" src="https://s-i.huffpost.com/gen/2165154/images/o-PULP-FICTION-facebook.jpg"/><br />
@@ -9,4 +10,5 @@
     <div class="pagination-row">
       <div [class]="getBulletColor(i)" *ngFor="let bullet of moviesArray let i = index;"></div>
     </div>
+  </div>
 </div>
