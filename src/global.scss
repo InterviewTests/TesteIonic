@@ -57,8 +57,26 @@
 .red { color: #E50914 };
 .black { color: #221F1F };
 
+
+// CONFIGURAÇÕES GLOBAIS DE CSS
+ion-toolbar{
+  --background: #E50914;
+}
+
 ion-content {
   --ion-background-color: #221F1F;
+}
+
+// SEARCHBAR STYLES
+.searchbar-input {
+  font-size: 20px !important;
+  font-family: 'K2D-Italic' !important;
+  border-bottom: solid 1px #4c4c41 !important;
+  border-radius: 0 !important;
+}
+.searchbar-search-icon.sc-ion-searchbar-ios, .searchbar-search-icon.sc-ion-searchbar-md {
+  width: 20px;
+  left: 5px;
 }
 
 // http://ionicframework.com/docs/theming/

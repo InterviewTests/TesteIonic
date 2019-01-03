@@ -9,6 +9,7 @@ import { IonSlides } from '@ionic/angular';
 export class HorizontalScrollComponent implements OnInit {
   @ViewChild('slide') sliderComponent: IonSlides;
   @Input('movies') moviesArray: any[] = [1,2,3,4,5,6,7];
+  @Input('categoryName') categoryName: string = '';
   private currentSlideIndex: number = 0;
 
 

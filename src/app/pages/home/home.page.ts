@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
+  searchEventEmmited(value: string) {
+    console.log('Got Event from Searchbar:', value);
+  }
 }

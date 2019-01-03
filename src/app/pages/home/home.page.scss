@@ -1,14 +1,17 @@
+.toolbar {
+  background-color: #F00 !important;
+}
+
 .body {
   background: #221F1F !important;
 }
 .upper-content {
-  border: solid 1px red;
   height: 40px;
   width: 100%;
 }
 
 .scroll-content {
+  margin-top: 20px;
   height: calc(100% - 40px);
   width: 100%;
-  border: solid 1px blue;
 }

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
+    <ion-title class="f-22 white">
       FakeFlix
     </ion-title>
   </ion-toolbar>
@@ -8,9 +8,9 @@
 
 <ion-content class="body">
   <div class="upper-content">
-
+    <app-search (searchEvent)="searchEventEmmited($event)"></app-search>
   </div>
   <div class="scroll-content">
-    <app-horizontal-scroll></app-horizontal-scroll>
+    <app-horizontal-scroll [categoryName]="'Favoritos'"></app-horizontal-scroll>
   </div>
 </ion-content>
