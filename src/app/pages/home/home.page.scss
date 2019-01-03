@@ -1,0 +1,14 @@
+.body {
+  background: #221F1F !important;
+}
+.upper-content {
+  border: solid 1px red;
+  height: 40px;
+  width: 100%;
+}
+
+.scroll-content {
+  height: calc(100% - 40px);
+  width: 100%;
+  border: solid 1px blue;
+}

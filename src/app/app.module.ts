@@ -8,9 +8,11 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { SearchComponent } from './components/search/search.component';
+// import { HorizontalScrollComponent } from './components/horizontal-scroll/horizontal-scroll.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, SearchComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [

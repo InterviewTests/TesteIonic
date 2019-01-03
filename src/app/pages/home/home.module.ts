@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
+// import { SearchComponent } from '../../components/search/search.component';
+import { HorizontalScrollComponent } from '../../components/horizontal-scroll/horizontal-scroll.component';
 
 @NgModule({
   imports: [
@@ -18,6 +20,6 @@ import { HomePage } from './home.page';
       }
     ])
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, HorizontalScrollComponent]
 })
 export class HomePageModule {}
