@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
-import { IonSearchbar } from '@ionic/angular';
+import { IonSearchbar, Events } from '@ionic/angular';
 
 @Component({
   selector: 'app-search',
@@ -12,7 +12,9 @@ export class SearchComponent implements OnInit {
 
   private searchText: string = '';
 
-  constructor() { }
+  constructor(private eventsHandler: Events) {
+
+  }
 
   ngOnInit() {
   }
@@ -20,6 +22,11 @@ export class SearchComponent implements OnInit {
   private textChanged() {
     this.searchText = this.searchBarComponent.value;
     this.searchEvent.emit(this.searchText);
+  }
+
+  public setSearchInput(inputText) {
+    this.searchBarComponent.value = inputText;
+    this.textChanged();
   }
 
 }

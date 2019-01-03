@@ -25,7 +25,7 @@
                 </ion-row>
                 <ion-row>
                   <ion-list class="category-list">
-                    <ion-menu-toggle auto-hide="false" *ngFor="let category of categoriesItems">
+                    <ion-menu-toggle auto-hide="false" *ngFor="let category of categoriesItems" (click)="searchByCategory(category)">
                       <ion-item class="ion-item-class">
                         <span class="f-16 black k2d-b">
                           {{ category.label }}
