@@ -4,20 +4,25 @@ Um aplicativo feito com *Ionic4*, *Angular4+* com integração do *FireBase* e d
 
 ## Como rodar:
 Para conseguir rodar este projeto localmente, é necessário ter o seguinte instalado na máquina:
+
 - *Node.js 8* ou superior e *NPM* (https://nodejs.org/en/download/)
 - *Ionic CLI* (https://beta.ionicframework.com/docs/installation/cli)
 - *Git*
+
 Caso queira testar com o emulador nativo do *Ios* ou *Android*:
+
 - https://beta.ionicframework.com/docs/installation/ios
 - https://beta.ionicframework.com/docs/installation/android
 
 Os testes feitos para este app foram todos no browser usando o comando `ionic serve -g` ou no android usando um .apk gerado pelo comando `ionic cordova build android --prod`. O comando de build de .apk está no arquivo package.json como `npm run build-android`.
 
 Clone o repositório em alguma pasta seguindo o comando
+
 `git clone https://github.com/PauloGasparSv/Notflix.git`
 `cd Notfix`
 
 Todos os arquivos de source do projeto estão baixados localmente agora. Instale todas as dependências com os comandos
+
 `npm install`
 `ionic cordova prepare`
 
