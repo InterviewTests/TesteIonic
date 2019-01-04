@@ -13,16 +13,16 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ActivatedRouteStub } from 'src/app/testing/ActivatedRouteStub';
 import { RegisterComponent } from './register.component';
 import { routes } from '../auth.routes';
-import { Location } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
   let router: Router;
   let activatedRouteStub: ActivatedRouteStub;
-  let location: Location;
+  let fireAuth: AngularFireAuth;
 
   beforeEach(async(() => {
     activatedRouteStub = new ActivatedRouteStub();
@@ -56,28 +56,46 @@ describe('RegisterComponent', () => {
     fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    location = TestBed.get(Location);
     router = TestBed.get(Router);
     router.initialNavigation();
+    fireAuth = TestBed.get(AngularFireAuth);
+    spyOn(fireAuth.auth, 'signInWithEmailAndPassword').and.callThrough();
+    fireAuth.auth.signInWithEmailAndPassword = jasmine.createSpy('signInWithEmailAndPassword');
     spyOn(router, 'navigate');
-    jasmine.clock().install();
     await router.navigate(['register']);
   });
 
-  afterEach(() => jasmine.clock().uninstall());
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  // it('Should create the registration form.', async () => {
-  //   const html = fixture.nativeElement;
-  //   const form = html.querySelector('form');
-  //   expect(form).toBeTruthy('Did not find the login form.');
-  //   component.fields.forEach(field => {
-  //     const element = html.querySelector(`ion-input[ng-reflect-name="${field.formControlName}"]`);
-  //     expect(element).toBeTruthy(`Did not find the ${field.formControlName} field.`);
-  //   });
-  // });
-  
+  xit('Valid form submit should call angular fire auth.', async () => {
+    const fg = new FormBuilder().group({
+      registerEmail: 'email@mail.com',
+      registerPassword: '12345678',
+      registerConfirmPassword: '12345678'
+    });
+    await component.submit(fg);
+    fixture.detectChanges();
+    return fixture.whenStable()
+    .then(() => expect(fireAuth.auth).toHaveBeenCalled())
+    .catch(e => fail(e) );
+  });
+
+
+  xit('Invalid form submit should not call angular fire auth.', async () => {
+    const fg = new FormBuilder().group({
+      registerEmail: 'email@mail.com',
+      registerPassword: '12345678',
+      registerConfirmPassword: '87654321'
+    });
+    await component.submit(fg);
+    fixture.detectChanges();
+    return fixture.whenStable()
+    .then(() => expect(fireAuth.auth).not.toHaveBeenCalled())
+    .catch(e => fail(e) );
+  });
+
+
 });
