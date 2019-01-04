@@ -1,7 +1,10 @@
 <div class="component-content">
   <div class="grid">
     <div class="grid-item" *ngFor="let movie of moviesList" (click)="selectedMovie(movie)">
-      <img class="movie-img" src="https://s-i.huffpost.com/gen/2165154/images/o-PULP-FICTION-facebook.jpg"/>
+      <img class="movie-img" [src]="movie.poster_path"/>
+    </div>
+    <div class="not-found-box">
+      <span class="k2d-m white f-22" *ngIf="moviesList.length === 0">Nenhum resultado encontrado.</span>
     </div>
   </div>
 </div>

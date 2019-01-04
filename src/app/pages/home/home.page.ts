@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { Events} from '@ionic/angular';
 import { SearchComponent } from '../../components/search/search.component';
 
+import { MovieService } from '../../services/movie.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -12,8 +14,14 @@ export class HomePage {
   private searchActive: boolean = false;
   private searchingText: string = '';
 
-  constructor(private eventsHandler: Events) {
+  private userFavorites = [];
+  private mostSeen = [];
+  private mostPopular = [];
+  private newRealeases = [];
+  private searchResult = [];
 
+  constructor(private eventsHandler: Events, private movieService: MovieService) {
+    this.fakeData();
   }
 
   ionViewDidEnter() {
@@ -33,5 +41,13 @@ export class HomePage {
 
   private viewMovieInfo(movie) {
     // TODO
+  }
+
+  private fakeData() {
+    this.userFavorites = this.movieService.getFavorites();
+    this.mostSeen = this.movieService.getMostSeen();
+    this.mostPopular = this.movieService.getMostPopular();
+    this.newRealeases = this.movieService.getReleases();
+    this.searchResult = this.movieService.getSearchResult();
   }
 }

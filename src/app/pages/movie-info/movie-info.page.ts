@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Movie } from '../../models/movie';
 
 @Component({
   selector: 'app-movie-info',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['movie-info.page.scss'],
 })
 export class MovieInfoPage {
-
+  private movie: Movie;
 }

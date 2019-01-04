@@ -1,0 +1,14 @@
+<div class="component-content">
+    <div class="poster-placement">
+      <img [src]="movie.poster_path" />
+    </div>
+    <div class="first-detail-content">
+      <span class="title k2d-eb">{{ movie.title }}</span>
+      <span class="sub-info k2d-m">Gêneros:</span><span class="k2d-i"> Ação, Drama, Drogas </span>
+      <span class="sub-info k2d-m">Popularidade:</span><span class="k2d-i"> {{ movie.popularity }} </span> 
+      <span class="sub-info k2d-m">Duração:</span><span class="k2d-i"> {{ getDurationString(movie.runtime) }} </span>
+    </div>
+    <div class="description-content">
+
+    </div>
+</div>

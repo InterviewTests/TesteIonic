@@ -3,8 +3,8 @@
   <div class="slide-box">
     <ion-slides #slide class="slides-content" (ionSlideDidChange)="updateCurrentSlideIndex()">
       <ion-slide class="slide-class" *ngFor="let movie of moviesArray">
-        <img class="movie-img" src="https://s-i.huffpost.com/gen/2165154/images/o-PULP-FICTION-facebook.jpg"/><br />
-        <span class="movie-title k2d-b f-16 white">Titulo {{ movie }}</span>
+        <img class="movie-img" [src]="movie.poster_path"/><br />
+        <span class="movie-title k2d-b f-16 white">{{ movie.title }}</span>
       </ion-slide>
     </ion-slides>
     <div class="pagination-row">
