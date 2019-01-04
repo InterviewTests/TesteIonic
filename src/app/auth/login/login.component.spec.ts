@@ -5,7 +5,7 @@ import { FormComponent } from 'src/app/utils/form/form.component';
 import { IonicStorageModule } from '@ionic/storage';
 import { IonicModule } from '@ionic/angular';
 import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FIREBASE_CREDENTIALS } from 'src/app/firebase.credentials';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -14,20 +14,23 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Location } from '@angular/common';
 import { RegisterComponent } from '../register/register.component';
-import { routes } from '../auth.routes';
+import { AngularFireAuthMock } from 'src/app/testing/AngularFireAuthMock';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let router: Router;
   let activatedRouteStub: ActivatedRouteStub;
-  let location: Location;
+  let angularFireAuthMock: AngularFireAuthMock;
 
   beforeEach(async(() => {
     activatedRouteStub = new ActivatedRouteStub();
+    angularFireAuthMock = new AngularFireAuthMock();
+
     TestBed.configureTestingModule({
       declarations: [ AuthPage, LoginComponent, RegisterComponent, FormComponent ],
       providers: [
+        { provide: AngularFireAuth, useValue: angularFireAuthMock },
         { provide: ActivatedRoute, useValue: activatedRouteStub }
       ],
       imports: [
@@ -48,10 +51,12 @@ describe('LoginComponent', () => {
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+
     location = TestBed.get(Location);
     router = TestBed.get(Router);
-    router.initialNavigation();
-    spyOn((<any>component).router, 'navigate');
+
+    spyOn(router, 'navigate');
+
     jasmine.clock().install();
   });
 
@@ -62,7 +67,7 @@ describe('LoginComponent', () => {
   });
 
   it('Should create the login form.', () => {
-    const html = fixture.nativeElement;
+    const html = fixture.debugElement.nativeElement;
     const form = html.querySelector('form');
     expect(form).toBeTruthy('Did not find the login form.');
     const loginEmail = html.querySelector('ion-input[ng-reflect-name="loginEmail"]');
@@ -71,17 +76,22 @@ describe('LoginComponent', () => {
     expect(loginPassword).toBeTruthy('Did not find the login password field.');
   });
 
-  it('should create with the email field filled', () => {
+  it('Should create the form with the email field filled with the route param email', () => {
+    // The mocked email
     const email = 'testuser@email.com';
     activatedRouteStub.setQueryParam('email', email);
+    // Recreating the component but passing the email at the activatedRoute
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    const html = fixture.nativeElement;
+    // Checking the view to see if the field was created and has the value
+    const html = fixture.debugElement.nativeElement;
     const form = html.querySelector('form');
     expect(form).toBeTruthy('Did not find the login form.');
     const loginEmail = html.querySelector('ion-input[ng-reflect-name="loginEmail"]');
     expect(loginEmail).toBeTruthy();
     expect(loginEmail.value).toEqual(email);
   });
+
+
 });

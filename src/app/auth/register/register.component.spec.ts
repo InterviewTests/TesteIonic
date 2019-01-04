@@ -28,7 +28,12 @@ describe('RegisterComponent', () => {
     activatedRouteStub = new ActivatedRouteStub();
 
     TestBed.configureTestingModule({
-      declarations: [ AuthPage, LoginComponent, RegisterComponent, FormComponent ],
+      declarations: [
+        AuthPage,
+        LoginComponent,
+        RegisterComponent,
+        FormComponent
+      ],
       providers: [
         { provide: ActivatedRoute, useValue: activatedRouteStub }
       ],
