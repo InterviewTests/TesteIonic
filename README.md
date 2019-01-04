@@ -19,11 +19,13 @@ Os testes feitos para este app foram todos no browser usando o comando `ionic se
 Clone o repositório em alguma pasta seguindo o comando
 
 `git clone https://github.com/PauloGasparSv/Notflix.git`
+
 `cd Notfix`
 
 Todos os arquivos de source do projeto estão baixados localmente agora. Instale todas as dependências com os comandos
 
 `npm install`
+
 `ionic cordova prepare`
 
 Após as instalações
