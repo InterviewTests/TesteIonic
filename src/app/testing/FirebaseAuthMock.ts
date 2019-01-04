@@ -1,8 +1,9 @@
-import { auth } from './user.mock';
+// import { auth } from './user.mock';
 
 export class FirebaseAuthMock {
+    constructor() {}
     signInWithEmailAndPassword(email: string, password: string) {
-        return auth;
+        return false;
     }
     createUserWithEmailAndPassword(email: string, password: string) {
         return true;

@@ -70,13 +70,14 @@ describe('RegisterComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('Should create the registration form.', async () => {
-    const html = fixture.nativeElement;
-    const form = html.querySelector('form');
-    expect(form).toBeTruthy('Did not find the login form.');
-    component.fields.forEach(field => {
-      const element = html.querySelector(`ion-input[ng-reflect-name="${field.formControlName}"]`);
-      expect(element).toBeTruthy(`Did not find the ${field.formControlName} field.`);
-    });
-  });
+  // it('Should create the registration form.', async () => {
+  //   const html = fixture.nativeElement;
+  //   const form = html.querySelector('form');
+  //   expect(form).toBeTruthy('Did not find the login form.');
+  //   component.fields.forEach(field => {
+  //     const element = html.querySelector(`ion-input[ng-reflect-name="${field.formControlName}"]`);
+  //     expect(element).toBeTruthy(`Did not find the ${field.formControlName} field.`);
+  //   });
+  // });
+  
 });
