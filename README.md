@@ -2,6 +2,8 @@
 
 Um aplicativo feito com **Ionic4**, **Angular4+** com integração do **FireBase** e da api do **MovieDB** que copia o look and feel de um aplicativo famoso de streaming de filmes. 
 
+![Alt Text](https://github.com/PauloGasparSv/Notflix/blob/master/showcase.gif)
+
 ## Como rodar:
 Para conseguir rodar este projeto localmente, é necessário ter o seguinte instalado na máquina:
 
