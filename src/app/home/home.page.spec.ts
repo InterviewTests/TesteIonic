@@ -13,6 +13,7 @@ describe('HomePage', () => {
   let activatedRouteStub: ActivatedRouteStub;
   let platformReadySpy: any;
   let platformSpy: any;
+  let toastController: ToastController;
 
   beforeEach(async(() => {
     platformReadySpy = Promise.resolve();
@@ -37,10 +38,30 @@ describe('HomePage', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HomePage);
     component = fixture.componentInstance;
+    toastController = TestBed.get(ToastController);
+    spyOn(toastController, 'create');
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  xit('Should tell user to validate invalid email', () => {
+    // Should be the first toast called since it is on ngInit
+    // And no changes to the route should be done.
+    expect(toastController.create).toHaveBeenCalled();
+  });
+
+  it('Should not tell user to validate invalid email', () => {
+    // Should be the first toast called since it is on ngInit
+    // And no changes to the route should be done.
+    activatedRouteStub.setQueryParam('emailVerified', 'true');
+    // Recreating the component but passing the email at the
+    // verified email varaible
+    fixture = TestBed.createComponent(HomePage);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    expect(toastController.create).not.toHaveBeenCalled();
   });
 });
