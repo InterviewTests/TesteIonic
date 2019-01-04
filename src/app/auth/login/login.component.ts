@@ -87,6 +87,7 @@ export class LoginComponent implements OnInit {
       });
       await loading.present();
       try {
+        debugger;
         // Login attempt
         const login = await this.auth.auth.signInWithEmailAndPassword(
           form.controls.loginEmail.value,

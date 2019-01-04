@@ -2,6 +2,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { AuthPage } from '../auth.page';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { FormComponent } from 'src/app/utils/form/form.component';
 import { IonicStorageModule } from '@ionic/storage';
 import { IonicModule } from '@ionic/angular';
@@ -11,7 +12,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FIREBASE_CREDENTIALS } from 'src/app/firebase.credentials';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ActivatedRouteStub } from 'src/app/testing/ActivatedRouteStub';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Location } from '@angular/common';
 import { RegisterComponent } from '../register/register.component';
@@ -22,7 +23,7 @@ describe('LoginComponent', () => {
   let fixture: ComponentFixture<LoginComponent>;
   let router: Router;
   let activatedRouteStub: ActivatedRouteStub;
-  let location: Location;
+  let fireAuth: AngularFireAuth;
 
   beforeEach(async(() => {
     activatedRouteStub = new ActivatedRouteStub();
@@ -50,9 +51,11 @@ describe('LoginComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    location = TestBed.get(Location);
     router = TestBed.get(Router);
+    fireAuth = TestBed.get(AngularFireAuth);
 
+    spyOn(fireAuth.auth, 'signInWithEmailAndPassword').and.callThrough();
+    fireAuth.auth.signInWithEmailAndPassword = jasmine.createSpy('signInWithEmailAndPassword');
     spyOn(router, 'navigate');
 
     jasmine.clock().install();
@@ -91,8 +94,18 @@ describe('LoginComponent', () => {
     expect(loginEmail.value).toEqual(email);
   });
 
-  xit('Valid form submit should call angular fire auth.', () => {
-
+  it('Valid form submit should call angular fire auth.', async () => {
+    const fg = new FormBuilder().group({
+      loginEmail: 'email@mail.com',
+      loginPassword: '12345678'
+    });
+    await component.submit(fg);
+    fixture.detectChanges();
+    return fixture.whenStable()
+    .then(() => {
+      expect(fireAuth.auth).toHaveBeenCalled();
+    })
+    .catch(e => fail(e) );
   });
 
 });
