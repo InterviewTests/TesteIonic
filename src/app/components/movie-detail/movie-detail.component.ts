@@ -14,11 +14,12 @@ export class MovieDetailComponent implements OnInit {
   ngOnInit() {
   }
 
-
   private getDurationString(durationTime) {
-    let hour = String(Math.floor(durationTime/60)) + 'h';
-    let minutes = String(durationTime%60) + 'mins';
+    if (durationTime) {
+      let hour = String(Math.floor(durationTime/60)) + 'h';
+      let minutes = String(durationTime%60) + 'mins';
 
-    return hour + minutes;
+      return hour + minutes;
+    }
   }
 }

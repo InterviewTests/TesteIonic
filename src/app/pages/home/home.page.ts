@@ -1,8 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
-import { Events} from '@ionic/angular';
+import { Component, ViewChild, } from '@angular/core';
+import { Events, NavController } from '@ionic/angular';
 import { SearchComponent } from '../../components/search/search.component';
 
 import { MovieService } from '../../services/movie.service';
+// import { NavigatorService } from '../../services/navigator.service';
 
 @Component({
   selector: 'app-home',
@@ -20,18 +21,16 @@ export class HomePage {
   private newRealeases = [];
   private searchResult = [];
 
-  constructor(private eventsHandler: Events, private movieService: MovieService) {
+  constructor(private eventsHandler: Events, private movieService: MovieService, private navController: NavController) {
     this.fakeData();
   }
 
   ionViewDidEnter() {
-    this.eventsHandler.subscribe('searchCategoryEventEmmited', (category) => {
-      this.searchComponent.setSearchInput(category);
-    });
+    this.subscribeCategoryEvent();
   }
 
   ionViewWillLeave() {
-    this.eventsHandler.unsubscribe('searchCategoryEventEmmited');
+    this.unsubscribeCategoryEvent();
   }
 
   searchEventEmmited(value: string) {
@@ -40,7 +39,7 @@ export class HomePage {
   }
 
   private viewMovieInfo(movie) {
-    // TODO
+    this.navController.navigateForward('movieInfo/'+ movie);
   }
 
   private fakeData() {
@@ -49,5 +48,15 @@ export class HomePage {
     this.mostPopular = this.movieService.getMostPopular();
     this.newRealeases = this.movieService.getReleases();
     this.searchResult = this.movieService.getSearchResult();
+  }
+
+  private subscribeCategoryEvent() {
+    this.eventsHandler.subscribe('searchCategoryEventEmmited', (category) => {
+      this.searchComponent.setSearchInput(category);
+    });
+  }
+
+  private unsubscribeCategoryEvent() {
+    this.eventsHandler.unsubscribe('searchCategoryEventEmmited');
   }
 }

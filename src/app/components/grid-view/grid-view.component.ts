@@ -7,15 +7,15 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class GridViewComponent implements OnInit {
   @Input('movies') moviesList: any[] = [1,1,1,1,1,1,1,1,1,1,1,1,1,1];
-  @Output('selectedMovie') selectMovieEvent: EventEmitter<any> = new EventEmitter<any>();
+  @Output('movieSelected') movieSelected: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  private selectedMovie(movie) {
-    this.selectMovieEvent.emit(movie);
+  private selectMovie(movie) {
+    this.movieSelected.emit(movie.id);
   }
 
 }

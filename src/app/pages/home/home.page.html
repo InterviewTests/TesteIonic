@@ -14,15 +14,15 @@
     <app-search #searchComponent (searchEvent)="searchEventEmmited($event)"></app-search>
   </div>
   <div class="scroll-content" *ngIf="!searchActive">
-    <app-horizontal-scroll [movies]="userFavorites"  [categoryName]="'Favoritos'"></app-horizontal-scroll>
-    <app-horizontal-scroll [movies]="mostSeen" [categoryName]="'Em Alta'"></app-horizontal-scroll>
-    <app-horizontal-scroll [movies]="mostPopular" [categoryName]="'Recomendados'"></app-horizontal-scroll>
-    <app-horizontal-scroll [movies]="newRealeases" [categoryName]="'Mais Assistidos'"></app-horizontal-scroll>
+    <app-horizontal-scroll (movieSelected)="viewMovieInfo($event)" [movies]="userFavorites"  [categoryName]="'Favoritos'"></app-horizontal-scroll>
+    <app-horizontal-scroll (movieSelected)="viewMovieInfo($event)" [movies]="mostSeen" [categoryName]="'Em Alta'"></app-horizontal-scroll>
+    <app-horizontal-scroll (movieSelected)="viewMovieInfo($event)" [movies]="mostPopular" [categoryName]="'Recomendados'"></app-horizontal-scroll>
+    <app-horizontal-scroll (movieSelected)="viewMovieInfo($event)" [movies]="newRealeases" [categoryName]="'Mais Assistidos'"></app-horizontal-scroll>
   </div>
   <div class="scroll-content" *ngIf="searchActive">
     <span class="f-14 white k2d-bi search-label">Filmes encontrados com "{{ searchingText }}" ...</span>
     <div class="movies-display-grid">
-      <app-grid-view [movies]="searchResult" (selectedMovie)="viewMovieInfo($event)"></app-grid-view>
+      <app-grid-view [movies]="searchResult" (movieSelected)="viewMovieInfo($event)"></app-grid-view>
     </div>
   </div>
 </ion-content>

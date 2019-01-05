@@ -1,6 +1,6 @@
 <div class="component-content">
   <div class="grid">
-    <div class="grid-item" *ngFor="let movie of moviesList" (click)="selectedMovie(movie)">
+    <div class="grid-item" *ngFor="let movie of moviesList" (click)="selectMovie(movie)">
       <img class="movie-img" [src]="movie.poster_path"/>
     </div>
     <div class="not-found-box">

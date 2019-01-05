@@ -1,13 +1,14 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [text]="''"></ion-back-button>
+    </ion-buttons>
     <ion-title class="f-22 white k2d-bi">
       DETALHES
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <span class="k2d-b f-26 red">
-    Teste de Font do App
-  </span>
+<ion-content>
+  <app-movie-detail *ngIf="movie" [movie]="movie" #movieDetail></app-movie-detail>
 </ion-content>

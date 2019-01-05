@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
 
 @Component({
@@ -8,6 +8,7 @@ import { IonSlides } from '@ionic/angular';
 })
 export class HorizontalScrollComponent implements OnInit {
   @ViewChild('slide') sliderComponent: IonSlides;
+  @Output('movieSelected') movieSelected: EventEmitter<any> = new EventEmitter<any>();
   @Input('movies') moviesArray: any[] = [1,2,3,4,5,6,7];
   @Input('categoryName') categoryName: string = '';
   private currentSlideIndex: number = 0;
@@ -30,6 +31,10 @@ export class HorizontalScrollComponent implements OnInit {
 
   private getBulletColor(index) {
     return index ===  this.currentSlideIndex ? 'pag-bullet active' : 'pag-bullet';
+  }
+
+  private selectMovie(movie) {
+    this.movieSelected.emit(movie.id);
   }
 
 }

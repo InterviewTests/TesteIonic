@@ -1,14 +1,14 @@
 <div class="component-content">
     <div class="poster-placement">
-      <img [src]="movie.poster_path" />
+      <img [src]="movie?.poster_path" />
     </div>
     <div class="first-detail-content">
-      <span class="title k2d-eb">{{ movie.title }}</span>
-      <span class="sub-info k2d-m">Gêneros:</span><span class="k2d-i"> Ação, Drama, Drogas </span>
-      <span class="sub-info k2d-m">Popularidade:</span><span class="k2d-i"> {{ movie.popularity }} </span> 
-      <span class="sub-info k2d-m">Duração:</span><span class="k2d-i"> {{ getDurationString(movie.runtime) }} </span>
+      <span class="title f-22 white k2d-eb">{{ movie?.title }}</span><br />
+      <span class="sub-info white k2d-m">Gêneros:</span><span class="k2d-i white"> Ação, Drama, Drogas </span><br />
+      <span class="sub-info white k2d-m">Popularidade:</span><span class="k2d-i white"> {{ movie?.popularity }} </span><br />
+      <span class="sub-info white k2d-m">Duração:</span><span class="k2d-i white"> {{ getDurationString(movie?.runtime) }} </span>
     </div>
-    <div class="description-content">
-
+    <div class="description-content white k2d-mi">
+      {{ movie.overview }}
     </div>
 </div>

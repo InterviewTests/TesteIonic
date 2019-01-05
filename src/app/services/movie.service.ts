@@ -12,8 +12,24 @@ export class MovieService {
   private mostPopular: Movie[] = [];
 
   private searchResult: Movie[] = [];
+
   constructor() {
     this.fakeData();
+  }
+
+  public getMovieById(id) {
+    return new Promise((resolve, reject) => {
+      let movie = new Movie();
+      movie.fakeData();
+      // TODO
+
+
+      if (movie) {
+        resolve(movie);
+      } else {
+        reject(null);
+      }
+    });
   }
 
   public getFavorites() {
