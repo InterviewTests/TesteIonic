@@ -6,12 +6,11 @@
     <ion-title class="f-22 white k2d-bi">
       DETALHES
     </ion-title>
-    <ion-buttons slot="start">
-      <ion-menu-button class="ion-menu-button"></ion-menu-button>
+    <ion-buttons slot="end">
+      <ion-menu-button class="white"></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <app-movie-detail *ngIf="movie" [movie]="movie" #movieDetail></app-movie-detail>
 </ion-content>

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-
-import { Platform, Events } from '@ionic/angular';
+import { Platform, Events, NavController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+
 
 @Component({
   selector: 'app-root',
@@ -11,12 +11,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 })
 export class AppComponent {
-
-  private appMenuItems = [
-    { label: 'Início' },
-    { label: 'Categorias' },
-    { label: 'Sair' }
-  ];
 
   private categoriesItems = [
     { label: 'Ação' },
@@ -32,6 +26,7 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private eventsHandler: Events,
+    private navCtrl: NavController,
   ) {
     this.initializeApp();
   }
@@ -45,5 +40,9 @@ export class AppComponent {
 
   private searchByCategory(category) {
     this.eventsHandler.publish('searchCategoryEventEmmited', category.label);
+  }
+
+  private navHome() {
+    this.navCtrl.navigateRoot(['/home']);
   }
 }

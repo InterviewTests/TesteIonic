@@ -11,17 +11,19 @@
       </ion-header>
       <ion-content class="menu-content">
         <ion-list>
-          <ion-menu-toggle auto-hide="false" *ngFor="let menuItem of appMenuItems">
-            <ion-item class="ion-item-class" *ngIf="menuItem.label !== 'Categorias'">
+          <ion-menu-toggle auto-hide="false" >
+            <ion-item class="ion-item-class" (click)="navHome()">
               <span class="f-20 black k2d-b">
-                {{ menuItem.label }}
+                Inicio
               </span>
             </ion-item>
-            <ion-item class="ion-item-class category-menu" *ngIf="menuItem.label === 'Categorias'">
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false" >
+            <ion-item class="ion-item-class" >
               <ion-col>
                 <ion-row>
                   <span class="f-20 black k2d-b">
-                    {{ menuItem.label }}
+                    Categorias
                   </span>
                 </ion-row>
                 <ion-row>
@@ -36,6 +38,13 @@
                   </ion-list>
                 </ion-row>
               </ion-col>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false" >
+            <ion-item class="ion-item-class" >
+              <span class="f-20 black k2d-b">
+                Sair
+              </span>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
