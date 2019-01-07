@@ -1,4 +1,4 @@
-import { Component, ViewChild, } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Events, NavController } from '@ionic/angular';
 import { SearchComponent } from '../../components/search/search.component';
 
@@ -11,6 +11,7 @@ import { MovieService } from '../../services/movie.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  @ViewChild('content') mainContent: any;
   @ViewChild('searchComponent') searchComponent: SearchComponent;
   private searchActive: boolean = false;
   private searchingText: string = '';
@@ -52,6 +53,7 @@ export class HomePage {
 
   private subscribeCategoryEvent() {
     this.eventsHandler.subscribe('searchCategoryEventEmmited', (category) => {
+      this.mainContent.scrollToTop();
       this.searchComponent.setSearchInput(category);
     });
   }

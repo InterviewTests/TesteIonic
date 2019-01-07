@@ -4,25 +4,35 @@ import { ToastController } from '@ionic/angular';
 @Injectable()
 export class ToastService {
     private activeToast: any;
+
     constructor(private toastCtrl:ToastController) {
 		}
 
-		public showToastAlert(message:string, time:number = 3500){
-      if (this.activeToast != null){
-        this.dismissToast();
-      }
-      this.activeToast = this.toastCtrl.create({
-        message: message,
-        duration: time,
-        position: 'top',
-        showCloseButton: true,
-        closeButtonText: 'x'
+		public showToastAlert(message:string, time:number = 2500): Promise<any> {
+      return new Promise((resolve, reject) => {
+        if (this.activeToast != null){
+          this.dismissToast();
+        }
+        this.toastCtrl.create({
+          message: message,
+          duration: time,
+          position: 'top',
+          color: "secondary",
+          cssClass: "toast-controller-class",
+          showCloseButton: true,
+          closeButtonText: 'X'
+        }).then((toast) => {
+          this.activeToast = toast;
+          this.activeToast.present();
+          resolve();
+        });
       });
-      this.activeToast.present();
     }
 
     public dismissToast(){
-      this.activeToast.dismiss();
+      if (this.activeToast) {
+        this.activeToast.dismiss();
+      }
     }
 
 }

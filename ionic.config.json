@@ -1,5 +1,7 @@
 {
   "name": "netflix-clone",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

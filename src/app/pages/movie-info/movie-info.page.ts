@@ -17,7 +17,7 @@ export class MovieInfoPage {
 
   constructor(public movieService: MovieService, public navController: NavController, public routeController: ActivatedRoute, public loadService: LoadingService) {
     let movieID = this.routeController.snapshot.paramMap.get('id');
-    console.log('This movie ID:', movieID);
+
     if (movieID) {
       this.getMovieRef(movieID);
     } else {
@@ -26,8 +26,8 @@ export class MovieInfoPage {
   }
 
 
-  getMovieRef(movieID) {
-    this.loadService.startLoading('Carregando detalhes do filme...');
+  async getMovieRef(movieID) {
+    await this.loadService.startLoading('Carregando detalhes do filme...');
     this.movieService.getMovieById(movieID).then((movie: Movie) => {
       this.movie = movie;
       this.loadService.stopLoading();

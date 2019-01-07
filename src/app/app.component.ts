@@ -39,7 +39,11 @@ export class AppComponent {
   }
 
   private searchByCategory(category) {
-    this.eventsHandler.publish('searchCategoryEventEmmited', category.label);
+    this.navCtrl.navigateRoot(['/home']).then(() => {
+      setTimeout(() => {
+        this.eventsHandler.publish('searchCategoryEventEmmited', category.label);
+      }, 100);
+    });
   }
 
   private navHome() {
