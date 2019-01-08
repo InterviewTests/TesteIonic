@@ -12,6 +12,10 @@
       <ion-label position="floating" color="primary">Conf. Senha:</ion-label>
       <ion-input formControlName="confirmpassword" type="password" class="input-txt white f-16 k2d-m"></ion-input>
     </ion-item>
+    <ion-item class="finger-check-box">
+      <ion-label color="primary" class="custom-label">Autenticação por Digital:</ion-label>
+      <ion-checkbox end formControlName="digitalAuth" class="custom-checkbox-icon"></ion-checkbox>
+    </ion-item>
     <button ion-button class="register-form-button" (click)="registerButtonPressed()">
       <span class="f-22 white k2d-eb"> REGISTRAR </span>
     </button>

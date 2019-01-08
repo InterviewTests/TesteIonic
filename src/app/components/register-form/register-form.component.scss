@@ -27,3 +27,30 @@
   text-decoration: underline;
   color: #f5f5f1;
 }
+
+.finger-check-box {
+  margin-top: 20px;
+  --border-color: transparent;
+}
+
+.ion-checkbox {
+  --border: solid 3px #E50914 !important;
+  --border-radius: 2px;
+  --background: transparent;
+}
+
+.custom-checkbox-icon {
+  border-radius: 2px;
+}
+
+.checkbox-icon {
+  --border: solid 3px #E50914 !important;
+  border-radius: 2px;
+  // --background: transparent;
+}
+//
+// .custom-checkbox {
+//   --border: solid 3px #E50914 !important;
+//   --border-radius: 2px;
+//   --background: transparent;
+// }

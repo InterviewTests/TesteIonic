@@ -97,6 +97,13 @@ ion-content {
   --ion-background-color: #221F1F;
 }
 
+ion-checkbox {
+  border: solid 3px #E50914;
+  border-radius: 2px;
+  --border-width: 0;
+  --background-checked: none;
+}
+
 .loading-wrapper {
   --spinner-color: #221F1F;
   --background: #f5f5f5;
