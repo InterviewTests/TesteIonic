@@ -4,13 +4,13 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { ToastService } from '../../services/toast.service';
 
 @Component({
-  selector: 'app-login-form',
-  templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.scss']
+  selector: 'app-register-form',
+  templateUrl: './register-form.component.html',
+  styleUrls: ['./register-form.component.scss']
 })
-export class LoginFormComponent implements OnInit {
+export class RegisterFormComponent implements OnInit {
   @Output('loginEvent') loginEvent: EventEmitter<any> = new EventEmitter<any>();
-  @Output('slideToRegister') slideToRegister: EventEmitter<any> = new EventEmitter<any>();
+  @Output('slideToLogin') registerEvent: EventEmitter<any> = new EventEmitter<any>();
   @Output('forgotPassEvent') forgotPassEvent: EventEmitter<any> = new EventEmitter<any>();
 
   private loginForm: FormGroup;
@@ -19,7 +19,7 @@ export class LoginFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private toastService: ToastService
   ) {
-    this.loginForm = this.buildLoginForm();
+    this.loginForm = this.buildRegisterForm();
   }
 
   ngOnInit() {
@@ -30,24 +30,26 @@ export class LoginFormComponent implements OnInit {
     if (this.isFormValid()) {
       const loginAuth = {
         email: this.loginForm.get('email').value,
-        password: this.loginForm.get('password').value
+        password: this.loginForm.get('password').value,
+        confirm_password: this.loginForm.get('confirm_password').value
       };
       this.loginEvent.emit(loginAuth);
     }
   }
 
   private registerButtonPressed() {
-    this.slideToRegister.emit();
+    this.registerEvent.emit();
   }
 
   private forgotPassButtonPressed() {
 
   }
 
-  private buildLoginForm() {
+  private buildRegisterForm() {
     return this.formBuilder.group({
       email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
-      password: new FormControl('', Validators.compose([Validators.required]))
+      password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
+      confirm_password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
     });
   }
 
@@ -58,6 +60,14 @@ export class LoginFormComponent implements OnInit {
     }
     if (this.loginForm.get('password').errors) {
       this.toastService.showToastAlert(this.getErrorMessage('Senha', this.loginForm.get('password').errors));
+      return false;
+    }
+    if (this.loginForm.get('confirm_password').errors) {
+      this.toastService.showToastAlert(this.getErrorMessage('Confirmar Senha', this.loginForm.get('confirm_password').errors));
+      return false;
+    }
+    if (this.loginForm.get('confirm_password').value === this.loginForm.get('password').value) {
+      this.toastService.showToastAlert('As senhas digitadas não conferem');
       return false;
     }
     return true;

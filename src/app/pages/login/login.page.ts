@@ -21,8 +21,19 @@ export class LoginPage {
     console.log(credentials);
   }
 
+  register(credentials) {
+    console.log(credentials);
+  }
+
   slideToRegister() {
-    console.log('Register');
+    console.log('Slide to Register');
+    this.slides.slideTo(1);
+  }
+
+  slideToLogin() {
+    console.log('Slide to Login');
+    this.slides.slideTo(0);
+
   }
 
 }
