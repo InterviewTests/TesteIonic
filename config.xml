@@ -84,5 +84,6 @@
         <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
     </platform>
+    <plugin name="cordova-plugin-fingerprint-aio" spec="~1.5.0" />
     <engine name="android" spec="7.0.0" />
 </widget>

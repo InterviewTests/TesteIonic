@@ -1,9 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController, IonSlides } from '@ionic/angular';
+import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
 
 import { LoadingService } from '../../services/loading.service';
 import { ToastService } from '../../services/toast.service';
+import { UserService } from '../../services/user.service';
+
 
 @Component({
   selector: 'app-login',
@@ -13,8 +16,21 @@ import { ToastService } from '../../services/toast.service';
 export class LoginPage {
   @ViewChild('slides') slides : IonSlides;
 
-  constructor(public toastService: ToastService, public navController: NavController, public routeController: ActivatedRoute, public loadService: LoadingService) {
+  private fingerPrintAvailable: boolean;
 
+  constructor(public navController: NavController,
+              public toastService: ToastService,
+              public fpManager: FingerprintAIO,
+              public userService: UserService,
+              public routeController: ActivatedRoute,
+              public loadService: LoadingService) {
+
+    this.fpManager.isAvailable().then((result) => {
+      this.fingerPrintAvailable = true;
+      this.fingerPrintAuth();
+    }).catch((error) => {
+      this.fingerPrintAvailable = false;
+    });
   }
 
   authenticate(credentials) {
@@ -23,6 +39,10 @@ export class LoginPage {
 
   register(credentials) {
     console.log(credentials);
+  }
+
+  private navHome() {
+    this.navController.navigateForward(['home/']);
   }
 
   slideToRegister() {
@@ -34,6 +54,23 @@ export class LoginPage {
     console.log('Slide to Login');
     this.slides.slideTo(0);
 
+  }
+
+  fingerPrintAuth() {
+    return new Promise((resolve, reject) => {
+      this.fpManager.show({
+        clientId: 'fakeflix.ionic.app',
+        clientSecret: 'fakeflix.ionic.secret',
+        disableBackup: true,
+        localizedReason: 'Autenticação Digital',
+        localizedFallbackTitle: 'Não foi possível reconhecer digital'
+      }).then((res) => {
+        this.navHome();
+        resolve(true);
+      }).catch((err) => {
+        reject(err);
+      });
+    });
   }
 
 }

@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +25,7 @@ import { MovieInfoPage } from './pages/movie-info/movie-info.page';
 import { MovieService } from './services/movie.service';
 import { LoadingService } from './services/loading.service';
 import { ToastService } from './services/toast.service';
+import { UserService } from './services/user.service';
 
 
 @NgModule({
@@ -46,8 +48,10 @@ import { ToastService } from './services/toast.service';
     StatusBar,
     SplashScreen,
     MovieService,
+    UserService,
     LoadingService,
     ToastService,
+    FingerprintAIO,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
