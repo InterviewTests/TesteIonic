@@ -38,7 +38,8 @@ export class LoginPage {
   }
 
   register(credentials) {
-    console.log(credentials);
+    // todo
+    this.slideToLogin();
   }
 
   private navHome() {
@@ -46,12 +47,10 @@ export class LoginPage {
   }
 
   slideToRegister() {
-    console.log('Slide to Register');
     this.slides.slideTo(1);
   }
 
   slideToLogin() {
-    console.log('Slide to Login');
     this.slides.slideTo(0);
 
   }

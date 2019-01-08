@@ -49,4 +49,8 @@ export class AppComponent {
   private navHome() {
     this.navCtrl.navigateRoot(['/home']);
   }
+
+  private logout() {
+    this.navCtrl.navigateRoot(['/login']);
+  }
 }

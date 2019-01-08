@@ -9,64 +9,61 @@ import { ToastService } from '../../services/toast.service';
   styleUrls: ['./register-form.component.scss']
 })
 export class RegisterFormComponent implements OnInit {
-  @Output('loginEvent') loginEvent: EventEmitter<any> = new EventEmitter<any>();
-  @Output('slideToLogin') registerEvent: EventEmitter<any> = new EventEmitter<any>();
+  @Output('registerEvent') registerEvent: EventEmitter<any> = new EventEmitter<any>();
+  @Output('slideToLogin') slideToLogin: EventEmitter<any> = new EventEmitter<any>();
   @Output('forgotPassEvent') forgotPassEvent: EventEmitter<any> = new EventEmitter<any>();
 
-  private loginForm: FormGroup;
+  private registerForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
     private toastService: ToastService
   ) {
-    this.loginForm = this.buildRegisterForm();
+    this.registerForm = this.buildRegisterForm();
   }
 
   ngOnInit() {
   }
 
-  private loginButtonPressed() {
+  private registerButtonPressed() {
     this.toastService.dismissToast();
     if (this.isFormValid()) {
-      const loginAuth = {
-        email: this.loginForm.get('email').value,
-        password: this.loginForm.get('password').value,
-        confirm_password: this.loginForm.get('confirm_password').value
+      const registerParams = {
+        email: this.registerForm.get('email').value,
+        password: this.registerForm.get('password').value,
+        confirmpassword: this.registerForm.get('confirmpassword').value
       };
-      this.loginEvent.emit(loginAuth);
+      this.registerEvent.emit(registerParams);
     }
   }
 
-  private registerButtonPressed() {
-    this.registerEvent.emit();
-  }
-
-  private forgotPassButtonPressed() {
-
+  private backButtonPressed() {
+    this.slideToLogin.emit();
   }
 
   private buildRegisterForm() {
     return this.formBuilder.group({
       email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
       password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
-      confirm_password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
+      confirmpassword: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
     });
   }
 
   private isFormValid() {
-    if (this.loginForm.get('email').errors) {
-      this.toastService.showToastAlert(this.getErrorMessage('Email', this.loginForm.get('email').errors));
+    if (this.registerForm.get('email').errors) {
+      this.toastService.showToastAlert(this.getErrorMessage('Email', this.registerForm.get('email').errors));
       return false;
     }
-    if (this.loginForm.get('password').errors) {
-      this.toastService.showToastAlert(this.getErrorMessage('Senha', this.loginForm.get('password').errors));
+    if (this.registerForm.get('password').errors) {
+      this.toastService.showToastAlert(this.getErrorMessage('Senha', this.registerForm.get('password').errors));
       return false;
     }
-    if (this.loginForm.get('confirm_password').errors) {
-      this.toastService.showToastAlert(this.getErrorMessage('Confirmar Senha', this.loginForm.get('confirm_password').errors));
+    console.log(this.registerForm.get('confirmpassword'));
+    if (this.registerForm.get('confirmpassword').errors) {
+      this.toastService.showToastAlert(this.getErrorMessage('Confirmar Senha', this.registerForm.get('confirmpassword').errors));
       return false;
     }
-    if (this.loginForm.get('confirm_password').value === this.loginForm.get('password').value) {
+    if (this.registerForm.get('confirmpassword').value !== this.registerForm.get('password').value) {
       this.toastService.showToastAlert('As senhas digitadas não conferem');
       return false;
     }
@@ -74,12 +71,16 @@ export class RegisterFormComponent implements OnInit {
   }
 
   private getErrorMessage(input: string, error: any) {
+    console.log(error);
     let errorMessage = "Campo '" + input + "' ";
     if (error.required) {
       return errorMessage + 'é obrigatório';
     }
     if (error.email) {
       return errorMessage + 'não é valido';
+    }
+    if (error.minlength) {
+      return errorMessage + 'deve conter mais de ' + error.minlength.requiredLength + ' caracteres';
     }
   }
 
