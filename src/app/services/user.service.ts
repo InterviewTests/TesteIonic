@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { FirebaseAuthentication } from '@ionic-native/firebase-authentication/ngx';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class UserService {
 
   private userEmail = 'daniielf.13@gmail.com';
   private userPasswrod = '123456';
-  constructor() {
+  constructor(private firebaseAuth: FirebaseAuthentication) {
   }
 
 
@@ -23,5 +24,17 @@ export class UserService {
 
   public getUserPass() {
     return this.userPasswrod;
+  }
+
+  public registerNewAccount(email: string, password: string) {
+    return this.firebaseAuth.createUserWithEmailAndPassword(email,password);
+  }
+
+  public authenticate(email: string, password: string) {
+    return this.firebaseAuth.signInWithEmailAndPassword(email, password);
+  }
+
+  public recoverPassword(email: string) {
+    return this.firebaseAuth.sendPasswordResetEmail(email);
   }
 }

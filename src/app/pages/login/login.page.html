@@ -7,7 +7,7 @@
           <span class="k2d-eb red f-4em">FakeFlix</span>
         </div>
         <div class="login-mid-content flex-2">
-          <app-login-form (slideToRegister)="slideToRegister()" (loginEvent)="authenticate($event)"></app-login-form>
+          <app-login-form (slideToRegister)="slideToRegister()" (loginEvent)="authenticate($event)" (forgotPassEvent)="recoverPassword($event)"></app-login-form>
         </div>
         <div class="login-bottom-content flex-1"></div>
       </ion-slide>

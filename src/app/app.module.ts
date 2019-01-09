@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { environment } from '../environments/environment';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
+import { FirebaseAuthentication } from '@ionic-native/firebase-authentication/ngx';
+import { AngularFireModule } from 'angularfire2';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -43,7 +45,7 @@ import { UserService } from './services/user.service';
     MovieInfoPage,
   ],
   entryComponents: [LoginPage, HomePage, MovieInfoPage],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ReactiveFormsModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ReactiveFormsModule, AngularFireModule.initializeApp(environment.firebaseConfig)],
   providers: [
     StatusBar,
     SplashScreen,
@@ -52,6 +54,7 @@ import { UserService } from './services/user.service';
     LoadingService,
     ToastService,
     FingerprintAIO,
+    FirebaseAuthentication,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

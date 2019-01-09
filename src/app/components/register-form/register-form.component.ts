@@ -32,7 +32,7 @@ export class RegisterFormComponent implements OnInit {
         email: this.registerForm.get('email').value,
         password: this.registerForm.get('password').value,
         confirmpassword: this.registerForm.get('confirmpassword').value,
-        digitalAuth: this.registerForm.get('digitalAuth').value
+        // digitalAuth: this.registerForm.get('digitalAuth').value
       };
       this.registerEvent.emit(registerParams);
     }
@@ -47,7 +47,7 @@ export class RegisterFormComponent implements OnInit {
       email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
       password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
       confirmpassword: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
-      digitalAuth: new FormControl(true),
+      // digitalAuth: new FormControl(true),
     });
   }
 
@@ -66,7 +66,7 @@ export class RegisterFormComponent implements OnInit {
       this.toastService.showToastAlert(this.getErrorMessage('Confirmar Senha', this.registerForm.get('confirmpassword').errors));
       return false;
     }
-    
+
     if (this.registerForm.get('confirmpassword').value !== this.registerForm.get('password').value) {
       this.toastService.showToastAlert('As senhas digitadas não conferem');
       return false;

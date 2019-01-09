@@ -17,7 +17,7 @@ export class LoadingService {
         this.loader.present();
         resolve();
       }).catch((err) => {
-        console.log(err);
+        console.log('LoadingService', 'Start Loading', err);
       });
     });
   }

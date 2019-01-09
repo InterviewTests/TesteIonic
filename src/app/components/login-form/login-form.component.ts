@@ -1,7 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { AlertController } from '@ionic/angular';
 
 import { ToastService } from '../../services/toast.service';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   selector: 'app-login-form',
@@ -16,8 +18,10 @@ export class LoginFormComponent implements OnInit {
   private loginForm: FormGroup;
 
   constructor(
+    private alertCtrl: AlertController,
     private formBuilder: FormBuilder,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private loadService: LoadingService,
   ) {
     this.loginForm = this.buildLoginForm();
   }
@@ -41,7 +45,30 @@ export class LoginFormComponent implements OnInit {
   }
 
   private forgotPassButtonPressed() {
-
+    this.alertCtrl.create({
+      message: 'Digite seu email para refazer sua senha:',
+      inputs: [
+        {
+          type: 'email',
+          name: 'email',
+          id: 'email'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel'
+        },
+        {
+          text: 'Confirmar',
+          handler: (data) => {
+            this.sendforgotPassEvent(data.email);
+          }
+        },
+      ]
+    }).then((res) => {
+      res.present();
+    });
   }
 
   private buildLoginForm() {
@@ -49,6 +76,10 @@ export class LoginFormComponent implements OnInit {
       email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
       password: new FormControl('', Validators.compose([Validators.required]))
     });
+  }
+
+  private sendforgotPassEvent(email) {
+    this.forgotPassEvent.emit(email);
   }
 
   private isFormValid() {
