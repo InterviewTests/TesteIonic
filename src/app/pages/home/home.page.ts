@@ -24,6 +24,9 @@ export class HomePage {
 
   constructor(private eventsHandler: Events, private movieService: MovieService, private navController: NavController) {
     this.fakeData();
+    this.getPopular();
+    this.getMostSeen();
+    this.getNewReleases();
   }
 
   ionViewDidEnter() {
@@ -43,11 +46,35 @@ export class HomePage {
     this.navController.navigateForward('movieInfo/'+ movie);
   }
 
+  private getPopular() {
+    this.movieService.getMostPopular().then((movies: any) => {
+      console.log('Most Pop:', movies);
+      this.mostPopular = movies;
+    }).catch((err) => {
+      console.log('HomePage', 'GetPopular', err);
+    });
+  }
+
+  private getMostSeen() {
+    this.movieService.getMostSeen().then((movies: any) => {
+      this.mostSeen = movies;
+    }).catch((err) => {
+      console.log('HomePage', 'GetPopular', err);
+    });
+  }
+
+  private getNewReleases() {
+    this.movieService.getReleases().then((movies: any) => {
+      this.newRealeases = movies;
+    }).catch((err) => {
+      console.log('HomePage', 'GetPopular', err);
+    });
+  }
+
   private fakeData() {
     this.userFavorites = this.movieService.getFavorites();
-    this.mostSeen = this.movieService.getMostSeen();
-    this.mostPopular = this.movieService.getMostPopular();
-    this.newRealeases = this.movieService.getReleases();
+    // this.mostSeen = this.movieService.getMostSeen();
+    // this.newRealeases = this.movieService.getReleases();
     this.searchResult = this.movieService.getSearchResult();
   }
 
@@ -61,4 +88,5 @@ export class HomePage {
   private unsubscribeCategoryEvent() {
     this.eventsHandler.unsubscribe('searchCategoryEventEmmited');
   }
+
 }

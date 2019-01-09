@@ -3,7 +3,7 @@
   <div class="slide-box">
     <ion-slides #slide class="slides-content" (ionSlideDidChange)="updateCurrentSlideIndex()">
       <ion-slide class="slide-class" *ngFor="let movie of moviesArray" (click)="selectMovie(movie)">
-        <img class="movie-img" [src]="movie.poster_path"/><br />
+        <img class="movie-img" [src]="getMovieFullUrl(movie.backdrop_path)"/><br />
         <span class="movie-title k2d-b f-16 white">{{ movie.title }}</span>
       </ion-slide>
     </ion-slides>

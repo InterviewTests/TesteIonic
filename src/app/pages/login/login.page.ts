@@ -6,6 +6,7 @@ import { LoadingService } from '../../services/loading.service';
 import { ToastService } from '../../services/toast.service';
 import { UserService } from '../../services/user.service';
 
+import { MovieService } from '../../services/movie.service';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +23,7 @@ export class LoginPage {
               public platform: Platform,
               public fpManager: FingerprintAIO,
               public userService: UserService,
+              public movieService: MovieService,
               public loadService: LoadingService) {
     if (this.platform.is('mobile')) {
       this.fpManager.isAvailable().then((result) => {
@@ -30,19 +32,24 @@ export class LoginPage {
       }).catch((error) => {
         this.fingerPrintAvailable = false;
       });
-      }
+    }
   }
 
   async authenticate(credentials) {
+    console.log(this.platform.platforms());
+    if (!this.platform.is('mobile')) {
+      this.navHome();
+      return;
+    }
+
     await this.loadService.startLoading('Autenticando...');
     this.userService.authenticate(credentials.email, credentials.password).then((result) => {
       // console.log('LoginPage', 'Authenticate Success', result);
       this.loadService.stopLoading();
-      this.slideToLogin();
-
+      this.navHome();
     }).catch((error) => {
       this.loadService.stopLoading();
-      this.toastService.showToastAlert('Erro');
+      this.toastService.showToastAlert('Não foi possível autenticar-se');
       // console.log('LoginPage', 'Authenticate Error', error);
     });
   }
@@ -75,7 +82,7 @@ export class LoginPage {
   }
 
   private navHome() {
-    this.navController.navigateForward(['home/']);
+    this.navController.navigateRoot(['home/']);
   }
 
   slideToRegister() {

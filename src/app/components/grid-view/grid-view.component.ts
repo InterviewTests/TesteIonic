@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-grid-view',
@@ -16,6 +17,10 @@ export class GridViewComponent implements OnInit {
 
   private selectMovie(movie) {
     this.movieSelected.emit(movie.id);
+  }
+
+  public getMovieFullUrl(posterPath: string) {
+    return environment.movieDB_image_url + posterPath;
   }
 
 }

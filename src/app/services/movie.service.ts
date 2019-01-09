@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Movie } from '../models/movie';
+import { HttpService } from './http.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieService {
-
   private userFavorites: Movie[] = [];
   private newReleases: Movie[] = [];
   private mostSeen: Movie[] = [];
@@ -13,7 +13,7 @@ export class MovieService {
 
   private searchResult: Movie[] = [];
 
-  constructor() {
+  constructor(public http: HttpService) {
     this.fakeData();
   }
 
@@ -37,15 +37,36 @@ export class MovieService {
   }
 
   public getReleases() {
-    return this.newReleases;
+    return new Promise((resolve, reject) => {
+      this.http.get2('trending/movie/week').then((response: any) => {
+        console.log(response);
+        resolve(response.results);
+      }).catch((error) => {
+        console.log(error);
+      });
+    });
   }
 
   public getMostSeen() {
-    return this.mostSeen;
+    return new Promise((resolve, reject) => {
+      this.http.get2('movie/top_rated/').then((response: any) => {
+        console.log(response);
+        resolve(response.results);
+      }).catch((error) => {
+        console.log(error);
+      });
+    });
   }
 
-  public getMostPopular() {
-    return this.mostPopular;
+  public getMostPopular(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get2('movie/popular/').then((response: any) => {
+        console.log(response);
+        resolve(response.results);
+      }).catch((error) => {
+        console.log(error);
+      });
+    });
   }
 
   public getSearchResult() {

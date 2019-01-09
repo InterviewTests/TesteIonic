@@ -11,7 +11,9 @@ export const environment = {
     projectId: "ionicfakeflix",
     storageBucket: "ionicfakeflix.appspot.com",
     messagingSenderId: "376234108035"
-  }
+  },
+  movieDB_apikey: '5e65b0369ae19415ba8819a7459aab31',
+  movieDB_image_url: 'http://image.tmdb.org/t/p/w500//'
 };
 
 /*

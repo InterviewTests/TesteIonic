@@ -9,7 +9,9 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
 import { FirebaseAuthentication } from '@ionic-native/firebase-authentication/ngx';
 import { AngularFireModule } from 'angularfire2';
-
+import { HttpModule } from '@angular/http';
+import { HttpService } from './services/http.service';
+import { HTTP } from '@ionic-native/http/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -45,7 +47,7 @@ import { UserService } from './services/user.service';
     MovieInfoPage,
   ],
   entryComponents: [LoginPage, HomePage, MovieInfoPage],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ReactiveFormsModule, FormsModule,AngularFireModule.initializeApp(environment.firebaseConfig)],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ReactiveFormsModule, HttpModule, FormsModule,AngularFireModule.initializeApp(environment.firebaseConfig)],
   providers: [
     StatusBar,
     SplashScreen,
@@ -55,6 +57,8 @@ import { UserService } from './services/user.service';
     ToastService,
     FingerprintAIO,
     FirebaseAuthentication,
+    HttpService,
+    HTTP,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

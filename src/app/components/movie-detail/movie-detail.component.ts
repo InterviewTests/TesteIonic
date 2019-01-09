@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Movie } from '../../models/movie';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-movie-detail',
@@ -9,7 +10,9 @@ import { Movie } from '../../models/movie';
 export class MovieDetailComponent implements OnInit {
   @Input('movie') movie: Movie;
 
-  constructor() { }
+  constructor() {
+
+   }
 
   ngOnInit() {
   }
@@ -21,5 +24,9 @@ export class MovieDetailComponent implements OnInit {
 
       return hour + minutes;
     }
+  }
+
+  public getMovieFullUrl(posterPath: string) {
+    return environment.movieDB_image_url + posterPath;
   }
 }

@@ -1,7 +1,7 @@
 <div class="component-content">
   <div class="grid">
     <div class="grid-item" *ngFor="let movie of moviesList" (click)="selectMovie(movie)">
-      <img class="movie-img" [src]="movie.poster_path"/>
+      <img class="movie-img" [src]="getMovieFullUrl(movie.backdrop_path)"/><br />
     </div>
     <div class="not-found-box">
       <span class="k2d-m white f-22" *ngIf="moviesList.length === 0">Nenhum resultado encontrado.</span>

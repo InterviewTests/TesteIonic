@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-horizontal-scroll',
@@ -35,6 +36,11 @@ export class HorizontalScrollComponent implements OnInit {
 
   private selectMovie(movie) {
     this.movieSelected.emit(movie.id);
+  }
+
+  public getMovieFullUrl(posterPath: string) {
+    console.log(environment.movieDB_image_url + posterPath);
+    return environment.movieDB_image_url + posterPath;
   }
 
 }

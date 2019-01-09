@@ -8,8 +8,8 @@ export class UserService {
 
   private userFingerPrint: boolean = true;
 
-  private userEmail = 'daniielf.13@gmail.com';
-  private userPasswrod = '123456';
+  private userEmail = '';
+  private userPasswrod = '';
   constructor(private firebaseAuth: FirebaseAuthentication) {
   }
 
@@ -26,15 +26,33 @@ export class UserService {
     return this.userPasswrod;
   }
 
-  public registerNewAccount(email: string, password: string) {
-    return this.firebaseAuth.createUserWithEmailAndPassword(email,password);
+  public registerNewAccount(email: string, password: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.firebaseAuth.createUserWithEmailAndPassword(email,password).then((res) => {
+        resolve(res);
+      }).catch((err) => {
+        reject(err);
+      });
+    });
   }
 
   public authenticate(email: string, password: string) {
-    return this.firebaseAuth.signInWithEmailAndPassword(email, password);
+    return new Promise((resolve, reject) => {
+      this.firebaseAuth.signInWithEmailAndPassword(email,password).then((res) => {
+        resolve(res);
+      }).catch((err) => {
+        reject(err);
+      });
+    });
   }
 
   public recoverPassword(email: string) {
-    return this.firebaseAuth.sendPasswordResetEmail(email);
+    return new Promise((resolve, reject) => {
+      this.firebaseAuth.sendPasswordResetEmail(email).then((res) => {
+        resolve(res);
+      }).catch((err) => {
+        reject(err);
+      });
+    });
   }
 }
