@@ -14,7 +14,7 @@ export class RegisterFormComponent implements OnInit {
   @Output('forgotPassEvent') forgotPassEvent: EventEmitter<any> = new EventEmitter<any>();
   @Input('fingerPrintAvailable') fingerPrintAvailable: boolean = false;
 
-  private registerForm: FormGroup;
+  public registerForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
     private toastService: ToastService

@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { NavController, IonSlides } from '@ionic/angular';
+import { NavController, IonSlides, Platform } from '@ionic/angular';
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
 
 import { LoadingService } from '../../services/loading.service';
@@ -20,17 +19,18 @@ export class LoginPage {
 
   constructor(public navController: NavController,
               public toastService: ToastService,
+              public platform: Platform,
               public fpManager: FingerprintAIO,
               public userService: UserService,
-              public routeController: ActivatedRoute,
               public loadService: LoadingService) {
-
-    this.fpManager.isAvailable().then((result) => {
-      this.fingerPrintAvailable = true;
-      this.fingerPrintAuth();
-    }).catch((error) => {
-      this.fingerPrintAvailable = false;
-    });
+    if (this.platform.is('mobile')) {
+      this.fpManager.isAvailable().then((result) => {
+        this.fingerPrintAvailable = true;
+        this.fingerPrintAuth();
+      }).catch((error) => {
+        this.fingerPrintAvailable = false;
+      });
+      }
   }
 
   async authenticate(credentials) {

@@ -1,14 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { IonSearchbar, Events } from '@ionic/angular';
 import { SearchComponent } from './search.component';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
   let fixture: ComponentFixture<SearchComponent>;
+  let eventsSpy;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchComponent ]
+      declarations: [ SearchComponent, IonSearchbar ],
+      providers: [
+        { provide: Events, useValue: eventsSpy }
+      ],
     })
     .compileComponents();
   }));

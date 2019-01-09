@@ -15,8 +15,16 @@ import { LoadingService } from '../../services/loading.service';
 export class MovieInfoPage {
   private movie: Movie;
 
-  constructor(public movieService: MovieService, public navController: NavController, public routeController: ActivatedRoute, public loadService: LoadingService) {
-    let movieID = this.routeController.snapshot.paramMap.get('id');
+  constructor(public movieService: MovieService,
+              public navController: NavController,
+              public routeController: ActivatedRoute,
+              public loadService: LoadingService) {
+
+    let movieID ;
+    
+    if (this.routeController.snapshot && this.routeController.snapshot.paramMap) {
+      movieID = this.routeController.snapshot.paramMap.get('id');
+    }
 
     if (movieID) {
       this.getMovieRef(movieID);

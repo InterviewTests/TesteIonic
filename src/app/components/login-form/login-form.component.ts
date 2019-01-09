@@ -15,7 +15,7 @@ export class LoginFormComponent implements OnInit {
   @Output('slideToRegister') slideToRegister: EventEmitter<any> = new EventEmitter<any>();
   @Output('forgotPassEvent') forgotPassEvent: EventEmitter<any> = new EventEmitter<any>();
 
-  private loginForm: FormGroup;
+  public loginForm: FormGroup;
 
   constructor(
     private alertCtrl: AlertController,

@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { IonSlides, IonSlide } from '@ionic/angular';
 import { HorizontalScrollComponent } from './horizontal-scroll.component';
 
 describe('HorizontalScrollComponent', () => {
@@ -8,7 +8,7 @@ describe('HorizontalScrollComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HorizontalScrollComponent ]
+      declarations: [ HorizontalScrollComponent, IonSlides, IonSlide ]
     })
     .compileComponents();
   }));
