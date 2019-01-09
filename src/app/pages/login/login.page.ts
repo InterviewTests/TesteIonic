@@ -51,6 +51,7 @@ export class LoginPage {
     await this.loadService.startLoading('Efetuando cadastro...');
     this.userService.registerNewAccount(credentials.email, credentials.password).then((result) => {
       // console.log('LoginPage', 'Register Sucess', result);
+      this.toastService.showToastAlert('Acesse seu email para refazer sua senha!');
       this.loadService.stopLoading();
       this.slideToLogin();
     }).catch((error) => {

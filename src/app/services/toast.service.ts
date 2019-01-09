@@ -17,7 +17,7 @@ export class ToastService {
           message: message,
           duration: time,
           position: 'top',
-          color: "secondary",
+          color: "primary",
           cssClass: "toast-controller-class",
           showCloseButton: true,
           closeButtonText: 'X'

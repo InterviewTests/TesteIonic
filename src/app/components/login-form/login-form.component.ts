@@ -51,7 +51,8 @@ export class LoginFormComponent implements OnInit {
         {
           type: 'email',
           name: 'email',
-          id: 'email'
+          id: 'email',
+          placeholder: 'exemplo@email.com'
         }
       ],
       buttons: [

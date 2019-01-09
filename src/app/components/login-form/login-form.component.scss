@@ -17,3 +17,49 @@
   text-decoration: underline;
   color: #f5f5f1;
 }
+
+.alert-button-inner.sc-ion-alert-ios {
+  --color: #F00;
+  color: #F00;
+  --background: red;
+
+}
+
+.custom-alert-button {
+  .button.alert-button-inner {
+    color: red;
+  }
+  .button.alert-button {
+    color: red;
+  }
+  color: red;
+  --color: red;
+  --background: red;
+
+}
+
+custom-alert-button {
+  .button.alert-button-inner {
+    color: red;
+  }
+  .button.alert-button {
+    color: red;
+  }
+  color: red;
+  --color: red;
+  --background: red;
+}
+
+alert-button-inner.sc-ion-alert-ios {
+  --color: #F00;
+  color: #F00;
+}
+
+.test-ss {
+  --background: red;
+  .alert-button-inner.sc-ion-alert-ios {
+    --color: #FFF;
+    color: #FFF;
+
+  }
+}
