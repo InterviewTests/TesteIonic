@@ -44,40 +44,37 @@ export class LoginPage {
 
     await this.loadService.startLoading('Autenticando...');
     this.userService.authenticate(credentials.email, credentials.password).then((result) => {
-      // console.log('LoginPage', 'Authenticate Success', result);
       this.loadService.stopLoading();
       this.navHome();
     }).catch((error) => {
       this.loadService.stopLoading();
       this.toastService.showToastAlert('Não foi possível autenticar-se');
-      // console.log('LoginPage', 'Authenticate Error', error);
+      console.log('LoginPage', 'Authenticate Error', error);
     });
   }
 
   async register(credentials) {
     await this.loadService.startLoading('Efetuando cadastro...');
     this.userService.registerNewAccount(credentials.email, credentials.password).then((result) => {
-      // console.log('LoginPage', 'Register Sucess', result);
       this.toastService.showToastAlert('Acesse seu email para refazer sua senha!');
       this.loadService.stopLoading();
       this.slideToLogin();
     }).catch((error) => {
       this.loadService.stopLoading();
       this.toastService.showToastAlert('Este email já está em uso!');
-      // console.log('LoginPage', 'Register Error', error);
+      console.log('LoginPage', 'Register Error', error);
     });
   }
 
   async recoverPassword(email) {
     await this.loadService.startLoading('Enviando email...');
     this.userService.recoverPassword(email).then((result) => {
-      console.log('LoginPage', 'RecoverPassword Sucess', result);
       this.loadService.stopLoading();
       this.slideToLogin();
     }).catch((error) => {
       this.loadService.stopLoading();
       this.toastService.showToastAlert('Este email não está cadastrado!');
-      // console.log('LoginPage', 'Register Error', error);
+      console.log('LoginPage', 'Register Error', error);
     });
   }
 

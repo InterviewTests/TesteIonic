@@ -22,7 +22,7 @@
   <div class="scroll-content" *ngIf="searchActive">
     <span class="f-14 white k2d-bi search-label">Filmes encontrados com "{{ searchingText }}" ...</span>
     <div class="movies-display-grid">
-      <app-grid-view [movies]="searchResult" (movieSelected)="viewMovieInfo($event)"></app-grid-view>
+      <app-grid-view [movies]="searchResult" [page]="currentPageNumber" [pageLimit]="queryPageLimit" (movieSelected)="viewMovieInfo($event)" (searchMore)="getMoreFromSearch()"></app-grid-view>
     </div>
   </div>
 </ion-content>

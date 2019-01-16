@@ -22,6 +22,9 @@ export class HomePage {
   private newRealeases = [];
   private searchResult = [];
 
+  private currentPageNumber = 1;
+  private queryPageLimit = 1;
+
   constructor(private eventsHandler: Events, private movieService: MovieService, private navController: NavController) {
     this.fakeData();
     this.getPopular();
@@ -39,10 +42,27 @@ export class HomePage {
 
   searchEventEmmited(value: string) {
     this.searchingText = value;
+    this.currentPageNumber = 1;
+    this.queryPageLimit = 1;
     this.searchActive = value !== '';
     if (this.searchActive) {
       this.movieService.searchMovies(value).then((result: any) => {
-        this.searchResult = result;
+        this.searchResult = result.results;
+        this.queryPageLimit = result.total_pages;
+        this.currentPageNumber = result.page;
+      }).catch((err) => {
+        this.searchResult = [];
+        console.log('HomePage', 'GetPopular', err);
+      });
+    }
+  }
+
+  getMoreFromSearch() {
+    if (this.searchActive) {
+      this.movieService.searchMovies(this.searchingText, this.currentPageNumber + 1).then((result: any) => {
+        this.searchResult = [...this.searchResult, ...result.results];
+        this.queryPageLimit = result.total_pages;
+        this.currentPageNumber = result.page;
       }).catch((err) => {
         this.searchResult = [];
         console.log('HomePage', 'GetPopular', err);

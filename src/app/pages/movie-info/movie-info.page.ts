@@ -36,9 +36,7 @@ export class MovieInfoPage {
 
   async getMovieRef(movieID) {
     await this.loadService.startLoading('Carregando detalhes do filme...');
-    console.log('Get From ID:', movieID);
     this.movieService.getMovieById(movieID).then((movie: Movie) => {
-      console.log('MovieInfoPage', 'GetMovieRef', movie);
       this.movie = movie;
       this.loadService.stopLoading();
     }).catch((err) => {

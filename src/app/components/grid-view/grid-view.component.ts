@@ -7,8 +7,11 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./grid-view.component.scss']
 })
 export class GridViewComponent implements OnInit {
-  @Input('movies') moviesList: any[] = [1,1,1,1,1,1,1,1,1,1,1,1,1,1];
+  @Input('movies') moviesList: any[] = [];
+  @Input('page') page: number = 1;
+  @Input('pageLimit') pageLimit: number = 1;
   @Output('movieSelected') movieSelected: EventEmitter<any> = new EventEmitter<any>();
+  @Output('searchMore') searchMore: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
 
@@ -21,6 +24,10 @@ export class GridViewComponent implements OnInit {
 
   public getMovieFullUrl(posterPath: string) {
     return environment.movieDB_image_url + posterPath;
+  }
+
+  public searchMoreMovies() {
+    this.searchMore.emit();
   }
 
 }

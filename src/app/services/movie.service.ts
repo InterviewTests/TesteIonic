@@ -27,10 +27,10 @@ export class MovieService {
     });
   }
 
-  public searchMovies(searchText: string) {
+  public searchMovies(searchText: string, page: number = 1) {
     return new Promise((resolve, reject) => {
-      this.http.getSearch('search/movie?query=' + searchText).then((movies: any) => {
-        resolve(movies.results);
+      this.http.getSearch('search/movie?query=' + searchText, page).then((movies: any) => {
+        resolve(movies);
       }).catch((error) => {
         console.log(error);
       });
