@@ -19,16 +19,21 @@ export class MovieService {
 
   public getMovieById(id) {
     return new Promise((resolve, reject) => {
-      let movie = new Movie();
-      movie.fakeData();
-      // TODO
-
-
-      if (movie) {
+      this.http.get2('movie/' + id).then((movie: any) => {
         resolve(movie);
-      } else {
-        reject(null);
-      }
+      }).catch((error) => {
+        console.log(error);
+      });
+    });
+  }
+
+  public searchMovies(searchText: string) {
+    return new Promise((resolve, reject) => {
+      this.http.getSearch('search/movie?query=' + searchText).then((movies: any) => {
+        resolve(movies.results);
+      }).catch((error) => {
+        console.log(error);
+      });
     });
   }
 
@@ -39,7 +44,6 @@ export class MovieService {
   public getReleases() {
     return new Promise((resolve, reject) => {
       this.http.get2('trending/movie/week').then((response: any) => {
-        console.log(response);
         resolve(response.results);
       }).catch((error) => {
         console.log(error);
@@ -50,7 +54,6 @@ export class MovieService {
   public getMostSeen() {
     return new Promise((resolve, reject) => {
       this.http.get2('movie/top_rated/').then((response: any) => {
-        console.log(response);
         resolve(response.results);
       }).catch((error) => {
         console.log(error);
@@ -61,7 +64,6 @@ export class MovieService {
   public getMostPopular(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.get2('movie/popular/').then((response: any) => {
-        console.log(response);
         resolve(response.results);
       }).catch((error) => {
         console.log(error);

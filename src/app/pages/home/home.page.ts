@@ -40,6 +40,14 @@ export class HomePage {
   searchEventEmmited(value: string) {
     this.searchingText = value;
     this.searchActive = value !== '';
+    if (this.searchActive) {
+      this.movieService.searchMovies(value).then((result: any) => {
+        this.searchResult = result;
+      }).catch((err) => {
+        this.searchResult = [];
+        console.log('HomePage', 'GetPopular', err);
+      });
+    }
   }
 
   private viewMovieInfo(movie) {
@@ -48,7 +56,6 @@ export class HomePage {
 
   private getPopular() {
     this.movieService.getMostPopular().then((movies: any) => {
-      console.log('Most Pop:', movies);
       this.mostPopular = movies;
     }).catch((err) => {
       console.log('HomePage', 'GetPopular', err);
@@ -75,7 +82,7 @@ export class HomePage {
     this.userFavorites = this.movieService.getFavorites();
     // this.mostSeen = this.movieService.getMostSeen();
     // this.newRealeases = this.movieService.getReleases();
-    this.searchResult = this.movieService.getSearchResult();
+    // this.searchResult = this.movieService.getSearchResult();
   }
 
   private subscribeCategoryEvent() {

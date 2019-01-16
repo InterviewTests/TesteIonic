@@ -11,8 +11,8 @@ export class MovieDetailComponent implements OnInit {
   @Input('movie') movie: Movie;
 
   constructor() {
-
-   }
+    console.log('Got:', this.movie);
+  }
 
   ngOnInit() {
   }

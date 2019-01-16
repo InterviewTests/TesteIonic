@@ -39,7 +39,6 @@ export class HorizontalScrollComponent implements OnInit {
   }
 
   public getMovieFullUrl(posterPath: string) {
-    console.log(environment.movieDB_image_url + posterPath);
     return environment.movieDB_image_url + posterPath;
   }
 
