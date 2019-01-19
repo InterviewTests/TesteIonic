@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Platform, Events, NavController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 @Component({
   selector: 'app-root',
@@ -27,6 +27,7 @@ export class AppComponent {
     private statusBar: StatusBar,
     private eventsHandler: Events,
     private navCtrl: NavController,
+    private androidPermissions: AndroidPermissions
   ) {
     this.initializeApp();
   }
@@ -35,7 +36,22 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      if (this.platform.is('android')) {
+        this.verifyAndroidPermission();
+      }
     });
+  }
+
+  private verifyAndroidPermission() {
+    // this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.GET_ACCOUNTS).then((res) => {
+    //   if (!res.hasPermission) {
+    //     this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.GET_ACCOUNTS).catch((err) => {
+    //       console.log('AppComponent', 'verifyAndroidPermission: requestPermission', err);
+    //     });
+    //   }
+    // }).catch((err) => {
+    //   console.log('AppComponent', 'verifyAndroidPermission', err);
+    // });
   }
 
   private searchByCategory(category) {

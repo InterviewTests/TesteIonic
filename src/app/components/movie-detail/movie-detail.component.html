@@ -11,4 +11,12 @@
     <div class="description-content white k2d-mi">
       {{ movie.overview }}
     </div>
+    <div class="favorite-content">
+      <button ion-button class="fav-button rb" (click)="setFavorite()" *ngIf="!isFavorite">
+        <span class="f-22 white k2d-eb"> FAVORITAR </span>
+      </button>
+      <button ion-button class="fav-button gb" (click)="setFavorite()" *ngIf="isFavorite">
+        <span class="f-22 white k2d-eb"> DESFAVORITAR </span>
+      </button>
+    </div>
 </div>

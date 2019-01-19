@@ -10,13 +10,12 @@ import { environment } from '../../../environments/environment';
 export class HorizontalScrollComponent implements OnInit {
   @ViewChild('slide') sliderComponent: IonSlides;
   @Output('movieSelected') movieSelected: EventEmitter<any> = new EventEmitter<any>();
-  @Input('movies') moviesArray: any[] = [1,2,3,4,5,6,7];
+  @Input('movies') moviesArray: any[] = [];
   @Input('categoryName') categoryName: string = '';
   private currentSlideIndex: number = 0;
 
 
   constructor() {
-
   }
 
   ngOnInit() {

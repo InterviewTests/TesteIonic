@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ViewContainerRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -14,6 +14,9 @@ import { HttpService } from './services/http.service';
 import { HTTP } from '@ionic-native/http/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { Device } from '@ionic-native/device/ngx';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 import { GridViewComponent } from './components/grid-view/grid-view.component';
 import { HorizontalScrollComponent } from './components/horizontal-scroll/horizontal-scroll.component';
@@ -41,13 +44,21 @@ import { UserService } from './services/user.service';
     MovieDetailComponent,
     LoginFormComponent,
     RegisterFormComponent,
-
     LoginPage,
     HomePage,
     MovieInfoPage,
   ],
   entryComponents: [LoginPage, HomePage, MovieInfoPage],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ReactiveFormsModule, HttpModule, FormsModule,AngularFireModule.initializeApp(environment.firebaseConfig)],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpModule,
+    FormsModule,
+    AngularFirestoreModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
+  ],
   providers: [
     StatusBar,
     SplashScreen,
@@ -58,6 +69,8 @@ import { UserService } from './services/user.service';
     FingerprintAIO,
     FirebaseAuthentication,
     HttpService,
+    Device,
+    AndroidPermissions,
     HTTP,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

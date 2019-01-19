@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, IonSlides, Platform } from '@ionic/angular';
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
+import { Device } from '@ionic-native/device/ngx';
 
 import { LoadingService } from '../../services/loading.service';
 import { ToastService } from '../../services/toast.service';
@@ -23,8 +24,10 @@ export class LoginPage {
               public platform: Platform,
               public fpManager: FingerprintAIO,
               public userService: UserService,
+              public device: Device,
               public movieService: MovieService,
               public loadService: LoadingService) {
+
     if (this.platform.is('mobile')) {
       this.fpManager.isAvailable().then((result) => {
         this.fingerPrintAvailable = true;
@@ -44,6 +47,7 @@ export class LoginPage {
 
     await this.loadService.startLoading('Autenticando...');
     this.userService.authenticate(credentials.email, credentials.password).then((result) => {
+      this.movieService.setUserId(credentials.email);
       this.loadService.stopLoading();
       this.navHome();
     }).catch((error) => {
@@ -100,6 +104,8 @@ export class LoginPage {
         localizedReason: 'Autenticação Digital',
         localizedFallbackTitle: 'Não foi possível reconhecer digital'
       }).then((res) => {
+        console.log('FingerPrint:', res);
+        this.movieService.setUserId(this.device.uuid);
         this.navHome();
         resolve(true);
       }).catch((err) => {

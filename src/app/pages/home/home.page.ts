@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Events, NavController } from '@ionic/angular';
 import { SearchComponent } from '../../components/search/search.component';
 
@@ -12,11 +12,13 @@ import { MovieService } from '../../services/movie.service';
 })
 export class HomePage {
   @ViewChild('content') mainContent: any;
+  // @ViewChild('favHorizontalScroll') favH;
   @ViewChild('searchComponent') searchComponent: SearchComponent;
   private searchActive: boolean = false;
   private searchingText: string = '';
 
   private userFavorites = [];
+  private reloadFavorite: boolean = false;
   private mostSeen = [];
   private mostPopular = [];
   private newRealeases = [];
@@ -25,19 +27,30 @@ export class HomePage {
   private currentPageNumber = 1;
   private queryPageLimit = 1;
 
-  constructor(private eventsHandler: Events, private movieService: MovieService, private navController: NavController) {
-    this.fakeData();
+  constructor(private eventsHandler: Events, private movieService: MovieService, private navController: NavController, public ref: ChangeDetectorRef) {
+    // this.fakeData();
+    this.getFavorites();
     this.getPopular();
     this.getMostSeen();
     this.getNewReleases();
+
   }
 
   ionViewDidEnter() {
     this.subscribeCategoryEvent();
+    this.refreshFavoritesComponent();
   }
 
   ionViewWillLeave() {
     this.unsubscribeCategoryEvent();
+  }
+
+  private refreshFavoritesComponent() {
+    this.userFavorites = [];
+    this.reloadFavorite = true;
+    setTimeout(() => {
+      this.reloadFavorite = false;
+    }, 100);
   }
 
   searchEventEmmited(value: string) {
@@ -74,6 +87,10 @@ export class HomePage {
     this.navController.navigateForward('movieInfo/'+ movie);
   }
 
+  private getFavorites() {
+    this.userFavorites = this.movieService.userFavorites;
+  }
+
   private getPopular() {
     this.movieService.getMostPopular().then((movies: any) => {
       this.mostPopular = movies;
@@ -98,14 +115,8 @@ export class HomePage {
     });
   }
 
-  private fakeData() {
-    this.userFavorites = this.movieService.getFavorites();
-    // this.mostSeen = this.movieService.getMostSeen();
-    // this.newRealeases = this.movieService.getReleases();
-    // this.searchResult = this.movieService.getSearchResult();
-  }
-
   private subscribeCategoryEvent() {
+
     this.eventsHandler.subscribe('searchCategoryEventEmmited', (category) => {
       this.mainContent.scrollToTop();
       this.searchComponent.setSearchInput(category);

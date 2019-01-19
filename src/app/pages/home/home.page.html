@@ -14,7 +14,7 @@
     <app-search #searchComponent (searchEvent)="searchEventEmmited($event)"></app-search>
   </div>
   <div class="scroll-content" *ngIf="!searchActive">
-    <!-- <app-horizontal-scroll (movieSelected)="viewMovieInfo($event)" [movies]="userFavorites"  [categoryName]="'Favoritos'"></app-horizontal-scroll> -->
+    <app-horizontal-scroll *ngIf="!reloadFavorite" (movieSelected)="viewMovieInfo($event)" [movies]="movieService.userFavorites"  [categoryName]="'Favoritos'"></app-horizontal-scroll>
     <app-horizontal-scroll (movieSelected)="viewMovieInfo($event)" [movies]="newRealeases" [categoryName]="'Em Alta'"></app-horizontal-scroll>
     <app-horizontal-scroll (movieSelected)="viewMovieInfo($event)" [movies]="mostPopular" [categoryName]="'Recomendados'"></app-horizontal-scroll>
     <app-horizontal-scroll (movieSelected)="viewMovieInfo($event)" [movies]="mostSeen" [categoryName]="'Mais Assistidos'"></app-horizontal-scroll>

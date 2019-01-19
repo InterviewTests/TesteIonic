@@ -14,6 +14,7 @@ import { LoadingService } from '../../services/loading.service';
 })
 export class MovieInfoPage {
   private movie: Movie;
+  private isFavorite: boolean = false;
 
   constructor(public movieService: MovieService,
               public navController: NavController,
@@ -33,10 +34,11 @@ export class MovieInfoPage {
     }
   }
 
-
   async getMovieRef(movieID) {
     await this.loadService.startLoading('Carregando detalhes do filme...');
     this.movieService.getMovieById(movieID).then((movie: Movie) => {
+      this.isFavorite = this.movieService.isMovieFavorite(movieID);
+
       this.movie = movie;
       this.loadService.stopLoading();
     }).catch((err) => {
@@ -48,5 +50,13 @@ export class MovieInfoPage {
 
   private backPage() {
     this.navController.navigateBack('/home/');
+  }
+
+  private setMovieAsFavorite(value: boolean) {
+    if (value) {
+      this.movieService.insertFavorite(this.movie);
+    } else {
+      this.movieService.removeFavorite(this.movie);
+    }
   }
 }

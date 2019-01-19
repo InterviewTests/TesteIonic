@@ -1,28 +1,37 @@
 import { Injectable } from '@angular/core';
+import { Events } from '@ionic/angular';
 import { Movie } from '../models/movie';
 import { HttpService } from './http.service';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieService {
-  private userFavorites: Movie[] = [];
-  private newReleases: Movie[] = [];
-  private mostSeen: Movie[] = [];
-  private mostPopular: Movie[] = [];
+  public userFavorites: Movie[] = [];
 
   private searchResult: Movie[] = [];
 
-  constructor(public http: HttpService) {
-    this.fakeData();
+  private firestoreDb: AngularFirestoreCollection;
+
+  private userID = '';
+
+  constructor(public http: HttpService, public firestore: AngularFirestore, public event: Events) {
+    this.setupFirestore();
+  }
+
+  private setupFirestore() {
+    this.firestore.firestore.settings({ timestampsInSnapshots: true });
+    this.firestoreDb = this.firestore.collection('userFavorites', ref => ref.where('id', '==', this.userID));
   }
 
   public getMovieById(id) {
     return new Promise((resolve, reject) => {
-      this.http.get2('movie/' + id).then((movie: any) => {
+      this.http.get('movie/' + id).then((movie: any) => {
         resolve(movie);
       }).catch((error) => {
-        console.log(error);
+        console.log('MovieService','getMovieById', error);
+        reject(error);
       });
     });
   }
@@ -32,7 +41,8 @@ export class MovieService {
       this.http.getSearch('search/movie?query=' + searchText, page).then((movies: any) => {
         resolve(movies);
       }).catch((error) => {
-        console.log(error);
+        console.log('MovieService','searchMovies', error);
+        reject(error);
       });
     });
   }
@@ -43,67 +53,68 @@ export class MovieService {
 
   public getReleases() {
     return new Promise((resolve, reject) => {
-      this.http.get2('trending/movie/week').then((response: any) => {
+      this.http.get('trending/movie/week').then((response: any) => {
         resolve(response.results);
       }).catch((error) => {
-        console.log(error);
+        console.log('MovieService','getReleases', error);
+        reject(error);
       });
     });
   }
 
   public getMostSeen() {
     return new Promise((resolve, reject) => {
-      this.http.get2('movie/top_rated/').then((response: any) => {
+      this.http.get('movie/top_rated/').then((response: any) => {
         resolve(response.results);
       }).catch((error) => {
-        console.log(error);
+        console.log('MovieService','getMostSeen', error);
+        reject(error);
       });
     });
   }
 
   public getMostPopular(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.get2('movie/popular/').then((response: any) => {
+      this.http.get('movie/popular/').then((response: any) => {
         resolve(response.results);
       }).catch((error) => {
-        console.log(error);
+        console.log('MovieService','getMostPopular', error);
+        reject(error);
       });
     });
   }
 
-  public getSearchResult() {
-    return this.searchResult;
+  public setUserId(id:string) {
+    this.userID = id;
+    this.firestoreDb.doc(this.userID).get().subscribe((docs) => {
+      if (docs.exists) {
+        this.userFavorites = docs.data().userFavorites;
+      }
+    });
   }
 
-  private fakeData() {
-    for(let i = 0; i < 4; i ++) {
-      let newMovie = new Movie();
-      newMovie.fakeData();
-      this.userFavorites.push(newMovie);
-    }
+  public saveState() {
+    this.firestoreDb.doc(this.userID).set({
+      id: this.userID,
+      userFavorites: this.userFavorites
+    });
+    this.event.publish('favoritesChanged');
 
-    for(let i = 0; i < 11; i ++) {
-      let newMovie = new Movie();
-      newMovie.fakeData();
-      this.newReleases.push(newMovie);
-    }
-
-    for(let i = 0; i < 13; i ++) {
-      let newMovie = new Movie();
-      newMovie.fakeData();
-      this.mostSeen.push(newMovie);
-    }
-
-    for(let i = 0; i < 9; i ++) {
-      let newMovie = new Movie();
-      newMovie.fakeData();
-      this.mostPopular.push(newMovie);
-    }
-
-    for(let i = 0; i < 17; i ++) {
-      let newMovie = new Movie();
-      newMovie.fakeData();
-      this.searchResult.push(newMovie);
-    }
   }
+
+  public isMovieFavorite(movieID) {
+    return this.userFavorites && this.userFavorites.find((movie) => { return movie.id == movieID }) ? true : false ;
+  }
+
+  public insertFavorite(movie: Movie) {
+    this.userFavorites.push(movie);
+    this.saveState();
+
+  }
+
+  public removeFavorite(movie: Movie) {
+    this.userFavorites = this.userFavorites.filter((movieRef) => (movie.id).toString() !== (movieRef.id).toString());
+    this.saveState();
+  }
+
 }

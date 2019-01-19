@@ -12,5 +12,5 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <app-movie-detail *ngIf="movie" [movie]="movie" #movieDetail></app-movie-detail>
+  <app-movie-detail *ngIf="movie" [isFavorite]="isFavorite" (setFavorite)="setMovieAsFavorite($event)" [movie]="movie" #movieDetail></app-movie-detail>
 </ion-content>

@@ -73,26 +73,7 @@ export class HttpService {
   		});
   	}
 
-  	async get(url: string) {
-  		return new Promise((resolve, reject) => {
-  			const header: Headers = new Headers();
-  			header.append('Content-Type', 'application/json');
-        header.append('Accept', 'application/json');
-        header.append('Access-Control-Allow-Origin' , '*');
-  			const options = new RequestOptions({ headers: header });
-
-  			this.http.get(this.baseURL + url + '?api_key=' + environment.movieDB_apikey, options).subscribe((data: any) => {
-  				resolve(data.json());
-  			},
-  			(err) => {
-  				reject(err);
-  			});
-  		}).catch((err) => {
-  			console.log('ERROR', err);
-  		});
-  	}
-
-    async get2(url: string, pagination: number = 1) {
+    async get(url: string, pagination: number = 1) {
       return new Promise((resolve, reject) => {
         const header: Headers = new Headers();
 
@@ -109,6 +90,7 @@ export class HttpService {
         console.log('ERROR', err);
       });
     }
+    
     async getSearch(url: string, pagination: number = 1) {
       return new Promise((resolve, reject) => {
         const header: Headers = new Headers();

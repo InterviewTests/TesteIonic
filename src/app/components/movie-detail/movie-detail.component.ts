@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Movie } from '../../models/movie';
 import { environment } from '../../../environments/environment';
 
@@ -8,10 +8,10 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./movie-detail.component.scss']
 })
 export class MovieDetailComponent implements OnInit {
+  @Output('setFavorite') setFavoriteEvent = new EventEmitter<any>();
   @Input('movie') movie: Movie;
-
+  @Input('isFavorite') isFavorite: boolean = false;
   constructor() {
-    console.log('Got:', this.movie);
   }
 
   ngOnInit() {
@@ -28,5 +28,10 @@ export class MovieDetailComponent implements OnInit {
 
   public getMovieFullUrl(posterPath: string) {
     return environment.movieDB_image_url + posterPath;
+  }
+
+  public setFavorite() {
+    this.isFavorite ? this.setFavoriteEvent.emit(false) : this.setFavoriteEvent.emit(true);
+    this.isFavorite = !this.isFavorite;
   }
 }
