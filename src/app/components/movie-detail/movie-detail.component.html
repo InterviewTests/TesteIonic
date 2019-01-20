@@ -1,6 +1,6 @@
 <div class="component-content">
     <div class="poster-placement">
-      <img class="movie-img" [src]="getMovieFullUrl(movie.backdrop_path)"/><br />
+      <img class="movie-img" [src]="getMovieFullUrl(movie.backdrop_path)" *ngIf="movie.backdrop_path"/><br />
     </div>
     <div class="first-detail-content">
       <span class="title f-22 white k2d-eb">{{ movie?.title }}</span><br />
