@@ -25,8 +25,10 @@ export class MovieService {
   * @return {void}
   */
   private setupFirestore() {
-    this.firestore.firestore.settings({ timestampsInSnapshots: true });
-    this.firestoreDb = this.firestore.collection('userFavorites', ref => ref.where('id', '==', this.userID));
+    if (this.firestore && this.firestore.firestore) {
+      this.firestore.firestore.settings({ timestampsInSnapshots: true });
+      this.firestoreDb = this.firestore.collection('userFavorites', ref => ref.where('id', '==', this.userID));
+    }
   }
 
   /**

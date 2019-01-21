@@ -1,9 +1,8 @@
-import { Component, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Events, NavController } from '@ionic/angular';
 import { SearchComponent } from '../../components/search/search.component';
 
 import { MovieService } from '../../services/movie.service';
-// import { NavigatorService } from '../../services/navigator.service';
 
 @Component({
   selector: 'app-home',
@@ -27,7 +26,7 @@ export class HomePage {
   private currentPageNumber = 1;
   private queryPageLimit = 1;
 
-  constructor(private eventsHandler: Events, private movieService: MovieService, private navController: NavController, public ref: ChangeDetectorRef) {
+  constructor(private eventsHandler: Events, private movieService: MovieService, private navController: NavController) {
     // this.fakeData();
     this.userFavorites = this.getFavorites();
     this.getPopular();

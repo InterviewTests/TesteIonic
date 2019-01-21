@@ -60,18 +60,18 @@ import { UserService } from './services/user.service';
     AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [
-    StatusBar,
-    SplashScreen,
-    MovieService,
-    UserService,
-    LoadingService,
-    ToastService,
+    AndroidPermissions,
+    Device,
     FingerprintAIO,
     FirebaseAuthentication,
-    HttpService,
-    Device,
-    AndroidPermissions,
     HTTP,
+    LoadingService,
+    MovieService,
+    HttpService,
+    SplashScreen,
+    StatusBar,
+    ToastService,
+    UserService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

@@ -8,10 +8,12 @@ describe('SearchComponent', () => {
   let eventsSpy;
 
   beforeEach(async(() => {
+    eventsSpy = jasmine.createSpyObj('Events', ['subscribe']);
+
     TestBed.configureTestingModule({
       declarations: [ SearchComponent, IonSearchbar ],
       providers: [
-        { provide: Events, useValue: eventsSpy }
+        { provide: Events, useValue: eventsSpy },
       ],
     })
     .compileComponents();
