@@ -89,7 +89,6 @@
         <variable name="FIREBASE_AUTH_VERSION" value="16.0.+" />
     </plugin>
     <plugin name="cordova-plugin-advanced-http" spec="^2.0.2" />
-    <plugin name="com.danielsogl.cordova.deviceaccounts" spec="~1.0.0" />
     <plugin name="cordova-plugin-android-permissions" spec="^1.0.0" />
     <plugin name="cordova-plugin-device" spec="^2.0.2" />
     <engine name="android" spec="7.0.0" />
