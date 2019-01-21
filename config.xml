@@ -82,7 +82,7 @@
         <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
         <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
-        <resource-file src="google-services.json" target="google-services.json" />
+        <resource-file src="google-services.json" target="app/google-services.json" />
     </platform>
     <plugin name="cordova-plugin-fingerprint-aio" spec="~1.5.0" />
     <plugin name="cordova-plugin-firebase-authentication" spec="^1.0.1">
