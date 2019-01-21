@@ -8,6 +8,12 @@ export class ToastService {
     constructor(private toastCtrl:ToastController) {
 		}
 
+    /**
+    * Inicia a exibição da mensagem no Toast
+    * @param {String} message Mensagem a ser exibida no Toast
+    * @param {String} time Tempo de exibição do toast
+    * @return {Promise}
+    */
 		public showToastAlert(message:string, time:number = 2500): Promise<any> {
       return new Promise((resolve, reject) => {
         if (this.activeToast != null){
@@ -29,6 +35,10 @@ export class ToastService {
       });
     }
 
+    /**
+    * Para a exibição da mensagem do Toast
+    * @return {void}
+    */
     public dismissToast(){
       if (this.activeToast) {
         this.activeToast.dismiss();

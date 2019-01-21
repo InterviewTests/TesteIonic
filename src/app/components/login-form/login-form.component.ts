@@ -29,6 +29,10 @@ export class LoginFormComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+  * Aciona um OutputEvent com as credenciais do usuario
+  * @return {void}
+  */
   private loginButtonPressed() {
     this.toastService.dismissToast();
     if (this.isFormValid()) {
@@ -40,10 +44,18 @@ export class LoginFormComponent implements OnInit {
     }
   }
 
+  /**
+  * Aciona um OutputEvent para alternar slide para Registro
+  * @return {void}
+  */
   private registerButtonPressed() {
     this.slideToRegister.emit();
   }
 
+  /**
+  * Emite um alerta para recuperação de senha
+  * @return {void}
+  */
   private forgotPassButtonPressed() {
     this.alertCtrl.create({
       message: 'Digite seu email para refazer sua senha:',
@@ -72,6 +84,10 @@ export class LoginFormComponent implements OnInit {
     });
   }
 
+  /**
+  * Constrói o grupo de formulário de email e senha para realização de autenticação
+  * @return {FormGroup}
+  */
   private buildLoginForm() {
     return this.formBuilder.group({
       email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
@@ -79,10 +95,19 @@ export class LoginFormComponent implements OnInit {
     });
   }
 
+  /**
+  * Aciona um OutputEvent com o email do usuario
+  * @param {String} email Email do usuario
+  * @return {void}
+  */
   private sendforgotPassEvent(email) {
     this.forgotPassEvent.emit(email);
   }
 
+  /**
+  * Retorna um booleano indicando a validação de formulario
+  * @return {Boolean}
+  */
   private isFormValid() {
     if (this.loginForm.get('email').errors) {
       this.toastService.showToastAlert(this.getErrorMessage('Email', this.loginForm.get('email').errors));
@@ -95,6 +120,12 @@ export class LoginFormComponent implements OnInit {
     return true;
   }
 
+  /**
+  * Retorna uma mensagem de erro sobre o formulário
+  * @param {String} input Campo do formulario
+  * @param {String} error Erro trazido do formulario
+  * @return {String}
+  */
   private getErrorMessage(input: string, error: any) {
     let errorMessage = "Campo '" + input + "' ";
     if (error.required) {

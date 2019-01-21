@@ -21,22 +21,41 @@ export class HorizontalScrollComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+  * Atualiza o index do slide atual
+  * @return {void}
+  */
   private updateCurrentSlideIndex() {
-    this.sliderComponent.getActiveIndex().then((index) => {
+    this.sliderComponent.getActiveIndex().then((index: number) => {
       this.currentSlideIndex = index;
     }).catch((error) => {
       console.log('HorizontalScrollComponent', 'UpdateCurrentSlideIndex', error);
     })
   }
 
-  private getBulletColor(index) {
+  /**
+  * Retorna a classe CSS de acordo com o index de entrada
+  * @param {Number} index Filme selecionado
+  * @return {String} classe CSS
+  */
+  private getBulletColor(index: number) {
     return index ===  this.currentSlideIndex ? 'pag-bullet active' : 'pag-bullet';
   }
 
+  /**
+  * Aciona um OutputEvent com o ID do filme selecionado
+  * @param {Object} movie Filme selecionado
+  * @return {void}
+  */
   private selectMovie(movie) {
     this.movieSelected.emit(movie.id);
   }
 
+  /**
+  * Retorna a URL final da imagem
+  * @param {String} posterPath Identificador de uma imagem
+  * @return {String} URL final da imagem
+  */
   public getMovieFullUrl(posterPath: string) {
     return environment.movieDB_image_url + posterPath;
   }

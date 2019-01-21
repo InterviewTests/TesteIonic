@@ -34,6 +34,11 @@ export class MovieInfoPage {
     }
   }
 
+  /**
+  * Trás o filme de acordo com o seu ID
+  * @param {String} movieID ID do filme selecionado
+  * @return {Promise<any>}
+  */
   async getMovieRef(movieID) {
     await this.loadService.startLoading('Carregando detalhes do filme...');
     this.movieService.getMovieById(movieID).then((movie: Movie) => {
@@ -48,10 +53,19 @@ export class MovieInfoPage {
     });
   }
 
+  /**
+  * Navega o app de volta para Home
+  * @return {void}
+  */
   private backPage() {
     this.navController.navigateBack('/home/');
   }
 
+  /**
+  * Insere/Remove o filme da lista de favoritos de acordo com seu estado atual(true/false)
+  * @param {Boolean} value valor de comparação
+  * @return {void}
+  */
   private setMovieAsFavorite(value: boolean) {
     if (value) {
       this.movieService.insertFavorite(this.movie);

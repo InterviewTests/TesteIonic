@@ -29,7 +29,7 @@ export class HomePage {
 
   constructor(private eventsHandler: Events, private movieService: MovieService, private navController: NavController, public ref: ChangeDetectorRef) {
     // this.fakeData();
-    this.getFavorites();
+    this.userFavorites = this.getFavorites();
     this.getPopular();
     this.getMostSeen();
     this.getNewReleases();
@@ -45,6 +45,10 @@ export class HomePage {
     this.unsubscribeCategoryEvent();
   }
 
+  /**
+  * Recarrega o componente de Favoritos
+  * @return {void}
+  */
   private refreshFavoritesComponent() {
     this.userFavorites = [];
     this.reloadFavorite = true;
@@ -53,6 +57,12 @@ export class HomePage {
     }, 100);
   }
 
+  /**
+  * (Output) Evento lançado por componente externo.
+  * Função fará busca por filme de acordo com ovalor de entrada
+  * @param {String} value valor de busca
+  * @return {void}
+  */
   searchEventEmmited(value: string) {
     this.searchingText = value;
     this.currentPageNumber = 1;
@@ -70,6 +80,11 @@ export class HomePage {
     }
   }
 
+  /**
+  * (Output) Evento lançado por componente externo.
+  * Função trará mais filmes da busca realizada anteriormente
+  * @return {void}
+  */
   getMoreFromSearch() {
     if (this.searchActive) {
       this.movieService.searchMovies(this.searchingText, this.currentPageNumber + 1).then((result: any) => {
@@ -83,14 +98,28 @@ export class HomePage {
     }
   }
 
+  /**
+  * (Output) Evento lançado por componente externo.
+  * Navega o app para ver detalhes do filme selecionado
+  * @param {Object} movie filme selecionado do tipo 'Movie'
+  * @return {void}
+  */
   private viewMovieInfo(movie) {
     this.navController.navigateForward('movieInfo/'+ movie);
   }
 
+  /**
+  * Trás os filmes favoritos do usuário
+  * @return {Array}
+  */
   private getFavorites() {
-    this.userFavorites = this.movieService.userFavorites;
+    return this.movieService.userFavorites;
   }
 
+  /**
+  * Trás os filmes mais populares
+  * @return {void}
+  */
   private getPopular() {
     this.movieService.getMostPopular().then((movies: any) => {
       this.mostPopular = movies;
@@ -99,6 +128,10 @@ export class HomePage {
     });
   }
 
+  /**
+  * Trás os filmes mais visualizados
+  * @return {void}
+  */
   private getMostSeen() {
     this.movieService.getMostSeen().then((movies: any) => {
       this.mostSeen = movies;
@@ -107,6 +140,10 @@ export class HomePage {
     });
   }
 
+  /**
+  * Trás os filmes mais recentes
+  * @return {void}
+  */
   private getNewReleases() {
     this.movieService.getReleases().then((movies: any) => {
       this.newRealeases = movies;
@@ -115,14 +152,22 @@ export class HomePage {
     });
   }
 
+  /**
+  * Realiza um 'subscribe' para o evento 'searchCategoryEventEmmited'.
+  * Realiza uma busca da String trazida pelo evento
+  * @return {void}
+  */
   private subscribeCategoryEvent() {
-
     this.eventsHandler.subscribe('searchCategoryEventEmmited', (category) => {
       this.mainContent.scrollToTop();
       this.searchComponent.setSearchInput(category);
     });
   }
 
+  /**
+  * Remove o 'subscribe' para o evento 'searchCategoryEventEmmited'.
+  * @return {void}
+  */
   private unsubscribeCategoryEvent() {
     this.eventsHandler.unsubscribe('searchCategoryEventEmmited');
   }

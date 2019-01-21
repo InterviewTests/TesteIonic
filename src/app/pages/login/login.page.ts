@@ -38,8 +38,12 @@ export class LoginPage {
     }
   }
 
-  async authenticate(credentials) {
-    console.log(this.platform.platforms());
+  /**
+  * Funcao para autenticacao do usuário
+  * @param {Object} credentials credenciais com Email (email) e Senha (password)
+  * @return Promise<any> Autentica o usuário no sistema
+  */
+  async authenticate(credentials: { email , password }) {
     if (!this.platform.is('mobile')) {
       this.navHome();
       return;
@@ -57,6 +61,11 @@ export class LoginPage {
     });
   }
 
+  /**
+  * Funcao para registrar o usuário
+  * @param {Object} credentials credenciais com Email (email) e Senha (password)
+  * @return Promise<any> Registra o usuário no sistema
+  */
   async register(credentials) {
     await this.loadService.startLoading('Efetuando cadastro...');
     this.userService.registerNewAccount(credentials.email, credentials.password).then((result) => {
@@ -70,6 +79,11 @@ export class LoginPage {
     });
   }
 
+  /**
+  * Funcao para recuperar a senha do usuário. Enviando um link de redefinição de senha para seu email.
+  * @param {String} email email do usuário
+  * @return Promise<any>
+  */
   async recoverPassword(email) {
     await this.loadService.startLoading('Enviando email...');
     this.userService.recoverPassword(email).then((result) => {
@@ -82,19 +96,34 @@ export class LoginPage {
     });
   }
 
+  /**
+  * Navega para a Home do app
+  * @return {void}
+  */
   private navHome() {
     this.navController.navigateRoot(['home/']);
   }
 
+  /**
+  * Navega para slide de Registro
+  * @return Void
+  */
   slideToRegister() {
     this.slides.slideTo(1);
   }
 
+  /**
+  * Navega para slide de Registro
+  * @return Void
+  */
   slideToLogin() {
     this.slides.slideTo(0);
-
   }
 
+  /**
+  * Funcao para autenticacao do usuário por digital
+  * @return Promise<any> Autentica o usuário no sistema pela digital
+  */
   fingerPrintAuth() {
     return new Promise((resolve, reject) => {
       this.fpManager.show({

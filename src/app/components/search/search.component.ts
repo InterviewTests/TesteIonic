@@ -19,11 +19,21 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+  * (Output) Evento lançado por componente externo.
+  * Emite um OutputEvent quando o texto na busca é alterado com o seu valor.
+  * @return {void}
+  */
   private textChanged() {
     this.searchText = this.searchBarComponent.value;
     this.searchEvent.emit(this.searchText);
   }
 
+  /**
+  * Define um valor de busca
+  * @param {String} inputText valor de busca
+  * @return {void}
+  */
   public setSearchInput(inputText) {
     this.searchBarComponent.value = inputText;
     this.textChanged();

@@ -18,14 +18,28 @@ export class GridViewComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+  * Aciona um OutputEvent com o id de um filme selecionado
+  * @param {Object} movie Filme selecionado
+  * @return {void}
+  */
   private selectMovie(movie) {
     this.movieSelected.emit(movie.id);
   }
 
+  /**
+  * Retorna a URL final da imagem
+  * @param {String} posterPath Identificador de uma imagem
+  * @return {String} URL final da imagem
+  */
   public getMovieFullUrl(posterPath: string) {
     return environment.movieDB_image_url + posterPath;
   }
 
+  /**
+  * Aciona um OutputEvent para buscar mais filmes
+  * @return {void}
+  */
   public searchMoreMovies() {
     this.searchMore.emit();
   }

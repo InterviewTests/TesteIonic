@@ -17,6 +17,11 @@ export class MovieDetailComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+  * Retorna uma string com o tempo de filme convertido
+  * @param {Number} durationTime Duração do filme em minutos
+  * @return {String}
+  */
   private getDurationString(durationTime) {
     if (durationTime) {
       let hour = String(Math.floor(durationTime/60)) + 'h';
@@ -24,12 +29,18 @@ export class MovieDetailComponent implements OnInit {
 
       return hour + minutes;
     }
+    return '';
   }
+
 
   public getMovieFullUrl(posterPath: string) {
     return environment.movieDB_image_url + posterPath;
   }
 
+  /**
+  * Aciona um OutputEvent com um booleano indicando se o filme é favorito
+  * @return {String}
+  */
   public setFavorite() {
     this.isFavorite ? this.setFavoriteEvent.emit(false) : this.setFavoriteEvent.emit(true);
     this.isFavorite = !this.isFavorite;

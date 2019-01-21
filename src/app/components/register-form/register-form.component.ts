@@ -25,6 +25,11 @@ export class RegisterFormComponent implements OnInit {
   ngOnInit() {
   }
 
+
+  /**
+  * Aciona um OutputEvent com os valores para registrar
+  * @return {void}
+  */
   private registerButtonPressed() {
     this.toastService.dismissToast();
     if (this.isFormValid()) {
@@ -32,25 +37,36 @@ export class RegisterFormComponent implements OnInit {
         email: this.registerForm.get('email').value,
         password: this.registerForm.get('password').value,
         confirmpassword: this.registerForm.get('confirmpassword').value,
-        // digitalAuth: this.registerForm.get('digitalAuth').value
       };
       this.registerEvent.emit(registerParams);
     }
   }
 
+  /**
+  * Aciona um OutputEvent para alternar slide para Login
+  * @return {void}
+  */
   private backButtonPressed() {
     this.slideToLogin.emit();
   }
 
+  /**
+  * Constrói o grupo de formulário de emai, senha e confirmação de senha para
+  * realização de registro
+  * @return {FormGroup}
+  */
   private buildRegisterForm() {
     return this.formBuilder.group({
       email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
       password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
       confirmpassword: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
-      // digitalAuth: new FormControl(true),
     });
   }
 
+  /**
+  * Retorna um booleano indicando a validação de formulario
+  * @return {Boolean}
+  */
   private isFormValid() {
     if (this.registerForm.get('email').errors) {
       this.toastService.showToastAlert(this.getErrorMessage('Email', this.registerForm.get('email').errors));
@@ -74,6 +90,12 @@ export class RegisterFormComponent implements OnInit {
     return true;
   }
 
+  /**
+  * Retorna uma mensagem de erro sobre o formulário
+  * @param {String} input Campo do formulario
+  * @param {String} error Erro trazido do formulario
+  * @return {String}
+  */
   private getErrorMessage(input: string, error: any) {
     let errorMessage = "Campo '" + input + "' ";
     if (error.required) {

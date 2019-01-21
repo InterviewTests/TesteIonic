@@ -8,6 +8,11 @@ export class LoadingService {
 
   }
 
+  /**
+  * Inicia a exibição do componente de loading
+  * @param {String} message Mensagem a ser exibida no componente de loading
+  * @return {Promise}
+  */
   startLoading(message): Promise<any>{
     return new Promise((resolve) => {
       this.loadCtrl.create({
@@ -22,6 +27,10 @@ export class LoadingService {
     });
   }
 
+  /**
+  * Para a exibição do componente de loading
+  * @return {void}
+  */
   public stopLoading(){
     if (this.loader) {
       this.loader.dismiss();
