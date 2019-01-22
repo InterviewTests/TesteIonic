@@ -1,0 +1,26 @@
+<ion-content>
+  <div class="page-content">
+    <ion-slides #slides class="slides-component">
+      <!-- Login -->
+      <ion-slide class="page-slide">
+        <div class="login-upper-content flex-1">
+          <span class="k2d-eb red f-4em">FakeFlix</span>
+        </div>
+        <div class="login-mid-content flex-2">
+          <app-login-form (slideToRegister)="slideToRegister()" (loginEvent)="authenticate($event)" (forgotPassEvent)="recoverPassword($event)"></app-login-form>
+        </div>
+        <div class="login-bottom-content flex-1"></div>
+      </ion-slide>
+      <!-- Register -->
+      <ion-slide class="page-slide">
+        <div class="login-upper-content flex-1">
+          <span class="k2d-eb red f-3em">Registra-se</span>
+        </div>
+        <div class="login-mid-content flex-2">
+          <app-register-form [fingerPrintAvailable]="fingerPrintAvailable" (slideToLogin)="slideToLogin()" (registerEvent)="register($event)"></app-register-form>
+        </div>
+        <div class="login-bottom-content flex-1"></div>
+      </ion-slide>
+    </ion-slides>
+  </div>
+</ion-content>

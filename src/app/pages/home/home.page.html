@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-menu-button class="ion-menu-button"></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="f-22 white k2d-bi">
+      FAKEFLIX
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="body" #content>
+  <div class="upper-content">
+    <app-search #searchComponent (searchEvent)="searchEventEmmited($event)"></app-search>
+  </div>
+  <div class="scroll-content" *ngIf="!searchActive">
+    <app-horizontal-scroll *ngIf="!reloadFavorite" (movieSelected)="viewMovieInfo($event)" [movies]="movieService.userFavorites"  [categoryName]="'Favoritos'"></app-horizontal-scroll>
+    <app-horizontal-scroll (movieSelected)="viewMovieInfo($event)" [movies]="newRealeases" [categoryName]="'Em Alta'"></app-horizontal-scroll>
+    <app-horizontal-scroll (movieSelected)="viewMovieInfo($event)" [movies]="mostPopular" [categoryName]="'Recomendados'"></app-horizontal-scroll>
+    <app-horizontal-scroll (movieSelected)="viewMovieInfo($event)" [movies]="mostSeen" [categoryName]="'Mais Assistidos'"></app-horizontal-scroll>
+  </div>
+  <div class="scroll-content" *ngIf="searchActive">
+    <span class="f-14 white k2d-bi search-label">Filmes encontrados com "{{ searchingText }}" ...</span>
+    <div class="movies-display-grid">
+      <app-grid-view [movies]="searchResult" [page]="currentPageNumber" [pageLimit]="queryPageLimit" (movieSelected)="viewMovieInfo($event)" (searchMore)="getMoreFromSearch()"></app-grid-view>
+    </div>
+  </div>
+</ion-content>

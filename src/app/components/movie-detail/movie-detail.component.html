@@ -1,0 +1,22 @@
+<div class="component-content">
+    <div class="poster-placement">
+      <img class="movie-img" [src]="getMovieFullUrl(movie.backdrop_path)" *ngIf="movie.backdrop_path"/><br />
+    </div>
+    <div class="first-detail-content">
+      <span class="title f-22 white k2d-eb">{{ movie?.title }}</span><br />
+      <span class="sub-info white k2d-m">Gêneros:</span><span class="k2d-i white"> Ação, Drama, Drogas </span><br />
+      <span class="sub-info white k2d-m">Popularidade:</span><span class="k2d-i white"> {{ movie?.popularity }} </span><br />
+      <span class="sub-info white k2d-m">Duração:</span><span class="k2d-i white"> {{ getDurationString(movie?.runtime) }} </span>
+    </div>
+    <div class="description-content white k2d-mi">
+      {{ movie.overview }}
+    </div>
+    <div class="favorite-content">
+      <button ion-button class="fav-button rb" (click)="setFavorite()" *ngIf="!isFavorite">
+        <span class="f-22 white k2d-eb"> FAVORITAR </span>
+      </button>
+      <button ion-button class="fav-button gb" (click)="setFavorite()" *ngIf="isFavorite">
+        <span class="f-22 white k2d-eb"> DESFAVORITAR </span>
+      </button>
+    </div>
+</div>

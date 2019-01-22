@@ -1,0 +1,47 @@
+.grid {
+  margin-top: 20px;
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+
+.grid-item {
+  width: 50%;
+  padding: 5px;
+  display: inline-block;
+  vertical-align: top;
+  overflow: hidden;
+  height: 19em;
+}
+
+.not-found-box {
+  width: 100%;
+  padding: 3%;
+}
+
+.load-more-content {
+  margin-top: 10px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.red-bound {
+  border-radius: 50%;
+  background: #E50914;
+  height: 30px;
+  width: 30px;
+  margin-left: calc(50% - 15px);
+}
+
+.movie-img {
+  // height: 100%;
+  width: 100%;
+}
+
+.no-image-box {
+  height: 100%;
+  padding: 4px;
+  border: solid 1px #f5f5f1;
+  margin-top: -15px;
+}

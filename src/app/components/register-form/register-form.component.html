@@ -1,0 +1,24 @@
+<div>
+  <form [formGroup]="registerForm">
+    <ion-item>
+      <ion-label position="floating" color="secondary">Email:</ion-label>
+      <ion-input formControlName="email" type="email" class="input-txt white f-16 k2d-m"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" color="secondary">Senha:</ion-label>
+      <ion-input formControlName="password" type="password" class="input-txt white f-16 k2d-m"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" color="secondary">Conf. Senha:</ion-label>
+      <ion-input formControlName="confirmpassword" type="password" class="input-txt white f-16 k2d-m"></ion-input>
+    </ion-item>
+
+    <button ion-button class="register-form-button" (click)="registerButtonPressed()">
+      <span class="f-22 white k2d-eb"> REGISTRAR </span>
+    </button>
+  </form>
+  <button ion-button class="back-form-button" (click)="backButtonPressed()">
+    <span class="f-22 white k2d-eb"> VOLTAR </span>
+  </button>
+
+</div>

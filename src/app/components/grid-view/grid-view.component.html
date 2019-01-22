@@ -1,0 +1,18 @@
+<div class="component-content">
+  <div class="grid">
+    <div class="grid-item" *ngFor="let movie of moviesList" (click)="selectMovie(movie)">
+      <img class="movie-img" [src]="getMovieFullUrl(movie.poster_path)" *ngIf="movie.poster_path"/><br />
+      <div class="no-image-box" *ngIf="!movie.poster_path">
+        <span class="k2d-m white f-18">{{ movie.title }}</span>
+      </div>
+    </div>
+    <div class="not-found-box">
+      <span class="k2d-m white f-22" *ngIf="moviesList.length === 0">Nenhum resultado encontrado.</span>
+    </div>
+    <div class="load-more-content" *ngIf="page !== pageLimit" (click)="searchMoreMovies()">
+      <div class="red-bound">
+        <span class="k2d-m white f-22" >+</span>
+      </div>
+    </div>
+  </div>
+</div>

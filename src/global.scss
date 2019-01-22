@@ -1,0 +1,143 @@
+
+@font-face { font-family: 'K2D-Bold'; src: url("assets/fonts/K2D-Bold.ttf"); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'K2D-BoldItalic'; src: url('assets/fonts/K2D-BoldItalic.ttf'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'K2D-ExtraBold'; src: url('assets/fonts/K2D-ExtraBold.ttf'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'K2D-ExtraBoldItalic'; src: url('assets/fonts/K2D-ExtraBoldItalic.ttf'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'K2D-ExtraLight'; src: url('assets/fonts/K2D-ExtraLight.ttf'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'K2D-ExtraLightItalic'; src: url('assets/fonts/K2D-ExtraLightItalic.ttf'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'K2D-Italic'; src: url('assets/fonts/K2D-Italic.ttf'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'K2D-Light'; src: url('assets/fonts/K2D-Light.ttf'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'K2D-LightItalic'; src: url('assets/fonts/K2D-LightItalic.ttf'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'K2D-Medium'; src: url('assets/fonts/K2D-Medium.ttf'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'K2D-MediumItalic'; src: url('assets/fonts/K2D-MediumItalic.ttf'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'K2D-Regular'; src: url('assets/fonts/K2D-Regular.ttf') format('ttf');; font-weight: normal; font-style: normal; }
+@font-face { font-family: 'K2D-SemiBold'; src: url('assets/fonts/K2D-SemiBold.ttf'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'K2D-SemiBoldItalic'; src: url('assets/fonts/K2D-SemiBoldItalic.ttf'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'K2D-Thin'; src: url('assets/fonts/K2D-Thin.ttf'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'K2D-ThinItalic'; src: url('assets/fonts/K2D-ThinItalic.ttf'); font-weight: normal; font-style: normal; }
+
+* {
+  font-family: 'K2D-Regular';
+  font-size: 14px;
+}
+
+.k2d-b { font-family: 'K2D-Bold' };
+.k2d-bi { font-family: 'K2D-BoldItalic' };
+.k2d-eb { font-family: 'K2D-ExtraBold' };
+.k2d-ebi { font-family: 'K2D-ExtraBoldItalic' };
+.k2d-el { font-family: 'K2D-ExtraLight' };
+.k2d-eli { font-family: 'K2D-ExtraLightItalic' };
+.k2d-i { font-family: 'K2D-Italic' };
+.k2d-l { font-family: 'K2D-Light' };
+.k2d-li { font-family: 'K2D-LightItalic' };
+.k2d-m { font-family: 'K2D-Medium' };
+.k2d-mi { font-family: 'K2D-MediumItalic' };
+.k2d-r { font-family: 'K2D-Regular' };
+.k2d-sb { font-family: 'K2D-SemiBold' };
+.k2d-sbi { font-family: 'K2D-SemiBoldItalic' };
+.k2d-t { font-family: 'K2D-Thin' };
+.k2d-ti { font-family: 'K2D-ThinItalic' };
+
+.f-10 { font-size: 10px };
+.f-12 { font-size: 12px };
+.f-14 { font-size: 14px };
+.f-16 { font-size: 16px };
+.f-18 { font-size: 18px };
+.f-20 { font-size: 20px };
+.f-22 { font-size: 22px };
+.f-24 { font-size: 24px };
+.f-26 { font-size: 26px };
+.f-28 { font-size: 28px };
+.f-30 { font-size: 30px };
+.f-34 { font-size: 34px };
+.f-40 { font-size: 40px };
+.f-50 { font-size: 50px };
+.f-60 { font-size: 60px };
+.f-70 { font-size: 70px };
+
+.f-1em { font-size: 1em };
+.f-2em { font-size: 2em };
+.f-3em { font-size: 3em };
+.f-4em { font-size: 4em };
+
+.flex-1 {
+  flex: 1;
+}
+.flex-2 {
+  flex: 2;
+}
+.flex-3 {
+  flex: 3;
+}
+
+// CORES ESPECIFICADAS PELA APLICAÇÃO
+.white { color: #f5f5f1 };
+.red { color: #E50914 };
+.black { color: #221F1F };
+
+
+// CONFIGURAÇÕES GLOBAIS DE CSS
+
+
+ion-menu {
+  --ion-background-color: #f5f5f1;
+  --background: #f5f5f1;
+  --width: 50%;
+}
+
+item-inner {
+  border-width: 0;
+}
+
+ion-toolbar {
+  --background: #E50914;
+}
+
+ion-content {
+  --ion-background-color: #221F1F;
+}
+
+.loading-wrapper {
+  --spinner-color: #221F1F;
+  --background: #f5f5f5;
+}
+
+.loading-content {
+  color: #221F1F !important;
+  font-family: 'K2D-Italic' !important;
+}
+
+.red-txt-button {
+  color: #E50914;
+}
+
+.toast-controller-class {
+  color: #f5f5f1 !important;
+  font-size: 18px !important;
+  font-family: 'K2D-Medium' !important;
+
+}
+
+// SEARCHBAR STYLES
+.searchbar-input {
+  font-size: 20px !important;
+  font-family: 'K2D-Italic' !important;
+  border-bottom: solid 1px #4c4c41 !important;
+  border-radius: 0 !important;
+}
+.searchbar-search-icon.sc-ion-searchbar-ios, .searchbar-search-icon.sc-ion-searchbar-md {
+  width: 20px;
+  left: 5px;
+}
+
+// http://ionicframework.com/docs/theming/
+@import '~@ionic/angular/css/core.css';
+@import '~@ionic/angular/css/normalize.css';
+@import '~@ionic/angular/css/structure.css';
+@import '~@ionic/angular/css/typography.css';
+
+@import '~@ionic/angular/css/padding.css';
+@import '~@ionic/angular/css/float-elements.css';
+@import '~@ionic/angular/css/text-alignment.css';
+@import '~@ionic/angular/css/text-transformation.css';
+@import '~@ionic/angular/css/flex-utils.css';

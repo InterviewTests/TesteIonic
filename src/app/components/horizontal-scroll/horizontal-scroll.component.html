@@ -1,0 +1,15 @@
+<div class="component-content">
+  <span class="title k2d-eb f-24 white">{{ categoryName }}</span>
+  <div class="slide-box">
+    <ion-slides #slide class="slides-content" (ionSlideDidChange)="updateCurrentSlideIndex()">
+      <ion-slide class="slide-class" *ngFor="let movie of moviesArray" (click)="selectMovie(movie)">
+        <img class="movie-img" [src]="getMovieFullUrl(movie.backdrop_path)" *ngIf="movie.backdrop_path"/><br />
+        <img class="movie-img" src="assets/images/no_img_placeholder.jpg" *ngIf="!movie.backdrop_path"/><br />
+        <span class="movie-title k2d-b f-16 white">{{ movie.title }}</span>
+      </ion-slide>
+    </ion-slides>
+    <div class="pagination-row">
+      <div [class]="getBulletColor(i)" *ngFor="let bullet of moviesArray let i = index;"></div>
+    </div>
+  </div>
+</div>
