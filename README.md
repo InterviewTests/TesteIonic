@@ -31,7 +31,7 @@ Você será avaliado pela usabilidade, por respeitar o design e pela arquitetura
 * Para o cadastro e login: [FirebaseAuthentication](https://firebase.google.com/docs/auth/?hl=pt-br)
 * Para a autenticação: [Fingerprint](https://ionicframework.com/docs/native/fingerprint-aio/)/[Touch ID](https://ionicframework.com/docs/native/touch-id/).
 * Para listagem de filmes: [MovieDB](https://developers.themoviedb.org/3/getting-started/introduction)
-* Exemplo de [lista horizontal e componente](https://www.imageupload.co.uk/images/2018/10/09/F28459C8-3212-472D-86D4-1616734C84AE.png)
+* Exemplo de [lista horizontal e componente](https://i.imgur.com/LKkIA8v.png)
 * Para armazenar os filmes favoritados: [Cloud Firestore](https://firebase.google.com/docs/firestore/?hl=pt-br)
 
 ### Paleta de cores
