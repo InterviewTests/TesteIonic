@@ -1,0 +1,36 @@
+.movie-trailer {
+    height: 300px;
+    overflow: hidden;
+    width: 100vw;
+}
+
+.movie {
+    width: 100vw;
+    object-fit: contain;
+    opacity: 0.8;
+}
+
+.back {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-size: 32px;
+    z-index: 999;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: bold;
+    position: relative;
+    margin-top: -50px;
+}
+
+.release {
+    display: inline-block;
+    color: var(--ion-color-medium);
+    margin-top: 16px;
+}
+
+.overview {
+    line-height: 22px;
+}

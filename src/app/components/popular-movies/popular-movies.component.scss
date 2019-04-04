@@ -1,0 +1,38 @@
+.start {
+    position: relative;
+    margin-top: -200px;
+}
+.movies-flex {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    .movie:first-child {
+        padding-left: 0;
+    }
+
+    .movie:last-child {
+        padding-right: 0;
+    }
+
+    .movie {
+        flex: 0 170px;
+        padding: 0 4px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        align-content: flex-start;
+        cursor: pointer;
+
+        div.poster {
+            position: relative;
+            width: 94px;
+            height: 140px;
+            background: #1a1a1a;
+        }
+    }
+}

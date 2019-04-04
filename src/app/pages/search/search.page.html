@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchMovies($event)"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <div padding class="start" *ngIf="movies">
+    <ion-text>
+      <h5>{{ search }}</h5>
+    </ion-text>
+    <div class="movies-flex" *ngIf="movies">
+      <div class="movie" *ngFor="let movie of movies" [routerLink]="['/', 'movies', movie.imdb_id]">
+        <div class="poster">
+          <img *ngIf="movie.poster_path" class="poster" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path">
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
