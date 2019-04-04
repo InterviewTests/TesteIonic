@@ -1,0 +1,38 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: bold !important;
+}
+
+ion-content {
+    --background: var(--ion-color-dark-shade);
+    --color: var(--ion-text-color, var(--ion-color-light));
+}
+
+ion-tab-bar {
+    --background: var(--ion-color-dark-shade);
+    --color: var(--ion-text-color, var(--ion-color-medium));
+
+    .tab-selected {
+        color: var(--ion-color-light);
+    }
+    .tab-selected:hover {
+        color: var(--ion-color-light);
+    }
+}
+
+.sc-ion-searchbar-md-h, .sc-ion-searchbar-ios-h {
+    --clear-button-color: #B3B3B3;
+    --cancel-button-color: var(--ion-color-step-900,#B3B3B3);
+    --color: var(--ion-color-step-850,#EAE9EA);
+    --icon-color: var(--ion-color-step-600,#B3B3B3);
+    --background: var(--ion-background-color,#333333);
+}
+
+
+::-webkit-scrollbar { 
+    display: none; 
+}

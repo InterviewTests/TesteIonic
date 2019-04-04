@@ -1,0 +1,22 @@
+  <ion-content>
+    <div class="back" (click)="dismiss()" *ngIf="movie">
+      <ion-icon name="arrow-back"></ion-icon>
+    </div>
+    <div class="movie-trailer">
+      <img src="http://image.tmdb.org/t/p/w500{{movie.poster_path}}" class="movie">
+    </div>
+    <div padding>
+      <div class="title">
+        {{ title }}
+      </div>
+      <div class="release">
+        {{ release }}
+      </div>
+      <ion-text>
+        <h5>{{ tempTitle }}</h5>
+      </ion-text>
+      <div class="overview">
+        {{ overview }}
+      </div>
+    </div>
+  </ion-content>
