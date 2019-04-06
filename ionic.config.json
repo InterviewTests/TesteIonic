@@ -1,0 +1,8 @@
+{
+  "name": "santander-flix",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "id": "9d246268"
+}
