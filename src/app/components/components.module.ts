@@ -1,5 +1,6 @@
 import { IonicModule } from '@ionic/angular';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -16,6 +17,7 @@ import { MovieTopRatedComponent } from '../components/movie-top-rated/movie-top-
     MovieTopRatedComponent
   ],
   imports: [
+    CommonModule,
     IonicModule
   ],
   exports: [
@@ -23,6 +25,7 @@ import { MovieTopRatedComponent } from '../components/movie-top-rated/movie-top-
     MoviePosterComponent,
     MoviePopularComponent,   
     MovieTopRatedComponent
-  ]
+  ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class ComponentsModule { }

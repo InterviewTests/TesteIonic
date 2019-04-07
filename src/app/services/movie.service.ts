@@ -7,11 +7,31 @@ import { Http } from '@angular/http';
 })
 export class MovieService {
   private baseURL: string = "https://api.themoviedb.org/3/";
-  private language: string = "pt-BR";
+  private language: string = "&language=pt-BR";
 
   constructor(private http: Http) { 
 
   }
+
+  getApiKey(){
+    return "?api_key=c98a03a025c859b24191d80b7f76242d";
+  }
+
+  getTopRated(): Observable<any> {
+    return this.http.get(this.baseURL + "movie/top_rated" + this.getApiKey() + this.language);
+  }
+
+  getPopular(): Observable<any> {
+    return this.http.get(this.baseURL + "movie/popular" + this.getApiKey() + this.language);
+  }
+
+
+
+
+
+}
+
+
 
 /*
 Chave da API (v3 auth)
@@ -24,25 +44,3 @@ Solicitação de exemplo de API
 https://api.themoviedb.org/3/movie/550?api_key=c98a03a025c859b24191d80b7f76242d
  The Movie Database (TMDb)Olá, rafaelghezzi!
 */
-  getApiKey(){
-    return "?api_key=c98a03a025c859b24191d80b7f76242d";
-  }
-
-  async getTopRated() {
-    return await this.http.get(this.baseURL + "/movie/top_rated" + this.getApiKey()).subscribe(
-      data => {
-        const obj = (data as any);
-        const _json=JSON.parse(obj._body);
-        console.log(_json);
-
-      }, error => {
-        console.log(error);
-      }
-    )
-  }
-
-
-
-}
-
-
