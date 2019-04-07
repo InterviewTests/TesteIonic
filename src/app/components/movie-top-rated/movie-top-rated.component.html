@@ -1,0 +1,12 @@
+<div padding>
+  <ion-text>
+    <h5>Top Rated Movies</h5>
+  </ion-text>
+  <div class="movies-flex" *ngIf="_topRated">
+    <div class="movie" *ngFor="let movie of _topRated">
+      <div class="poster">
+        <img *ngIf="movie.poster_path" class="poster" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path">
+      </div>
+    </div>
+  </div>
+</div>
