@@ -21,6 +21,8 @@ export class PosterComponent implements OnInit {
   knowMore: string;
   myList: string;
   isFavorite: boolean;
+  idMovie: string;
+  hasFavorite: boolean;
 
   constructor(
     private movieService: MoviesService,
@@ -39,7 +41,22 @@ export class PosterComponent implements OnInit {
     this.loadMovies();
   }
 
-  changeFavorites() {
+  async checkFavorite() {
+    this.idMovie = this.movie.id.toString();
+    await this.favorites.getMovie(this.idMovie).subscribe(res => {
+      this.hasFavorite = res && res.id !== undefined ? true : false;
+
+      if (this.hasFavorite) {
+        this.isFavorite = true;
+      } else {
+        this.isFavorite = false;
+      }
+    }, error => {
+      console.log('Error Call GetMovie: ', error);
+    });
+  }
+
+  async changeFavorites() {
     if (!this.isFavorite) {
       this.addFavorites();
     } else {
@@ -73,6 +90,7 @@ export class PosterComponent implements OnInit {
         this.movie.id = this.movie.id.toString();
         this.urlPoster = 'https://image.tmdb.org/t/p/w500' + this.movie.poster_path;
         this.keys = this.movie.genres;
+        this.checkFavorite();
       }, err => {
       });
   }

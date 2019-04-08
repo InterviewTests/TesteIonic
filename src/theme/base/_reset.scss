@@ -19,20 +19,26 @@ ion-tab-bar {
     .tab-selected {
         color: var(--ion-color-light);
     }
+
     .tab-selected:hover {
         color: var(--ion-color-light);
     }
 }
 
-.sc-ion-searchbar-md-h, .sc-ion-searchbar-ios-h {
-    --clear-button-color: #B3B3B3;
-    --cancel-button-color: var(--ion-color-step-900,#B3B3B3);
-    --color: var(--ion-color-step-850,#EAE9EA);
-    --icon-color: var(--ion-color-step-600,#B3B3B3);
-    --background: var(--ion-background-color,#333333);
+.sc-ion-searchbar-md-h,
+.sc-ion-searchbar-ios-h {
+    --clear-button-color: var(--ion-color-medium-tint2);
+    --cancel-button-color: var(--ion-color-step-900, var(--ion-color-medium-tint2));
+    --color: var(--ion-color-step-850, var(--ion-color-light-tint2));
+    --icon-color: var(--ion-color-step-600, var(--ion-color-medium-tint2));
+    --background: var(--ion-background-color, var(--ion-color-dark-shade2));
 }
 
 
-::-webkit-scrollbar { 
-    display: none; 
+::-webkit-scrollbar {
+    display: none;
+}
+
+ion-tab-button:hover {
+    --color-selected: var(--ion-color-light-tint);
 }

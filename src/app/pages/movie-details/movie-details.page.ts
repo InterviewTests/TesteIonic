@@ -7,6 +7,8 @@ import { NavController, ModalController } from '@ionic/angular';
 import { component, buttons } from 'src/shared/constants/interface';
 import { FavoritesService } from 'src/app/services/favorites.service';
 import { Movie } from 'src/app/models/movie';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { File } from '@ionic-native/file/ngx';
 
 @Component({
   selector: 'app-movie-details',
@@ -30,6 +32,8 @@ export class MovieDetailsPage implements OnInit {
   rating: Rating;
   hasRate: boolean;
   idMovie: string;
+  textShare: string;
+  showShare: boolean;
 
   constructor(
     private movieService: MoviesService,
@@ -39,7 +43,8 @@ export class MovieDetailsPage implements OnInit {
     private router: Router,
     private favorites: FavoritesService,
     private ratings: RatingService,
-
+    private socialSharing: SocialSharing,
+    private file: File,
   ) {
     this.isFavorite = false;
     this.tempTitle = component.tempTitle;
@@ -50,6 +55,7 @@ export class MovieDetailsPage implements OnInit {
       id: '',
       rate: '',
     };
+    this.showShare = false;
   }
 
   ngOnInit() {
@@ -65,6 +71,7 @@ export class MovieDetailsPage implements OnInit {
         this.title = movie.original_title;
         this.release = movie.release_date.slice(0, 4);
         this.overview = movie.overview;
+        this.textShare = 'Confira"' + this.movie.original_title + '"na Netflix';
       });
   }
 
@@ -95,7 +102,6 @@ export class MovieDetailsPage implements OnInit {
     this.idMovie = this.movie.id.toString();
     await this.ratings.getRating(this.idMovie).subscribe(res => {
       this.hasRate = res && res.id !== undefined ? true : false;
-
     }, error => {
       console.log('Error Call GetRating: ', error);
     });
@@ -111,7 +117,7 @@ export class MovieDetailsPage implements OnInit {
   }
 
   callShare() {
-
+    this.showShare = !this.showShare;
   }
 
   removeThumb(id) {
@@ -142,5 +148,37 @@ export class MovieDetailsPage implements OnInit {
       console.log('error', err);
 
     });
+  }
+
+  async shareTwitter() {
+    this.socialSharing.shareViaTwitter(this.textShare, null, null).then(() => {
+    }).catch((e) => {
+    });
+    this.showShare = false;
+  }
+
+  async shareWhatsApp() {
+    this.socialSharing.shareViaWhatsApp(this.textShare, null, null).then(() => {
+    }).catch((e) => {
+    });
+    this.showShare = false;
+  }
+
+  async shareEmail() {
+    this.socialSharing.shareViaEmail(this.textShare, null, null, null, null, null).then(() => {
+    }).catch((e) => {
+    });
+    this.showShare = false;
+  }
+
+  async shareFacebook() {
+    this.socialSharing.shareViaFacebook(this.textShare, null, null).then(() => {
+    }).catch((e) => {
+    });
+    this.showShare = false;
+  }
+
+  dismiss() {
+    this.router.navigate(['']);
   }
 }

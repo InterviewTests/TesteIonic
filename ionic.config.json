@@ -1,5 +1,7 @@
 {
   "name": "netflix",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

@@ -57,7 +57,9 @@
   --ion-color-dark-contrast: #ffffff;
   --ion-color-dark-contrast-rgb: 255, 255, 255;
   --ion-color-dark-shade: #1A1A1A;
+  --ion-color-dark-shade2: #333333;
   --ion-color-dark-tint: #383a3e;
+  
 
   /** medium **/
   --ion-color-medium: #757575;
@@ -67,6 +69,7 @@
   --ion-color-medium-contrast-rgb: 255, 255, 255;
   --ion-color-medium-shade: #86888f;
   --ion-color-medium-tint: #B5B5B5;
+  --ion-color-medium-tint2: #B3B3B3;
 
   /** light **/
   --ion-color-light: #ffffff;
@@ -75,6 +78,8 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+  --ion-color-light-tint2: #EAE9EA;
+  --ion-color-light-tint-alfa: rgba(255, 255, 255, 0);
 
   --ion-toolbar-background: var(--ion-color-dark);
 

@@ -16,6 +16,8 @@ export class SearchPage {
   searchTerm: string;
   type: SearchType = SearchType.all;
   search: any;
+  findTitle: string;
+  findText: string;
 
   constructor(
     private movieService: MoviesService,
@@ -25,6 +27,9 @@ export class SearchPage {
     private router: Router,
   ) {
     this.searchTerm = '';
+
+    this.findTitle = component.findTitle;
+    this.findText = component.findText;
   }
 
   onMovieDetail(id: string) {
@@ -32,10 +37,12 @@ export class SearchPage {
   }
 
   searchMovies() {
-    this.movieService.searchMovies(this.searchTerm).subscribe(data => {
-      console.log(data.results);
-      this.search = component.search + ' "' + this.searchTerm + '"';
-      this.movies = data.results;
-    });
+    if (this.searchTerm.length > 1) {
+      this.movieService.searchMovies(this.searchTerm).subscribe(data => {
+        console.log(data.results);
+        this.search = component.search + ' "' + this.searchTerm + '"';
+        this.movies = data.results;
+      });
+    }
   }
 }
