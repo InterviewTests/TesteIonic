@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+  apiKey: 'AIzaSyAFjnpoKpE4pgkgXHajAQkJLaeW8SzRXt0',
+  authDomain: 'netflix-c3337.firebaseapp.com',
+  databaseURL: 'https://netflix-c3337.firebaseio.com',
+  projectId: 'netflix-c3337',
+  storageBucket: 'netflix-c3337.appspot.com',
+  messagingSenderId: '275005008275'
+  }
 };
 
 /*

@@ -2,13 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-export enum SearchType {
-  all = '',
-  movie = 'movie',
-  series = 'series',
-  episode = 'episode'
-}
-
 @Injectable({
   providedIn: 'root'
 })
@@ -23,7 +16,6 @@ export class MoviesService {
   pages: string;
   releaseDateGte: string;
   releaseDateLte: string;
-
 
   constructor(private http: HttpClient) {
     this.urlDiscover = 'https://api.themoviedb.org/3/discover/movie';

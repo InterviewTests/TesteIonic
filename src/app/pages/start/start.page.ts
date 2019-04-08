@@ -40,7 +40,7 @@ export class StartPage implements OnInit {
     }
   }
 
-  onMovieDetail(id: number) {
+  onMovieDetail(id: string) {
     this.router.navigate(['movie', id]);
   }
 

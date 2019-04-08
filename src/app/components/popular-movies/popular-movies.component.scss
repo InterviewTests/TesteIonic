@@ -1,6 +1,6 @@
 .start {
     position: relative;
-    margin-top: -200px;
+    margin-top: -180px;
 }
 .movies-flex {
     overflow-x: scroll;
@@ -32,7 +32,7 @@
             position: relative;
             width: 94px;
             height: 140px;
-            background: #1a1a1a;
+            background: var(--ion-color-dark-shade);
         }
     }
 }

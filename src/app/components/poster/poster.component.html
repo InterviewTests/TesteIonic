@@ -1,5 +1,6 @@
-<img class="poster" *ngIf="movie" src="{{ urlPoster }}">
-<!-- <img class="poster-effect" src="{{ urlPoster }}"> -->
+<div class="poster-effect">
+  <img class="poster" *ngIf="movie" src="{{ urlPoster }}">
+</div>
 <div class="center-poster">
   <div class="display-keys" *ngFor="let item of keys">
     <div class="list-keys">{{ item.name }}</div>
@@ -8,15 +9,19 @@
 <ion-grid class="buttons">
   <ion-row>
     <ion-col col-3>
-
+        <div (click)="changeFavorites()">
+          <ion-icon mode="md" name="add" *ngIf="!isFavorite"></ion-icon>
+          <ion-icon mode="md" name="checkmark" *ngIf="isFavorite"></ion-icon>
+          <p>{{ myList }}</p>
+          </div>
     </ion-col>
     <ion-col col-6>
 
     </ion-col>
     <ion-col col-3>
       <div (click)="onMovieDetail()">
-        <ion-icon name="information-circle-outline"></ion-icon>
-        <p>Saiba mais</p>
+        <ion-icon mode="md" name="information-circle-outline"></ion-icon>
+        <p>{{ knowMore }}</p>
       </div>
     </ion-col>
   </ion-row>

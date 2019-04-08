@@ -1,5 +1,5 @@
 export interface Movie {
-    id: number;
+    id: string;
     title: string;
     overview: string;
     release_date: string;
@@ -12,7 +12,6 @@ export interface Movie {
     popularity: number;
     adult: boolean;
     video: boolean;
-    // movie details
     runtime?: number;
     budget?: number;
     production_companies?: {

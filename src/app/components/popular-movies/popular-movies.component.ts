@@ -32,7 +32,8 @@ export class PopularMoviesComponent implements OnInit {
     this.loadMovies();
   }
 
-  onMovieDetail(id: number) {
+  onMovieDetail(id: string) {
+    id = id.toString();
     this.router.navigate(['movie', id]);
   }
 

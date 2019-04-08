@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { SearchType, MoviesService } from '../../services/movies.service';
+import { MoviesService } from '../../services/movies.service';
 import { NavController, ModalController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { component } from 'src/shared/constants/interface';
+import { SearchType } from 'src/app/models/search';
 
 @Component({
   selector: 'app-search',
@@ -26,7 +27,7 @@ export class SearchPage {
     this.searchTerm = '';
   }
 
-  onMovieDetail(id: number) {
+  onMovieDetail(id: string) {
     this.router.navigate(['movie', id]);
   }
 

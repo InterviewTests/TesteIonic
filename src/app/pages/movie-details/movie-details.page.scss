@@ -1,13 +1,20 @@
-.movie-trailer {
-    height: 300px;
-    overflow: hidden;
-    width: 100vw;
+.movie-trailer {}
+
+.movie-trailer::after {
+    display: block;
+    position: relative;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, var(--ion-color-dark-shade) 100%);
+    margin-top: -200px;
+    height: 200px;
+    width: 100%;
+    content: '';
 }
 
 .movie {
     width: 100vw;
-    object-fit: contain;
-    opacity: 0.8;
+    object-fit: cover;
+    height: 300px;
+    object-position: top;
 }
 
 .back {
@@ -33,4 +40,70 @@
 
 .overview {
     line-height: 22px;
+}
+
+.buttons {
+    position: relative;
+    text-align: center;
+    margin: 10px 0;
+
+    ion-icon {
+        font-size: 26px;
+    }
+
+    p {
+        margin: 0;
+        font-size: 12px;
+        color: var(--ion-color-medium-tint);
+    }
+}
+
+.thumb-up {
+    margin-left: -70px;
+    margin-bottom: 50px;
+}
+
+.thumb-down {
+    margin-left: 30px;
+    margin-bottom: 50px;
+}
+
+.backdrop-fab {
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    background: var(--ion-color-black-alfa);
+    z-index: 999;
+}
+
+.fab-button-in-list,
+ion-fab-button {
+    --background: var(--ion-color-medium-alfa);
+    --background-activated: var(--ion-color-light-tint);
+    --background-focused: var(--background-activated);
+    --color: var(--ion-color-light-tint);
+    --color-activated: var(--ion-color-light-contrast, var(--ion-color-black););
+    --color-focused: var(--color-activated);
+    --transition: transform 200ms ease 10ms, opacity 200ms ease 10ms;
+}
+
+.fab-button-in-list {
+    width: 80px;
+    height: 80px;
+
+    ion-icon {
+        font-size: 40px;
+    }
+}
+
+ion-fab-button {
+    width: 40px;
+    height: 40px;
+}
+
+.info-rate {
+    padding-right: 10px;
+    color: var(--ion-color-medium);
+    font-size: 15px;
 }
