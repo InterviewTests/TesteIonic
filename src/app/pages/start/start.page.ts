@@ -1,7 +1,7 @@
 import { MoviesService } from 'src/app/services/movies.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Movie } from '../../models/movie';
-import { NavController, ModalController, LoadingController } from '@ionic/angular';
+import { NavController, ModalController, LoadingController, Events } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ScrollDetail } from '@ionic/core';
 
@@ -16,13 +16,13 @@ export class StartPage implements OnInit {
   movies: Movie[];
   showToolbar: boolean;
 
-
   constructor(
     private movieService: MoviesService,
     public navCtrl: NavController,
     public modalCtrl: ModalController,
     private loadingCtrl: LoadingController,
     private router: Router,
+    private events: Events,
   ) {
     this.showToolbar = false;
   }
@@ -33,11 +33,8 @@ export class StartPage implements OnInit {
     this.loadMovies();
   }
 
-  onScroll($event: CustomEvent<ScrollDetail>) {
-    if ($event && $event.detail && $event.detail.scrollTop) {
-      const scrollTop = $event.detail.scrollTop;
-      this.showToolbar = scrollTop >= 225;
-    }
+  ionViewWillLeave() {
+    this.events.unsubscribe('showList');
   }
 
   onMovieDetail(id: string) {

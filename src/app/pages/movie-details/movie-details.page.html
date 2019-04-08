@@ -16,6 +16,27 @@
         </ion-fab-list>
       </ion-fab>
     </div>
+
+    <div class="backdrop-fab" *ngIf="showShare">
+        <ion-fab vertical="center" horizontal="center" slot="fixed" activated="true">
+            <ion-fab-button>
+              <ion-icon name="share"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-list side="top">
+              <ion-fab-button><ion-icon (click)="shareTwitter()" name="logo-twitter"></ion-icon></ion-fab-button>
+            </ion-fab-list>
+            <ion-fab-list side="bottom">
+              <ion-fab-button><ion-icon (click)="shareEmail()" name="logo-facebook"></ion-icon></ion-fab-button>
+            </ion-fab-list>
+            <ion-fab-list side="start">
+              <ion-fab-button><ion-icon (click)="shareFacebook()" name="logo-instagram"></ion-icon></ion-fab-button>
+            </ion-fab-list>
+            <ion-fab-list side="end">
+              <ion-fab-button><ion-icon (click)="shareWhatsApp()" name="mail"></ion-icon></ion-fab-button>
+            </ion-fab-list>
+          </ion-fab>
+    </div>
+
     <div class="back" (click)="dismiss()" *ngIf="movie">
       <ion-icon name="arrow-back"></ion-icon>
     </div>

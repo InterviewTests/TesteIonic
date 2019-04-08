@@ -17,4 +17,11 @@
       </div>
     </div>
   </div>
+
+  <div padding class="start" *ngIf="!movies">
+    <ion-text>
+      <h5>{{ findTitle }}</h5>
+      <p>{{ findText }}</p>
+    </ion-text>
+  </div>
 </ion-content>
