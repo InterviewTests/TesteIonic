@@ -1,0 +1,92 @@
+  <ion-content *ngIf="movie">
+    <div class="backdrop-fab" *ngIf="showOptions">
+      <ion-fab vertical="center" horizontal="center" slot="fixed" activated="true">
+        <ion-fab-button>
+          <ion-icon name="heart-empty"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="top" class="thumb-up">
+          <ion-fab-button (click)="thumbUp()">
+            <ion-icon name="heart"></ion-icon>
+          </ion-fab-button>
+        </ion-fab-list>
+        <ion-fab-list side="top" class="thumb-down">
+          <ion-fab-button (click)="thumbDown()">
+            <ion-icon name="heart-dislike"></ion-icon>
+          </ion-fab-button>
+        </ion-fab-list>
+      </ion-fab>
+    </div>
+
+    <div class="backdrop-fab" *ngIf="showShare">
+        <ion-fab vertical="center" horizontal="center" slot="fixed" activated="true">
+            <ion-fab-button>
+              <ion-icon name="share"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-list side="top">
+              <ion-fab-button><ion-icon (click)="shareTwitter()" name="logo-twitter"></ion-icon></ion-fab-button>
+            </ion-fab-list>
+            <ion-fab-list side="bottom">
+              <ion-fab-button><ion-icon (click)="shareEmail()" name="logo-facebook"></ion-icon></ion-fab-button>
+            </ion-fab-list>
+            <ion-fab-list side="start">
+              <ion-fab-button><ion-icon (click)="shareFacebook()" name="logo-instagram"></ion-icon></ion-fab-button>
+            </ion-fab-list>
+            <ion-fab-list side="end">
+              <ion-fab-button><ion-icon (click)="shareWhatsApp()" name="mail"></ion-icon></ion-fab-button>
+            </ion-fab-list>
+          </ion-fab>
+    </div>
+
+    <div class="back" (click)="dismiss()" *ngIf="movie">
+      <ion-icon name="arrow-back"></ion-icon>
+    </div>
+    <div class="movie-trailer">
+      <img src="http://image.tmdb.org/t/p/w500{{movie.poster_path}}" class="movie">
+    </div>
+    <div padding>
+      <div class="title">
+        {{ title }}
+      </div>
+      <ion-icon name="heart" class="info-rate" *ngIf="showUp"></ion-icon>
+      <ion-icon name="heart-dislike" class="info-rate" *ngIf="showDown"></ion-icon>
+      <div class="release">
+        {{ release }}
+      </div>
+      <ion-text>
+        <h5>{{ tempTitle }}</h5>
+      </ion-text>
+      <div class="overview">
+        {{ overview }}
+      </div>
+      <ion-grid class="buttons">
+        <ion-row>
+          <ion-col col-3>
+            <div (click)="changeFavorites()">
+              <ion-icon mode="md" name="add" *ngIf="!isFavorite"></ion-icon>
+              <ion-icon mode="md" name="checkmark" *ngIf="isFavorite"></ion-icon>
+              <p>{{ myList }}</p>
+            </div>
+          </ion-col>
+          <ion-col col-3>
+
+            <div (click)="callRateIt()">
+              <ion-icon name="heart-empty" *ngIf="!showUp && !showDown"></ion-icon>
+              <ion-icon name="heart" *ngIf="showUp"></ion-icon>
+              <ion-icon name="heart-dislike" *ngIf="showDown"></ion-icon>
+              <p>{{ rateIt }}</p>
+            </div>
+          </ion-col>
+          <ion-col col-3>
+            <div (click)="callShare()">
+              <ion-icon mode="md" name="share"></ion-icon>
+              <p>{{ share }}</p>
+            </div>
+          </ion-col>
+          <ion-col col-3>
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+  </ion-content>

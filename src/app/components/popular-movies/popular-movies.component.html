@@ -1,0 +1,12 @@
+<div padding [class.start]="showList">
+  <ion-text>
+    <h5>{{ popular }}</h5>
+  </ion-text>
+  <div class="movies-flex" *ngIf="movies">
+    <div class="movie" *ngFor="let movie of movies" (click)="onMovieDetail(movie.id)">
+      <div class="poster">
+        <img *ngIf="movie.poster_path" class="poster" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path">
+      </div>
+    </div>
+  </div>
+</div>
